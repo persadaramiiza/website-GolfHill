@@ -1,59 +1,132 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# GolfHill Company Profile Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel-based company profile website featuring property unit catalog and lifestyle articles with an admin dashboard powered by Filament.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Unit Catalog**: Browse and filter available property units (apartments, houses, commercial spaces)
+- **Lifestyle Articles**: Content management system for blog posts and lifestyle content
+- **Admin Dashboard**: Comprehensive admin panel built with Filament 3.x
+- **Media Management**: Image galleries and floor plans using Spatie Media Library
+- **Contact Management**: Display contact persons for each unit with phone and WhatsApp links
+- **Article Engagement**: Tags, categories, and nested comments with moderation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend**: PHP 8.2+ with Laravel 12.x
+- **Database**: MySQL/MariaDB
+- **Admin Panel**: Laravel Filament 3.x
+- **Frontend**: Blade templates + Livewire (design in progress via Figma)
+- **Assets**: Vite for bundling
+- **Media**: Spatie Media Library (images only, no video)
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Prerequisites
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP 8.2 or higher
+- Composer
+- MySQL/MariaDB
+- Node.js & NPM
 
-## Laravel Sponsors
+### Setup Steps
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. **Install dependencies**
+   ```bash
+   composer install
+   npm install
+   ```
 
-### Premium Partners
+2. **Environment setup**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+3. **Configure database**
+   Edit `.env` and set your database credentials:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=golfhill_db
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-## Contributing
+4. **Run migrations**
+   ```bash
+   php artisan migrate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. **Create admin user**
+   ```bash
+   php artisan make:filament-user
+   ```
 
-## Code of Conduct
+6. **Start development server**
+   ```bash
+   php artisan serve
+   npm run dev
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+7. **Access the application**
+   - Website: http://localhost:8000
+   - Admin Panel: http://localhost:8000/admin
 
-## Security Vulnerabilities
+## Database Schema
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Core Tables
 
-## License
+**units** - Property listings with type, price, size, bedrooms, bathrooms, location, status (linked to UnitType and ContactPerson)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**unit_types** - Types like apartment, house, commercial
+
+**contact_people** - Contact persons with phone, email, WhatsApp for unit inquiries
+
+**articles** - Lifestyle content with title, content, excerpt, category, author, status
+
+**categories** - Article categories for organization
+
+**tags** - Tags for articles (many-to-many relationship)
+
+**comments** - Nested comments on articles with moderation (pending/approved/rejected)
+
+**media** - Spatie Media Library for image storage (galleries, floor plans, featured images)
+
+## Development Workflow
+
+### Creating Filament Resources
+
+Generate a resource for admin panel:
+```bash
+php artisan make:filament-resource Unit --generate
+```
+
+### Project Structure
+
+```
+app/
+├── Filament/Resources/   # Filament admin resources
+├── Models/               # Eloquent models with relationships
+├── Http/Controllers/     # Controllers for frontend
+database/
+├── migrations/           # Database migrations
+└── seeders/             # Database seeders
+resources/
+├── views/               # Blade templates
+└── css/                 # Styles
+```
+
+## Next Steps
+
+1. **Create Filament Resources** for all models (Unit, Article, Category, ContactPerson, etc.)
+2. **Seed sample data** for testing
+3. **Build frontend views** based on Figma designs
+4. **Implement filtering** for unit catalog
+5. **Add comment moderation** workflow in admin
+6. **Configure media conversions** for responsive images
+
+## AI Coding Instructions
+
+See [.github/copilot-instructions.md](.github/copilot-instructions.md) for detailed AI coding guidelines specific to this project.

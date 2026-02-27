@@ -1,22 +1,23 @@
 <x-layouts.app>
-    {{-- Hero Section --}}
-    <section class="relative bg-gray-900 text-white py-20 md:py-32">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                    Discover Your Dream Home at GolfHill
+    {{-- Hero Section - Figma Design --}}
+    <section class="relative h-[600px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920');">
+        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+            <div class="max-w-2xl text-white">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                    Where Convenience<br>Meets Luxury
                 </h1>
-                <p class="text-xl text-gray-300 mb-8">
-                    Premium property development offering luxury living spaces in prime locations. Find your perfect apartment, house, or commercial space today.
+                <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+                    Welcome to an exclusive residential community. Discover modern living spaces designed for your comfort and lifestyle.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="{{ route('units.index') }}" 
-                       class="bg-white text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition text-center">
+                       class="inline-block bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition text-center shadow-lg">
                         Explore Units
                     </a>
-                    <a href="{{ route('contact') }}" 
-                       class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition text-center">
-                        Contact Us
+                    <a href="{{ route('articles.index') }}" 
+                       class="inline-block border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition text-center">
+                        View Articles
                     </a>
                 </div>
             </div>
@@ -24,102 +25,138 @@
     </section>
 
     {{-- Featured Units Section --}}
-    <section class="py-16 bg-white">
+    <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Units</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    Browse our selection of premium properties available for sale
-                </p>
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-3">Our Units</h2>
+                    <p class="text-gray-600">Discover our wide range of available premium properties</p>
+                </div>
+                <a href="{{ route('units.index') }}" class="text-blue-600 font-semibold hover:text-blue-700 transition">
+                    View All →
+                </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @forelse($units as $unit)
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <div class="bg-gray-200 h-64 flex items-center justify-center text-gray-400">
-                        {{-- Image placeholder - will show unit images when uploaded --}}
-                        <span class="text-sm">{{ $unit->name }}</span>
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden card-hover border border-gray-100">
+                    <div class="relative h-64 bg-gradient-to-br from-blue-100 to-blue-50">
+                        {{-- Placeholder for unit image --}}
+                        <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                            <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            </svg>
+                        </div>
+                        <span class="absolute top-4 right-4 badge-available">
+                            {{ ucfirst($unit->status) }}
+                        </span>
+                        <span class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                            {{ $unit->unitType->name }}
+                        </span>
                     </div>
                     <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-2">
-                            <span class="bg-gray-100 px-3 py-1 rounded">{{ $unit->unitType->name }}</span>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">{{ $unit->name }}</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ Str::limit($unit->description, 80) }}</p>
+                        
+                        <div class="flex items-center gap-4 text-sm text-gray-500 mb-5 pb-5 border-b">
+                            @if($unit->bedrooms)
+                            <div class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                                <span>{{ $unit->bedrooms }} BR</span>
+                            </div>
+                            @endif
+                            @if($unit->bathrooms)
+                            <div class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                <span>{{ $unit->bathrooms }} BA</span>
+                            </div>
+                            @endif
+                            @if($unit->size)
+                            <div class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+                                <span>{{ $unit->size }}m²</span>
+                            </div>
+                            @endif
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">{{ $unit->name }}</h3>
-                        <p class="text-gray-600 mb-4">{{ Str::limit($unit->description, 60) }}</p>
-                        <div class="flex items-center text-sm text-gray-600 mb-4 space-x-4">
-                            @if($unit->bedrooms)<span>🛏️ {{ $unit->bedrooms }} Beds</span>@endif
-                            @if($unit->bathrooms)<span>🚿 {{ $unit->bathrooms }} Baths</span>@endif
-                            @if($unit->size)<span>📐 {{ $unit->size }}m²</span>@endif
-                        </div>
+                        
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-gray-900">${{ number_format($unit->price) }}</span>
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">Starting From</p>
+                                <p class="text-2xl font-bold text-blue-600">${{ number_format($unit->price) }}</p>
+                            </div>
                             <a href="{{ route('units.show', $unit->slug) }}" 
-                               class="text-gray-900 font-medium hover:underline">View Details →</a>
+                               class="bg-blue-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 transition">
+                                Details
+                            </a>
                         </div>
                     </div>
                 </div>
                 @empty
-                <div class="col-span-3 text-center py-12">
-                    <p class="text-gray-500 mb-4">No units available yet.</p>
-                    <a href="{{ route('units.index') }}" class="text-gray-900 underline">Browse all units</a>
+                <div class="col-span-3 text-center py-16">
+                    <svg class="w-20 h-20 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    <p class="text-gray-500 text-lg mb-3">No units available yet</p>
+                    <p class="text-gray-400 text-sm">Please check back later or contact us for more information</p>
                 </div>
                 @endforelse
-            </div>
-
-            <div class="text-center mt-12">
-                <a href="{{ route('units.index') }}" 
-                   class="inline-block bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition">
-                    View All Units
-                </a>
             </div>
         </div>
     </section>
 
     {{-- Lifestyle Articles Section --}}
-    <section class="py-16 bg-gray-50">
+    <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Lifestyle & Insights</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    Latest articles about property trends, design tips, and community news
-                </p>
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-3">Lifestyle</h2>
+                    <p class="text-gray-600">Discover articles, news, and insights about GolfHill living</p>
+                </div>
+                <a href="{{ route('articles.index') }}" class="text-blue-600 font-semibold hover:text-blue-700 transition">
+                    View All →
+                </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 @forelse($articles as $article)
-                <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
-                    <div class="bg-gray-200 h-48 flex items-center justify-center text-gray-400">
-                        <span class="text-sm">{{ $article->title }}</span>
+                <article class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden card-hover border border-gray-100">
+                    <div class="relative h-56 bg-gradient-to-br from-cyan-50 to-blue-50">
+                        {{-- Placeholder for article image --}}
+                        <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                            <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                            </svg>
+                        </div>
+                        <span class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            {{ $article->category->name }}
+                        </span>
                     </div>
                     <div class="p-6">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-xs bg-gray-100 px-3 py-1 rounded">{{ $article->category->name }}</span>
-                            <span class="text-xs text-gray-500">{{ $article->published_at?->format('M d, Y') }}</span>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <span>{{ $article->user->name }}</span>
+                            <span class="mx-2">•</span>
+                            <time>{{ $article->published_at->format('M d, Y') }}</time>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">{{ $article->title }}</h3>
-                        <p class="text-gray-600 mb-4">{{ Str::limit($article->excerpt ?? strip_tags($article->content), 80) }}</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center text-sm text-gray-600">
-                                <span>{{ $article->user->name }}</span>
-                            </div>
-                            <a href="{{ route('articles.show', $article->slug) }}" 
-                               class="text-gray-900 font-medium hover:underline">Read More →</a>
-                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{{ $article->title }}</h3>
+                        <p class="text-gray-600 text-sm mb-5 line-clamp-3">{{ Str::limit($article->excerpt ?? strip_tags($article->content), 120) }}</p>
+                        <a href="{{ route('articles.show', $article->slug) }}" 
+                           class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition group">
+                            Read Article
+                            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </a>
                     </div>
                 </article>
                 @empty
-                <div class="col-span-3 text-center py-12">
-                    <p class="text-gray-500 mb-4">No articles published yet.</p>
-                    <a href="{{ route('articles.index') }}" class="text-gray-900 underline">Browse all articles</a>
+                <div class="col-span-3 text-center py-16">
+                    <svg class="w-20 h-20 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                    </svg>
+                    <p class="text-gray-500 text-lg mb-3">No articles published yet</p>
+                    <p class="text-gray-400 text-sm">Check back soon for lifestyle content and updates</p>
                 </div>
                 @endforelse
-            </div>
-
-            <div class="text-center mt-12">
-                <a href="{{ route('articles.index') }}" 
-                   class="inline-block border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 hover:text-white transition">
-                    All Articles
-                </a>
             </div>
         </div>
     </section>

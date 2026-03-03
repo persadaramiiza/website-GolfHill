@@ -1,40 +1,36 @@
-<nav class="bg-white shadow-sm sticky top-0 z-50">
+<nav class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50" style="box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
+        <div class="flex justify-between h-20 items-center">
             
             <!-- Logo -->
             <a href="{{ route('home') }}" class="flex items-center">
-                <span class="text-2xl font-bold text-gray-900">GolfHill</span>
+                <span class="text-2xl font-bold" style="color: #00377D;">GOLFHILL TERRACES</span>
             </a>
 
             <!-- Desktop Navigation -->
-            <div class="hidden md:flex space-x-8">
-                <a href="{{ route('home') }}" 
-                   class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition">
-                    Home
+            <div class="hidden md:flex space-x-12">
+                <a href="{{ route('articles.index') }}" 
+                   class="text-base transition hover:opacity-80 {{ request()->routeIs('articles.*') ? 'font-bold underline underline-offset-4' : 'font-normal' }}"
+                   style="color: #00377D;">
+                    Articles
                 </a>
                 <a href="{{ route('units.index') }}" 
-                   class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition">
-                    Units
+                   class="text-base transition hover:opacity-80 {{ request()->routeIs('units.*') ? 'font-bold underline underline-offset-4' : 'font-normal' }}"
+                   style="color: #00377D;">
+                    Our Units
                 </a>
-                <a href="{{ route('articles.index') }}" 
-                   class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition">
-                    Lifestyle
-                </a>
-                <a href="{{ route('about') }}" 
-                   class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition">
-                    About
-                </a>
-                <a href="{{ route('contact') }}" 
-                   class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition">
-                    Contact
+                <a href="{{ route('facilities.index') }}" 
+                   class="text-base transition hover:opacity-80 {{ request()->routeIs('facilities.*') ? 'font-bold underline underline-offset-4' : 'font-normal' }}"
+                   style="color: #00377D;">
+                    Our Facilities
                 </a>
             </div>
 
             <!-- CTA Button -->
             <div class="hidden md:flex">
                 <a href="{{ route('units.index') }}" 
-                   class="bg-gray-900 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition">
+                   class="px-6 py-2 rounded-xl text-sm font-semibold text-white transition hover:opacity-90"
+                   style="background-color: #00377D;">
                     Explore Units
                 </a>
             </div>

@@ -1,132 +1,199 @@
-<x-layouts.app title="Article Title - GolfHill">
-    <article class="bg-white">
-        
-        {{-- Article Header --}}
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="mb-6">
-                <span class="bg-gray-100 px-3 py-1 rounded text-sm">Lifestyle</span>
-            </div>
-            
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                5 Tips for Modern Home Interior Design
-            </h1>
+<x-layouts.app title="{{ $article->title }} - GolfHill Terraces">
 
-            <div class="flex items-center mb-8">
-                <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
-                <div>
-                    <div class="font-semibold">John Doe</div>
-                    <div class="text-sm text-gray-600">Published on {{ date('F d, Y') }} • 5 min read</div>
+    {{-- Main Content --}}
+    <section class="bg-white pt-8 pb-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            {{-- Back to Articles --}}
+            <div class="pt-8 pb-10">
+                <a href="{{ route('articles.index') }}"
+                   class="inline-flex items-center gap-2 px-4 py-1 rounded font-semibold text-base transition hover:opacity-75"
+                   style="background-color: #F9FAFB; color: #00377D;">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.0001 15.8334L4.16675 10L10.0001 4.16669" stroke="#00377D" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15.8334 10H4.16675" stroke="#00377D" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Back to Articles
+                </a>
+            </div>
+
+            {{-- Title & Meta --}}
+            <div class="mb-10">
+                <h1 class="font-bold mb-6 leading-none" style="font-size: 60px; color: #00377D; line-height: 60px;">
+                    {{ $article->title }}
+                </h1>
+
+                @if($article->excerpt)
+                <p class="mb-6" style="font-size: 24px; font-weight: 400; line-height: 32px; color: #4A5565;">
+                    {{ $article->excerpt }}
+                </p>
+                @endif
+
+                {{-- Meta row --}}
+                <div class="flex flex-wrap items-center gap-6" style="color: #6A7282;">
+                    {{-- Date --}}
+                    <div class="flex items-center gap-2">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 1.5V4.5" stroke="#6A7282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 1.5V4.5" stroke="#6A7282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14.25 3H3.75C2.92157 3 2.25 3.67157 2.25 4.5V15C2.25 15.8284 2.92157 16.5 3.75 16.5H14.25C15.0784 16.5 15.75 15.8284 15.75 15V4.5C15.75 3.67157 15.0784 3 14.25 3Z" stroke="#6A7282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2.25 7.5H15.75" stroke="#6A7282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <time style="font-size: 16px; font-weight: 400; line-height: 24px;">
+                            {{ $article->published_at->format('F d, Y') }}
+                        </time>
+                    </div>
+                    {{-- Author --}}
+                    <div class="flex items-center gap-2">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.25 15.75V14.25C14.25 13.4544 13.9339 12.6913 13.3713 12.1287C12.8087 11.5661 12.0456 11.25 11.25 11.25H6.75C5.95435 11.25 5.19129 11.5661 4.62868 12.1287C4.06607 12.6913 3.75 13.4544 3.75 14.25V15.75" stroke="#6A7282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 8.25C10.6569 8.25 12 6.90685 12 5.25C12 3.59315 10.6569 2.25 9 2.25C7.34315 2.25 6 3.59315 6 5.25C6 6.90685 7.34315 8.25 9 8.25Z" stroke="#6A7282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span style="font-size: 16px; font-weight: 400; line-height: 24px;">
+                            {{ $article->user->name }}
+                        </span>
+                    </div>
+                    {{-- Category --}}
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white" style="background-color: #00377D;">
+                        {{ $article->category->name }}
+                    </span>
                 </div>
             </div>
 
             {{-- Featured Image --}}
-            <div class="bg-gray-200 h-96 rounded-lg mb-8"></div>
-        </div>
+            <div class="w-full overflow-hidden mb-10 bg-gradient-to-br from-blue-100 to-cyan-200 flex items-center justify-center"
+                 style="height: 600px; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
+                <svg class="w-20 h-20 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+            </div>
 
-        {{-- Article Content --}}
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-            <div class="prose prose-lg max-w-none">
-                <p class="text-xl text-gray-600 mb-6">
-                    Creating a modern, stylish home interior doesn't have to be complicated. Here are some essential tips to help you design a space that's both beautiful and functional.
-                </p>
-
-                <h2 class="text-2xl font-bold mt-8 mb-4">1. Embrace Minimalism</h2>
-                <p class="text-gray-700 mb-6">
-                    Less is more when it comes to modern design. Focus on clean lines, neutral colors, and functional furniture. Remove unnecessary clutter and keep only items that serve a purpose or bring you joy.
-                </p>
-
-                <h2 class="text-2xl font-bold mt-8 mb-4">2. Use Natural Materials</h2>
-                <p class="text-gray-700 mb-6">
-                    Incorporate wood, stone, and natural fibers to add warmth and texture to your space. These materials create a connection with nature and provide a calming atmosphere.
-                </p>
-
-                <h2 class="text-2xl font-bold mt-8 mb-4">3. Layer Your Lighting</h2>
-                <p class="text-gray-700 mb-6">
-                    Good lighting transforms a space. Combine ambient, task, and accent lighting to create depth and functionality. Consider pendant lights, floor lamps, and LED strips for a modern look.
-                </p>
-
-                <h2 class="text-2xl font-bold mt-8 mb-4">4. Add Personal Touches</h2>
-                <p class="text-gray-700 mb-6">
-                    While keeping it minimal, don't forget to add elements that reflect your personality. Artwork, plants, and carefully chosen decorative pieces make a house feel like home.
-                </p>
-
-                <h2 class="text-2xl font-bold mt-8 mb-4">5. Maximize Space</h2>
-                <p class="text-gray-700 mb-6">
-                    Use multi-functional furniture and smart storage solutions to make the most of your space. Built-in wardrobes, floating shelves, and furniture with hidden storage are great options.
-                </p>
-
-                <div class="bg-gray-50 border-l-4 border-gray-900 p-6 my-8">
-                    <p class="text-gray-700 italic">
-                        "Good design is making something intelligible and memorable. Great design is making something memorable and meaningful."
-                    </p>
+            {{-- Article Body --}}
+            <div class="rounded-2xl p-8 mb-10" style="background-color: #F9FAFB;">
+                <div style="font-size: 18px; font-weight: 400; line-height: 1.8; color: #000;">
+                    {!! $article->content !!}
                 </div>
             </div>
 
             {{-- Tags --}}
-            <div class="mt-12 pt-8 border-t">
-                <div class="flex flex-wrap gap-2">
-                    <span class="text-sm text-gray-600 mr-2">Tags:</span>
-                    @foreach(['Interior Design', 'Modern Living', 'Home Decor', 'Minimalism'] as $tag)
-                    <span class="bg-gray-100 px-3 py-1 rounded text-sm text-gray-700">#{{ $tag }}</span>
-                    @endforeach
-                </div>
+            @if($article->tags->count())
+            <div class="flex flex-wrap items-center gap-3 mb-10 pt-4 border-t" style="border-color: #E5E7EB;">
+                <span class="text-sm font-semibold" style="color: #4A5565;">Tags:</span>
+                @foreach($article->tags as $tag)
+                <span class="px-4 py-1.5 rounded-full text-sm font-medium border" style="color: #00377D; border-color: #00377D;">
+                    #{{ $tag->name }}
+                </span>
+                @endforeach
             </div>
+            @endif
 
             {{-- Author Bio --}}
-            <div class="mt-12 bg-gray-50 rounded-lg p-6">
-                <div class="flex items-start">
-                    <div class="w-16 h-16 bg-gray-300 rounded-full mr-4 flex-shrink-0"></div>
+            <div class="p-8 rounded-3xl border mb-2" style="background: linear-gradient(135deg, rgba(151, 231, 245, 0.15) 0%, #FFF 100%); border-color: rgba(0, 158, 209, 0.2);">
+                <div class="flex items-start gap-6">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0" style="background-color: #00377D;">
+                        {{ substr($article->user->name, 0, 1) }}
+                    </div>
                     <div>
-                        <h3 class="font-bold text-lg mb-2">About John Doe</h3>
-                        <p class="text-gray-600 mb-3">
-                            Interior design enthusiast with over 10 years of experience in creating beautiful living spaces. Passionate about modern design and sustainable living.
-                        </p>
-                        <div class="text-sm text-gray-500">5 Articles Published</div>
+                        <div class="text-xs font-semibold uppercase tracking-wider mb-1" style="color: #009ED1;">Written by</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">{{ $article->user->name }}</h3>
+                        <p class="text-base" style="color: #4A5565;">PT Brasali Realty — Golfhill Terraces editorial team</p>
                     </div>
-                </div>
-            </div>
-
-            {{-- Comments Section --}}
-            <div class="mt-16">
-                <h3 class="text-2xl font-bold mb-6">Comments (3)</h3>
-                
-                {{-- Comment Form --}}
-                <div class="bg-gray-50 rounded-lg p-6 mb-8">
-                    <h4 class="font-semibold mb-4">Leave a Comment</h4>
-                    <form>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <input type="text" placeholder="Your Name" class="border-gray-300 rounded-lg">
-                            <input type="email" placeholder="Your Email" class="border-gray-300 rounded-lg">
-                        </div>
-                        <textarea rows="4" placeholder="Your comment..." class="w-full border-gray-300 rounded-lg mb-4"></textarea>
-                        <button type="submit" class="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition">
-                            Post Comment
-                        </button>
-                    </form>
-                </div>
-
-                {{-- Sample Comments --}}
-                <div class="space-y-6">
-                    @foreach(range(1, 3) as $i)
-                    <div class="border-b pb-6">
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 bg-gray-300 rounded-full mr-3 flex-shrink-0"></div>
-                            <div class="flex-1">
-                                <div class="flex items-center mb-2">
-                                    <span class="font-semibold mr-2">User {{ $i }}</span>
-                                    <span class="text-sm text-gray-500">{{ date('M d, Y') }}</span>
-                                </div>
-                                <p class="text-gray-700">
-                                    Great article! These tips are very helpful and practical. I'm definitely going to try implementing some of these ideas in my own home.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
                 </div>
             </div>
 
         </div>
+    </section>
 
-    </article>
+    {{-- Comments Section --}}
+    <section class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-10" style="color: #00377D;">
+                Comments ({{ $article->comments->count() }})
+            </h2>
+
+            {{-- Comment Form --}}
+            <div class="p-8 rounded-3xl mb-12" style="background: linear-gradient(135deg, rgba(151, 231, 245, 0.15) 0%, #FFF 100%); border: 1px solid rgba(0, 158, 209, 0.2);">
+                <h3 class="text-lg font-bold mb-6" style="color: #00377D;">Leave a Comment</h3>
+                <form>
+                    @csrf
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <input type="text" placeholder="Your Name"
+                               class="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2"
+                               style="border-color: #D1D5DC; focus:ring-color: #009ED1;">
+                        <input type="email" placeholder="Your Email"
+                               class="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2"
+                               style="border-color: #D1D5DC;">
+                    </div>
+                    <textarea rows="4" placeholder="Share your thoughts..."
+                              class="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 mb-4"
+                              style="border-color: #D1D5DC;"></textarea>
+                    <button type="submit"
+                            class="px-10 py-3 rounded-xl font-semibold text-white transition hover:opacity-90"
+                            style="background-color: #00377D;">
+                        Post Comment
+                    </button>
+                </form>
+            </div>
+
+            {{-- Comment List --}}
+            @if($article->comments->count())
+            <div class="space-y-8">
+                @foreach($article->comments as $comment)
+                <div class="pb-8 border-b" style="border-color: #E5E7EB;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background-color: #009ED1;">
+                            {{ substr($comment->author_name ?? 'A', 0, 1) }}
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="font-semibold text-gray-900">{{ $comment->author_name ?? 'Anonymous' }}</span>
+                                <span class="text-sm" style="color: #4A5565;">{{ $comment->created_at->format('M d, Y') }}</span>
+                            </div>
+                            <p class="leading-relaxed" style="color: #364153;">{{ $comment->content }}</p>
+
+                            {{-- Replies --}}
+                            @if($comment->replies && $comment->replies->count())
+                            <div class="mt-4 ml-4 space-y-4">
+                                @foreach($comment->replies as $reply)
+                                <div class="flex items-start gap-3 pl-4 border-l-2" style="border-color: #009ED1;">
+                                    <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0" style="background-color: #22AE6C;">
+                                        {{ substr($reply->author_name ?? 'A', 0, 1) }}
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="font-semibold text-sm text-gray-900">{{ $reply->author_name ?? 'Anonymous' }}</span>
+                                            <span class="text-xs" style="color: #4A5565;">{{ $reply->created_at->format('M d, Y') }}</span>
+                                        </div>
+                                        <p class="text-sm" style="color: #364153;">{{ $reply->content }}</p>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            @else
+            <div class="text-center py-12">
+                <p class="text-lg" style="color: #4A5565;">No comments yet. Be the first to share your thoughts!</p>
+            </div>
+            @endif
+        </div>
+    </section>
+
+    {{-- CTA Section --}}
+    <section class="py-20 text-center text-white" style="background: linear-gradient(131deg, #00377D 16.85%, #00377D 48.61%, #009ED1 80.36%);">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-5xl font-bold mb-4">Find Your Perfect Home</h2>
+            <p class="text-xl text-white/90 mb-10">Experience the luxury lifestyle at Golfhill Terraces Apartment</p>
+            <a href="{{ route('contact') }}"
+               class="inline-flex items-center justify-center px-16 py-5 rounded-2xl font-semibold text-lg text-white transition"
+               style="background-color: #22AE6C; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);">
+                Contact Us
+            </a>
+        </div>
+    </section>
+
 </x-layouts.app>

@@ -1,23 +1,24 @@
 <x-layouts.app>
     {{-- Hero Section - Figma Design --}}
-    <section class="relative h-[600px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920');">
-        <div class="absolute inset-0 hero-overlay"></div>
+    <section class="relative h-[665px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920');">
+       <div class="absolute inset-0 hero-overlay"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-            <div class="max-w-2xl text-white">
-                <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <div class="max-w-3xl text-white">
+                <h1 class="text-6xl md:text-7xl font-bold mb-6" style="line-height: 90px;">
                     Where Convenience<br>Meets Luxury
                 </h1>
-                <p class="text-xl text-blue-100 mb-8 leading-relaxed">
-                    Welcome to an exclusive residential community. Discover modern living spaces designed for your comfort and lifestyle.
+                <p class="text-2xl text-white/90 mb-12 leading-relaxed">
+                    198 Golf Course Facing Residences for Lease in Pondok Indah
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="{{ route('units.index') }}" 
-                       class="inline-block bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition text-center shadow-lg">
-                        Explore Units
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="{{ route('contact') }}" 
+                       class="inline-flex items-center justify-center px-16 py-4 rounded-2xl font-semibold text-lg text-white transition shadow-xl"
+                       style="background-color: #22AE6C; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);">
+                        Contact Us
                     </a>
-                    <a href="{{ route('articles.index') }}" 
-                       class="inline-block border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition text-center">
-                        View Articles
+                    <a href="{{ route('units.index') }}" 
+                       class="inline-flex items-center justify-center px-12 py-4 rounded-2xl font-semibold text-lg text-white transition border-2 border-white hover:bg-white/10">
+                        Explore Units
                     </a>
                 </div>
             </div>
@@ -29,10 +30,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-end mb-12">
                 <div>
-                    <h2 class="text-4xl font-bold text-gray-900 mb-3">Our Units</h2>
+                    <h2 class="text-4xl font-bold mb-3" style="color: #00377D;">Our Units</h2>
                     <p class="text-gray-600">Discover our wide range of available premium properties</p>
                 </div>
-                <a href="{{ route('units.index') }}" class="text-blue-600 font-semibold hover:text-blue-700 transition">
+                <a href="{{ route('units.index') }}" class="font-semibold hover:opacity-80 transition" style="color: #009ED1;">
                     View All →
                 </a>
             </div>
@@ -82,10 +83,11 @@
                         <div class="flex justify-between items-center">
                             <div>
                                 <p class="text-sm text-gray-500 mb-1">Starting From</p>
-                                <p class="text-2xl font-bold text-blue-600">${{ number_format($unit->price) }}</p>
+                                <p class="text-2xl font-bold" style="color: #009ED1;">${{ number_format($unit->price) }}</p>
                             </div>
                             <a href="{{ route('units.show', $unit->slug) }}" 
-                               class="bg-blue-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 transition">
+                               class="px-5 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 transition"
+                               style="background-color: #00377D;">
                                 Details
                             </a>
                         </div>
@@ -104,15 +106,104 @@
         </div>
     </section>
 
+    {{-- An Oasis Section - Figma Design --}}
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                {{-- Image --}}
+                <div>
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800" 
+                         alt="Luxury Interior" 
+                         class="w-full h-[600px] object-cover rounded-3xl shadow-2xl">
+                </div>
+
+                {{-- Content --}}
+                <div class="space-y-6">
+                    <div class="gradient-bar"></div>
+                    
+                    <h2 class="text-5xl font-bold leading-tight" style="color: #00377D;">
+                        An Oasis in the Heart of Jakarta
+                    </h2>
+
+                    <div class="space-y-6 text-lg leading-relaxed" style="color: #364153;">
+                        <p>
+                            Located in prime Pondok Indah area, short distance to malls & business districts. 
+                            Designed with subtle Mediterranean architecture by award-winning American firm Design International.
+                        </p>
+                        <p>
+                            Experience luxury living where every detail has been carefully crafted to provide the perfect blend of elegance, comfort, and convenience. 
+                            Surrounded by lush greenery and overlooking a pristine golf course, Golfhill Terraces offers an unparalleled lifestyle in Jakarta's most prestigious neighborhood.
+                        </p>
+                    </div>
+
+                    {{-- Stats Card --}}
+                    <div class="mt-8 p-6 rounded-2xl border border-[#009ED1]/20]" 
+                         style="background: linear-gradient(135deg, rgba(151, 231, 245, 0.2) 0%, #FFF 100%);">
+                        <div class="grid grid-cols-3 gap-8">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold" style="color: #00377D;">198</div>
+                                <div class="text-sm" style="color: #4A5565;">Residences</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold" style="color: #22AE6C;">6</div>
+                                <div class="text-sm" style="color: #4A5565;">Unit Types</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold" style="color: #009ED1;">215</div>
+                                <div class="text-sm" style="color: #4A5565;">Max SQM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- Facilities Section - Figma Design --}}
+    <section id="facilities" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="gradient-bar mx-auto mb-8"></div>
+                <h2 class="text-5xl font-bold" style="color: #00377D;">Facilities</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {{-- Facility items - placeholders for now --}}
+                @php
+                    $facilities = [
+                        ['name' => 'Tennis Court', 'image' => 'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800'],
+                        ['name' => 'Swimming Pool', 'image' => 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800'],
+                        ['name' => 'Fitness Center', 'image' => 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800'],
+                        ['name' => 'Golf Course View', 'image' => 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800'],
+                        ['name' => 'Children Playground', 'image' => 'https://images.unsplash.com/photo-1587857180093-f8b4e112f7ae?w=800'],
+                        ['name' => 'Garden Terrace', 'image' => 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800']
+                    ];
+                @endphp
+
+                @foreach($facilities as $facility)
+                <div class="relative h-96 rounded-3xl overflow-hidden shadow-2xl group">
+                    <img src="{{ $facility['image'] }}" 
+                         alt="{{ $facility['name'] }}" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0" style="background: linear-gradient(232deg, rgba(102, 102, 102, 0) 2.69%, rgba(0, 0, 0, 0.45) 54.78%, rgba(0, 0, 0, 0.45) 73.41%);"></div>
+                    <div class="absolute bottom-8 left-8 right-8">
+                        <h3 class="text-2xl font-bold text-white">{{ $facility['name'] }}</h3>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     {{-- Lifestyle Articles Section --}}
     <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-end mb-12">
                 <div>
-                    <h2 class="text-4xl font-bold text-gray-900 mb-3">Lifestyle</h2>
+                    <h2 class="text-4xl font-bold mb-3" style="color: #00377D;">Lifestyle</h2>
                     <p class="text-gray-600">Discover articles, news, and insights about GolfHill living</p>
                 </div>
-                <a href="{{ route('articles.index') }}" class="text-blue-600 font-semibold hover:text-blue-700 transition">
+                <a href="{{ route('articles.index') }}" class="font-semibold hover:opacity-80 transition" style="color: #009ED1;">
                     View All →
                 </a>
             </div>
@@ -127,7 +218,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
                             </svg>
                         </div>
-                        <span class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold text-white" style="background-color: #00377D;">
                             {{ $article->category->name }}
                         </span>
                     </div>
@@ -140,7 +231,8 @@
                         <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{{ $article->title }}</h3>
                         <p class="text-gray-600 text-sm mb-5 line-clamp-3">{{ Str::limit($article->excerpt ?? strip_tags($article->content), 120) }}</p>
                         <a href="{{ route('articles.show', $article->slug) }}" 
-                           class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition group">
+                           class="inline-flex items-center font-semibold hover:opacity-80 transition group"
+                           style="color: #009ED1;">
                             Read Article
                             <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -158,6 +250,23 @@
                 </div>
                 @endforelse
             </div>
+        </div>
+    </section>
+
+    {{-- CTA Section - Figma Design --}}
+    <section class="py-20 text-center text-white" style="background: linear-gradient(131deg, #00377D 16.85%, #00377D 48.61%, #009ED1 80.36%);">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-5xl font-bold mb-4 leading-tight">
+                Find Your Perfect Home
+            </h2>
+            <p class="text-xl text-white/90 mb-10">
+                Experience the luxury lifestyle at Golfhill Terraces Apartment
+            </p>
+            <a href="{{ route('contact') }}" 
+               class="inline-flex items-center justify-center px-16 py-5 rounded-2xl font-semibold text-lg text-white transition shadow-xl"
+               style="background-color: #22AE6C; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);">
+                Contact Us
+            </a>
         </div>
     </section>
 </x-layouts.app>

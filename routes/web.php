@@ -16,6 +16,11 @@ Route::get('/units/{slug}', [UnitController::class, 'show'])->name('units.show')
 Route::get('/lifestyle', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/lifestyle/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 
+// Facilities
+Route::get('/facilities', function () {
+    return view('facilities.index');
+})->name('facilities.index');
+
 // Static Pages
 Route::get('/about', function () {
     return view('about');

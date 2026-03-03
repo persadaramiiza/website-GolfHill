@@ -6,18 +6,18 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
     
-    --color-primary: #1e40af;
-    --color-primary-dark: #1e3a8a;
-    --color-secondary: #06b6d4;
-    --color-accent: #10b981;
+    --color-primary: #00377D;
+    --color-primary-dark: #002855;
+    --color-secondary: #009ED1;
+    --color-accent: #22AE6C;
 }
 
 /* Custom styles for Figma design */
 .hero-overlay {
-    background: linear-gradient(135deg, rgba(30, 64, 175, 0.9), rgba(30, 58, 138, 0.7));
+    background: linear-gradient(90deg, rgba(0, 55, 125, 0.8) 0%, rgba(0, 55, 125, 0.6) 50%, rgba(0, 0, 0, 0) 100%);
 }
 
 .card-hover {
@@ -30,12 +30,19 @@
 }
 
 .badge-available {
-    background: #10b981;
+    background: #22AE6C;
     color: white;
     padding: 0.25rem 0.75rem;
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 600;
+}
+
+/* Gradient accent bar */
+.gradient-bar {
+    width: 80px;
+    height: 6px;
+    background: linear-gradient(180deg, #009ED1 0%, #4BD997 100%);
 }
 
 /* Line Clamp Utilities */

@@ -1,10 +1,14 @@
 {{-- Custom Admin Login Portal - Matches Figma Design --}}
+<div style="position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 9999; overflow: hidden; font-family: 'Plus Jakarta Sans', sans-serif;">
+
+    {{-- Font Import --}}
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
 {{-- Full-page background (fixed position, covers entire viewport) --}}
-<div class="fixed inset-0 overflow-hidden" style="z-index: 0;">
+<div style="position: absolute; inset: 0; overflow: hidden; z-index: 0;">
     {{-- Photo base + gradient overlay --}}
-    <div class="absolute inset-0" style="background: url('https://api.builder.io/api/v1/image/assets/TEMP/aea8cdd097b4a585d24ff1d9d25453bd37a90236?width=1819') lightgray center / cover no-repeat;"></div>
-    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(0, 55, 125, 0.95) 0%, rgba(0, 158, 209, 0.90) 50%, rgba(0, 55, 125, 0.95) 100%);"></div>
+    <div style="position: absolute; inset: 0; background: url('https://api.builder.io/api/v1/image/assets/TEMP/aea8cdd097b4a585d24ff1d9d25453bd37a90236?width=1819') lightgray center / cover no-repeat;"></div>
+    <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,55,125,0.95) 0%, rgba(0,158,209,0.90) 50%, rgba(0,55,125,0.95) 100%);"></div>
 
     {{-- Decorative blobs --}}
     <svg style="filter: blur(125px); position: absolute; left: 37px; top: 30px; pointer-events: none;" width="426" height="631" viewBox="0 0 426 631" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,11 +27,11 @@
     </svg>
 </div>
 
-{{-- White Card (positioned relative to Filament's centered container) --}}
-<div class="relative mx-auto my-auto" style="z-index: 10; width: 448px; min-height: 528px; background: #FFF; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); padding: 48px;">
+{{-- White Card --}}
+<div style="position: relative; z-index: 10; width: 448px; max-width: calc(100vw - 2rem); background: #FFF; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); padding: 48px; max-height: calc(100vh - 2rem); overflow-y: auto;">
 
     {{-- Title Block --}}
-    <div class="text-center mb-8">
+    <div style="text-align: center; margin-bottom: 32px;">
         <h1 style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 36px; font-weight: 700; line-height: 40px; margin-bottom: 8px;">
             Admin Portal
         </h1>
@@ -40,43 +44,26 @@
     {{ $this->content }}
 
     {{-- Demo Credentials Hint --}}
-    <p class="text-center mt-4" style="color: #6A7282; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 20px;">
+    <p style="text-align: center; margin-top: 16px; color: #6A7282; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 20px;">
         Demo: admin@golfhill.com / password
     </p>
 </div>
 
-{{-- Font Import --}}
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-
-{{-- CSS Overrides: Transform Filament's form to match Figma --}}
+{{-- CSS Overrides: strip Filament's shell, style form elements --}}
 <style>
-    /* ─── Full-page background ─────────────────────────────────── */
-    .fi-simple-layout {
-        background: transparent !important;
-        min-height: 100vh !important;
-        display: flex !important;
-        align-items: center !important;
-    }
-    .fi-simple-main-ctn {
-        background: transparent !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        min-height: 100vh !important;
-        width: 100% !important;
-        padding: 2rem 1rem !important;
-    }
-    .fi-simple-main {
-        background: transparent !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        max-width: none !important;
-        width: 100% !important;
-        padding: 0 !important;
-    }
+    /* ─── Hide Filament's layout shells (our fixed wrapper takes over) ── */
+    .fi-simple-layout,
+    .fi-simple-main-ctn,
+    .fi-simple-main,
     .fi-simple-page {
         background: transparent !important;
         padding: 0 !important;
+        margin: 0 !important;
+        min-height: unset !important;
+        width: auto !important;
+        max-width: unset !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
     }
 
     /* ─── Input fields ─────────────────────────────────────────── */
@@ -94,11 +81,11 @@
     }
     .fi-input:focus {
         border-color: #009ED1 !important;
-        box-shadow: 0 0 0 3px rgba(0, 158, 209, 0.15) !important;
+        box-shadow: 0 0 0 3px rgba(0,158,209,0.15) !important;
         outline: none !important;
     }
     .fi-input::placeholder {
-        color: rgba(10, 10, 10, 0.50) !important;
+        color: rgba(10,10,10,0.45) !important;
     }
 
     /* ─── Field labels ─────────────────────────────────────────── */
@@ -114,13 +101,7 @@
         line-height: 20px !important;
     }
 
-    /* ─── Field spacing ────────────────────────────────────────── */
-    .fi-fo-field-wrp {
-        gap: 8px !important;
-        margin-bottom: 0 !important;
-    }
-
-    /* ─── Prefix icon container (matches Figma icon position) ──── */
+    /* ─── Prefix icon ──────────────────────────────────────────── */
     .fi-input-wrp-prefix-icon {
         color: #99A1AF !important;
     }
@@ -135,7 +116,6 @@
         border-radius: 14px !important;
         width: 100% !important;
         justify-content: center !important;
-        padding: 16px 0 !important;
         font-size: 16px !important;
         font-weight: 700 !important;
         font-family: 'Plus Jakarta Sans', sans-serif !important;
@@ -154,15 +134,6 @@
     .fi-fo-text-input .fi-fo-field-wrp-hint {
         display: none !important;
     }
-
-    /* ─── Form inner gap ───────────────────────────────────────── */
-    .fi-sc-form-component-ctn > * + * {
-        margin-top: 0 !important;
-    }
-
-    /* ─── Ensure card is above fixed background ────────────────── */
-    .fi-simple-page-content {
-        position: relative;
-        z-index: 10;
-    }
 </style>
+
+</div>

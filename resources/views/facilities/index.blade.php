@@ -1,8 +1,4 @@
-@extends('layouts.app')
-
-@section('title', 'Our Facilities - GolfHill Terraces')
-
-@section('content')
+<x-layouts.app title="Our Facilities - GolfHill Terraces">
 
 {{-- Page Header --}}
 <section style="background: linear-gradient(135deg, rgba(151, 231, 245, 0.30) 0%, #FFF 50%, #FFF 100%); padding-top: 85px;">
@@ -227,4 +223,4 @@
     </div>
 </section>
 
-@endsection
+</x-layouts.app>

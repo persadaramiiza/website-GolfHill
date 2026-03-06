@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Unit extends Model implements HasMedia
 {
@@ -34,8 +35,27 @@ class Unit extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('gallery');
+        $this->addMediaCollection('gallery')
+            ->useDisk('r2');
         $this->addMediaCollection('floor_plan')
-            ->singleFile();
+            ->singleFile()
+            ->useDisk('r2');
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(800)
+            ->height(600)
+            ->format('webp')
+            ->performOnCollections('gallery')
+            ->nonQueued();
+
+        $this->addMediaConversion('preview')
+            ->width(400)
+            ->height(300)
+            ->format('webp')
+            ->performOnCollections('gallery')
+            ->nonQueued();
     }
 }

@@ -6,6 +6,7 @@ use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class UnitForm
 {
@@ -46,23 +47,46 @@ class UnitForm
                             ->required()
                             ->minValue(0),
 
-                        // ── Row 3: View Type | Image URL ────────────────
+                        // ── Row 3: View Type ────────────────────────────
                         TextInput::make('location')
                             ->label('View Type *')
                             ->placeholder('e.g., Golf View')
                             ->required()
-                            ->maxLength(100),
-
-                        TextInput::make('image_url')
-                            ->label('Image URL')
-                            ->placeholder('https://...')
-                            ->url()
-                            ->maxLength(2048),
+                            ->maxLength(100)
+                            ->columnSpanFull(),
 
                         // ── Show on website (checkbox) ───────────────────
                         Checkbox::make('show_on_page')
                             ->label('Show on website')
                             ->default(true)
+                            ->columnSpanFull(),
+                    ]),
+
+                Section::make('Unit Photos')
+                    ->description('Upload up to 50 photos for this unit. First image is used as the cover photo.')
+                    ->schema([
+                        SpatieMediaLibraryFileUpload::make('gallery')
+                            ->label('Gallery Photos')
+                            ->collection('gallery')
+                            ->multiple()
+                            ->reorderable()
+                            ->image()
+                            ->imageEditor()
+                            ->maxFiles(50)
+                            ->maxSize(5120)
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->columnSpanFull(),
+                    ]),
+
+                Section::make('Floor Plan')
+                    ->description('Upload a single floor plan image.')
+                    ->schema([
+                        SpatieMediaLibraryFileUpload::make('floor_plan')
+                            ->label('Floor Plan')
+                            ->collection('floor_plan')
+                            ->image()
+                            ->maxSize(5120)
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->columnSpanFull(),
                     ]),
             ]);

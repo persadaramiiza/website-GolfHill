@@ -3,18 +3,56 @@
         
         {{-- Image Gallery --}}
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            @php
+                $galleryImages = $unit->getMedia('gallery');
+                $heroImage = $galleryImages->first();
+                $thumbImages = $galleryImages->skip(1)->take(4);
+            @endphp
+
+            @if($heroImage)
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-gray-200 h-96 rounded-lg flex items-center justify-center text-gray-400">
-                    <span>{{ $unit->name }} - Gallery</span>
+                <div class="rounded-lg overflow-hidden" style="height: 384px;">
+                    <img src="{{ $heroImage->getUrl('thumb') }}"
+                         alt="{{ $unit->name }}"
+                         style="width: 100%; height: 100%; object-fit: cover;"
+                         loading="eager">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    @foreach($thumbImages as $img)
+                    <div class="rounded-lg overflow-hidden" style="height: 184px;">
+                        <img src="{{ $img->getUrl('preview') }}"
+                             alt="{{ $unit->name }}"
+                             style="width: 100%; height: 100%; object-fit: cover;"
+                             loading="lazy">
+                    </div>
+                    @endforeach
+                    @for($i = $thumbImages->count(); $i < 4; $i++)
+                    <div class="bg-gray-100 rounded-lg" style="height: 184px;"></div>
+                    @endfor
+                </div>
+            </div>
+
+            {{-- All photos link if more than 5 --}}
+            @if($galleryImages->count() > 5)
+            <div class="mt-3 text-right">
+                <span style="color: #009ED1; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif;">+ {{ $galleryImages->count() - 5 }} more photos</span>
+            </div>
+            @endif
+            @else
+            {{-- Placeholder when no photos uploaded --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-gray-100 rounded-lg flex items-center justify-center" style="height: 384px;">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     @foreach(range(1, 4) as $i)
-                    <div class="bg-gray-200 h-44 rounded-lg flex items-center justify-center text-gray-400">
-                        <span class="text-xs">Image {{ $i }}</span>
-                    </div>
+                    <div class="bg-gray-100 rounded-lg" style="height: 184px;"></div>
                     @endforeach
                 </div>
             </div>
+            @endif
         </div>
 
         {{-- Unit Details --}}
@@ -38,8 +76,6 @@
                         <p class="text-gray-600">📍 {{ $unit->location }}</p>
                         @endif
                     </div>
-
-                    <div class="text-3xl font-bold text-gray-900 mb-6">${{ number_format($unit->price) }}</div>
 
                     <div class="grid grid-cols-4 gap-4 mb-8 pb-8 border-b">
                         @if($unit->bedrooms)

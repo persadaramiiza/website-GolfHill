@@ -1,142 +1,69 @@
-<x-layouts.app title="Our Units - GolfHill Terraces">
+﻿<x-layouts.app title="Our Units - GolfHill Terraces">
 
     {{-- Page Header --}}
-    <section class="pb-12" style="background: linear-gradient(135deg, rgba(151, 231, 245, 0.30) 0%, #FFF 50%, #FFF 100%);">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 text-center">
-            {{-- Gradient bar --}}
-            <div class="mx-auto mb-8" style="width:80px;height:6px;background:linear-gradient(180deg,#009ED1 0%,#4BD997 100%);border-radius:99px;"></div>
-            <h1 class="font-bold mb-5" style="font-size:60px;line-height:60px;color:#00377D;">Our Units</h1>
-            <p class="mx-auto max-w-2xl pb-10" style="font-size:20px;font-weight:400;line-height:28px;color:#4A5565;">
-                Choose from our carefully designed residences, each offering spectacular views and premium amenities
-            </p>
-        </div>
-    </section>
-
-    {{-- Filters --}}
-    <section class="bg-white pt-8 pb-4">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <form method="GET" action="{{ route('units.index') }}"
-                  class="flex flex-wrap items-center gap-3 p-5 rounded-2xl border"
-                  style="background:#F9FAFB;border-color:#E5E7EB;">
-                {{-- Unit Type --}}
-                <div class="flex-1 min-w-[160px]">
-                    <label class="block text-xs font-semibold mb-1" style="color:#6A7282;">Unit Type</label>
-                    <select name="type"
-                            class="w-full px-3 py-2 rounded-xl border text-sm font-medium focus:outline-none"
-                            style="border-color:#D1D5DC;color:#00377D;"
-                            onchange="this.form.submit()">
-                        <option value="">All Types</option>
-                        @foreach($unitTypes as $type)
-                        <option value="{{ $type->id }}" {{ request('type') == $type->id ? 'selected' : '' }}>
-                            {{ $type->name }}
-                        </option>
-                        @endforeach
-                    </select>
-                </div>
-                {{-- Status --}}
-                <div class="flex-1 min-w-[140px]">
-                    <label class="block text-xs font-semibold mb-1" style="color:#6A7282;">Status</label>
-                    <select name="status"
-                            class="w-full px-3 py-2 rounded-xl border text-sm font-medium focus:outline-none"
-                            style="border-color:#D1D5DC;color:#00377D;"
-                            onchange="this.form.submit()">
-                        <option value="">All Status</option>
-                        <option value="available" {{ request('status') == 'available' ? 'selected' : '' }}>Available</option>
-                        <option value="reserved" {{ request('status') == 'reserved' ? 'selected' : '' }}>Reserved</option>
-                        <option value="sold" {{ request('status') == 'sold' ? 'selected' : '' }}>Sold</option>
-                    </select>
-                </div>
-                {{-- Min Price --}}
-                <div class="flex-1 min-w-[140px]">
-                    <label class="block text-xs font-semibold mb-1" style="color:#6A7282;">Min Price (IDR)</label>
-                    <input type="number" name="price_min" value="{{ request('price_min') }}"
-                           placeholder="0"
-                           class="w-full px-3 py-2 rounded-xl border text-sm focus:outline-none"
-                           style="border-color:#D1D5DC;">
-                </div>
-                {{-- Max Price --}}
-                <div class="flex-1 min-w-[140px]">
-                    <label class="block text-xs font-semibold mb-1" style="color:#6A7282;">Max Price (IDR)</label>
-                    <input type="number" name="price_max" value="{{ request('price_max') }}"
-                           placeholder="Any"
-                           class="w-full px-3 py-2 rounded-xl border text-sm focus:outline-none"
-                           style="border-color:#D1D5DC;">
-                </div>
-                {{-- Buttons --}}
-                <div class="flex gap-2 pt-4">
-                    <button type="submit"
-                            class="px-6 py-2 rounded-xl text-sm font-semibold text-white transition hover:opacity-90"
-                            style="background-color:#00377D;">
-                        Apply
-                    </button>
-                    <a href="{{ route('units.index') }}"
-                       class="px-6 py-2 rounded-xl text-sm font-semibold border transition hover:bg-gray-50"
-                       style="border-color:#D1D5DC;color:#4A5565;">
-                        Clear
-                    </a>
-                </div>
-            </form>
+    <section style="background: linear-gradient(135deg, rgba(151, 231, 245, 0.30) 0%, #FFF 50%, #FFF 100%); padding-top: 85px;">
+        <div class="max-w-5xl mx-auto px-8" style="padding-bottom: 0;">
+            <div class="flex flex-col items-center">
+                {{-- Gradient Bar --}}
+                <div style="width: 80px; height: 6px; background: linear-gradient(180deg, #009ED1 0%, #4BD997 100%); border-radius: 3px; margin-bottom: 38px;"></div>
+                {{-- Title --}}
+                <h1 style="color: #00377D; font-size: 60px; font-weight: 700; line-height: 60px; text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 24px;">
+                    Our Units
+                </h1>
+                {{-- Subtitle --}}
+                <p style="color: #4A5565; font-size: 20px; font-weight: 400; line-height: 28px; text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 64px;">
+                    Choose from our carefully designed residences, each offering spectacular views and premium amenities
+                </p>
+            </div>
         </div>
     </section>
 
     {{-- Units Grid --}}
-    <section class="bg-white py-10">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section style="background: #FFF; padding: 64px 0 80px 0;">
+        <div class="max-w-5xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 @forelse($units as $unit)
-                <div class="flex flex-col overflow-hidden transition card-hover"
-                     style="border-radius:24px;border:1px solid #F3F4F6;background:#FFF;box-shadow:0 10px 15px -3px rgba(0,0,0,0.10),0 4px 6px -4px rgba(0,0,0,0.10);">
+                <div style="border-radius: 24px; border: 1px solid #F3F4F6; background: #FFF; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10); overflow: hidden; display: flex; flex-direction: column;">
 
                     {{-- Image --}}
-                    <div class="relative overflow-hidden" style="height:350px;">
-                        {{-- Placeholder image --}}
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-100 to-cyan-200 flex items-center justify-center">
-                            <svg class="w-16 h-16 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
+                    <div style="height: 350px; position: relative; overflow: hidden; flex-shrink: 0;">
+                        @php $heroImage = $unit->getFirstMedia('gallery'); @endphp
+                        @if($heroImage)
+                            <img src="{{ $heroImage->getUrl('thumb') }}" alt="{{ $unit->name }}"
+                                 style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
+                        @elseif($unit->image_url)
+                            <img src="{{ $unit->image_url }}" alt="{{ $unit->name }}"
+                                 style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
+                        @else
+                            <div style="position: absolute; inset: 0; background: linear-gradient(135deg, #bfdbfe 0%, #a5f3fc 100%); display: flex; align-items: center; justify-content: center;">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                        @endif
                         {{-- Dark gradient overlay --}}
-                        <div class="absolute inset-0" style="background:linear-gradient(0deg, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.00) 100%);"></div>
-                        {{-- Status badge --}}
-                        <div class="absolute top-6 right-6">
-                            @if($unit->status === 'available')
-                            <span class="px-5 py-2 rounded-full text-sm font-semibold text-white"
-                                  style="background:#22AE6C;box-shadow:0 10px 15px -3px rgba(0,0,0,0.10),0 4px 6px -4px rgba(0,0,0,0.10);">
-                                Available
-                            </span>
-                            @elseif($unit->status === 'reserved')
-                            <span class="px-5 py-2 rounded-full text-sm font-semibold text-white"
-                                  style="background:#F59E0B;box-shadow:0 10px 15px -3px rgba(0,0,0,0.10);">
-                                Reserved
-                            </span>
-                            @else
-                            <span class="px-5 py-2 rounded-full text-sm font-semibold text-white"
-                                  style="background:#EF4444;box-shadow:0 10px 15px -3px rgba(0,0,0,0.10);">
-                                Sold
-                            </span>
-                            @endif
+                        <div style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.00) 100%);"></div>
+                        {{-- Fully Furnished badge --}}
+                        <div style="position: absolute; top: 24px; right: 24px; padding: 8px 20px; background: #22AE6C; border-radius: 999px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10);">
+                            <span style="color: #FFF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; line-height: 20px;">Fully Furnished</span>
                         </div>
                     </div>
 
                     {{-- Card Content --}}
-                    <div class="flex flex-col flex-1 px-8 pt-8 pb-0 gap-6">
-                        {{-- Name & Type --}}
-                        <div class="flex items-start justify-between gap-4">
-                            <h3 class="font-bold" style="font-size:30px;line-height:36px;color:#00377D;">
-                                {{ $unit->name }}
-                            </h3>
-                            <span class="mt-1 shrink-0 px-3 py-1 rounded-full text-xs font-semibold text-white"
-                                  style="background-color:#009ED1;">
-                                {{ $unit->unitType->name }}
-                            </span>
-                        </div>
+                    <div style="padding: 32px 32px 0 32px; display: flex; flex-direction: column; gap: 24px; flex: 1;">
 
-                        {{-- Specs chips 2×2 --}}
+                        {{-- Unit Name --}}
+                        <h3 style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 30px; font-weight: 700; line-height: 36px; margin: 0;">
+                            {{ $unit->name }}
+                        </h3>
+
+                        {{-- Specs 2Ã—2 Grid --}}
                         <div class="grid grid-cols-2 gap-3">
+
                             {{-- Luas --}}
                             @if($unit->size)
-                            <div class="flex items-center gap-3 px-3 py-4 rounded-2xl" style="background:#F9FAFB;">
-                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(0,158,209,0.10);">
+                            <div style="display: flex; align-items: center; gap: 12px; padding-left: 12px; height: 64px; border-radius: 14px; background: #F9FAFB;">
+                                <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,158,209,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M6.66667 2.5H4.16667C3.72464 2.5 3.30072 2.67559 2.98816 2.98816C2.67559 3.30072 2.5 3.72464 2.5 4.16667V6.66667" stroke="#009ED1" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M17.5 6.66667V4.16667C17.5 3.72464 17.3244 3.30072 17.0118 2.98816C16.6993 2.67559 16.2754 2.5 15.8333 2.5H13.3333" stroke="#009ED1" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -145,16 +72,16 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="text-xs" style="color:#6A7282;">Luas</div>
-                                    <div class="font-bold text-base" style="color:#00377D;">{{ number_format($unit->size) }} SQM</div>
+                                    <div style="color: #6A7282; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 400; line-height: 16px;">Luas</div>
+                                    <div style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 24px;">{{ number_format($unit->size) }} SQM</div>
                                 </div>
                             </div>
                             @endif
 
                             {{-- Bedrooms --}}
                             @if($unit->bedrooms)
-                            <div class="flex items-center gap-3 px-3 py-4 rounded-2xl" style="background:#F9FAFB;">
-                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(0,158,209,0.10);">
+                            <div style="display: flex; align-items: center; gap: 12px; padding-left: 12px; height: 64px; border-radius: 14px; background: #F9FAFB;">
+                                <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,158,209,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1.66675 3.33337V16.6667" stroke="#009ED1" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M1.66675 6.66663H16.6667C17.1088 6.66663 17.5327 6.84222 17.8453 7.15478C18.1578 7.46734 18.3334 7.89127 18.3334 8.33329V16.6666" stroke="#009ED1" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -163,16 +90,16 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="text-xs" style="color:#6A7282;">Bedrooms</div>
-                                    <div class="font-bold text-base" style="color:#00377D;">{{ $unit->bedrooms }}</div>
+                                    <div style="color: #6A7282; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 400; line-height: 16px;">Bedrooms</div>
+                                    <div style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 24px;">{{ $unit->bedrooms }}</div>
                                 </div>
                             </div>
                             @endif
 
                             {{-- Bathrooms --}}
                             @if($unit->bathrooms)
-                            <div class="flex items-center gap-3 px-3 py-4 rounded-2xl" style="background:#F9FAFB;">
-                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(0,158,209,0.10);">
+                            <div style="display: flex; align-items: center; gap: 12px; padding-left: 12px; height: 64px; border-radius: 14px; background: #F9FAFB;">
+                                <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,158,209,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M8.33341 3.33337L6.66675 5.00004" stroke="#009ED1" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M14.1667 15.8334V17.5" stroke="#009ED1" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -182,49 +109,43 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="text-xs" style="color:#6A7282;">Bathrooms</div>
-                                    <div class="font-bold text-base" style="color:#00377D;">{{ $unit->bathrooms }}</div>
+                                    <div style="color: #6A7282; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 400; line-height: 16px;">Bathrooms</div>
+                                    <div style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 24px;">{{ $unit->bathrooms }}</div>
                                 </div>
                             </div>
                             @endif
 
-                            {{-- Views / Location --}}
-                            <div class="flex items-center gap-3 px-3 py-4 rounded-2xl" style="background:#F9FAFB;">
-                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(0,158,209,0.10);">
+                            {{-- Views --}}
+                            <div style="display: flex; align-items: center; gap: 12px; padding-left: 12px; height: 64px; border-radius: 14px; background: #F9FAFB;">
+                                <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,158,209,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1.71835 10.2901C1.6489 10.103 1.6489 9.89715 1.71835 9.71006C2.39476 8.06993 3.54294 6.66759 5.01732 5.6808C6.4917 4.69402 8.22588 4.16724 10 4.16724C11.7741 4.16724 13.5083 4.69402 14.9827 5.6808C16.4571 6.66759 17.6053 8.06993 18.2817 9.71006C18.3511 9.89715 18.3511 10.103 18.2817 10.2901C17.6053 11.9302 16.4571 13.3325 14.9827 14.3193C13.5083 15.3061 11.7741 15.8329 10 15.8329C8.22588 15.8329 6.4917 15.3061 5.01732 14.3193C3.54294 13.3325 2.39476 11.9302 1.71835 10.2901Z" stroke="#009ED1" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z" stroke="#009ED1" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="text-xs" style="color:#6A7282;">Views</div>
-                                    <div class="font-bold text-base" style="color:#00377D;">{{ $unit->location ?? 'Golf View' }}</div>
+                                    <div style="color: #6A7282; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 400; line-height: 16px;">Views</div>
+                                    <div style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 24px;">{{ $unit->location ?: 'Golf View' }}</div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
-                    {{-- Bottom feature + CTA --}}
-                    <div class="mx-8 mt-6 mb-8 pt-5 border-t flex items-center justify-between" style="border-color:#F3F4F6;">
-                        <div class="flex items-center gap-2">
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 4.5L6.75 12.75L3 9" stroke="#22AE6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span class="text-sm" style="color:#4A5565;">{{ Str::limit($unit->description, 28) }}</span>
-                        </div>
-                        <a href="{{ route('units.show', $unit->slug) }}"
-                           class="px-5 py-2 rounded-xl text-sm font-semibold text-white transition hover:opacity-90 shrink-0"
-                           style="background-color:#00377D;">
-                            Detail
-                        </a>
+                    {{-- Bottom feature row --}}
+                    <div style="margin: 24px 32px 32px 32px; padding-top: 25px; border-top: 1px solid #F3F4F6; display: flex; align-items: center; gap: 8px;">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="flex-shrink: 0;" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 4.5L6.75 12.75L3 9" stroke="#22AE6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span style="color: #4A5565; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 20px;">
+                            {{ $unit->description ? Str::limit($unit->description, 35) : 'Spacious Living Room' }}
+                        </span>
                     </div>
+
                 </div>
                 @empty
                 <div class="col-span-2 text-center py-20">
-                    <p class="text-lg mb-4" style="color:#4A5565;">No units found matching your criteria.</p>
-                    <a href="{{ route('units.index') }}"
-                       class="px-8 py-3 rounded-xl text-sm font-semibold text-white transition hover:opacity-90"
-                       style="background-color:#00377D;">Clear Filters</a>
+                    <p style="color: #4A5565; font-size: 18px; font-family: 'Plus Jakarta Sans', sans-serif;">No units available at the moment.</p>
                 </div>
                 @endforelse
             </div>
@@ -239,15 +160,26 @@
     </section>
 
     {{-- CTA Section --}}
-    <section class="py-20 text-center text-white" style="background: linear-gradient(131deg, #00377D 16.85%, #00377D 48.61%, #009ED1 80.36%);">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-5xl font-bold mb-4">Find Your Perfect Home</h2>
-            <p class="text-xl text-white/90 mb-10">Experience the luxury lifestyle at Golfhill Terraces Apartment</p>
-            <a href="{{ route('contact') }}"
-               class="inline-flex items-center justify-center px-16 py-5 rounded-2xl font-semibold text-lg text-white transition hover:opacity-90"
-               style="background-color: #22AE6C;">
-                Contact Us
-            </a>
+    <section style="background: linear-gradient(131deg, #00377D 0%, #009ED1 100%); padding: 80px 0;">
+        <div class="max-w-5xl mx-auto px-8 text-center">
+            <h2 style="color: #FFF; font-size: 48px; font-weight: 700; line-height: 56px; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 16px;">
+                Ready to Experience<br>GolfHill Terraces?
+            </h2>
+            <p style="color: rgba(255,255,255,0.80); font-size: 20px; font-weight: 400; line-height: 28px; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 40px;">
+                Interested in a unit? Contact our team for pricing and availability
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/6281803730325"
+                   style="display: inline-block; padding: 16px 40px; background: #22AE6C; color: #FFF; font-size: 16px; font-weight: 700; border-radius: 12px; text-decoration: none; transition: opacity 0.2s;"
+                   onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                    Contact via WhatsApp
+                </a>
+                <a href="{{ route('facilities.index') }}"
+                   style="display: inline-block; padding: 16px 40px; background: #FFF; color: #00377D; font-size: 16px; font-weight: 700; border-radius: 12px; text-decoration: none; transition: opacity 0.2s;"
+                   onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                    Our Facilities
+                </a>
+            </div>
         </div>
     </section>
 

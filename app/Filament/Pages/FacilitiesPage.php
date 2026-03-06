@@ -59,4 +59,9 @@ class FacilitiesPage extends Page
     {
         return FacilitiesResource::getUrl('edit', ['record' => $facility]);
     }
+
+    public function getBreadcrumbs(): array
+    {
+        return [];
+    }
 }

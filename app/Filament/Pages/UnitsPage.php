@@ -54,4 +54,9 @@ class UnitsPage extends Page
     {
         return UnitResource::getUrl('edit', ['record' => $unit]);
     }
+
+    public function getBreadcrumbs(): array
+    {
+        return [];
+    }
 }

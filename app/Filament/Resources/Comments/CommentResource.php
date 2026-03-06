@@ -19,7 +19,9 @@ class CommentResource extends Resource
     protected static ?string $model = Comment::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChatBubbleLeft;
-    
+
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?int $navigationSort = 5;
 
     public static function schema(Schema $schema): Schema

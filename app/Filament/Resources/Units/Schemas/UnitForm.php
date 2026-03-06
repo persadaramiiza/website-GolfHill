@@ -2,13 +2,10 @@
 
 namespace App\Filament\Resources\Units\Schemas;
 
-use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Illuminate\Support\Str;
 
 class UnitForm
 {
@@ -16,88 +13,57 @@ class UnitForm
     {
         return $schema
             ->components([
-                // ── Section 1: Unit Information ─────────────────────────
-                Section::make('Unit Information')
-                    ->description('Set the unit name, type, and availability status.')
+                Section::make()
+                    ->extraAttributes(['class' => 'gf-unit-form-card'])
                     ->columns(2)
                     ->schema([
-                        TextInput::make('name')
-                            ->label('Unit Name')
+                        // ── Row 1: Unit Type | Size ─────────────────────
+                        TextInput::make('unit_type_name')
+                            ->label('Unit Type *')
+                            ->placeholder('e.g., Type 01')
                             ->required()
-                            ->maxLength(255)
-                            ->columnSpanFull()
-                            ->live(onBlur: true)
-                            ->afterStateUpdated(fn (string $operation, $state, callable $set) =>
-                                $operation === 'create' ? $set('slug', Str::slug($state)) : null
-                            ),
-                        TextInput::make('slug')
-                            ->required()
-                            ->maxLength(255)
-                            ->columnSpanFull()
-                            ->unique(ignoreRecord: true),
-                        Select::make('unit_type_id')
-                            ->label('Unit Type')
-                            ->relationship('unitType', 'name')
-                            ->required()
-                            ->searchable()
-                            ->preload(),
-                        Select::make('status')
-                            ->label('Status')
-                            ->options([
-                                'available' => 'Available',
-                                'sold' => 'Sold',
-                                'reserved' => 'Reserved',
-                            ])
-                            ->required()
-                            ->default('available'),
-                    ]),
+                            ->maxLength(100),
 
-                // ── Section 2: Specifications ───────────────────────────
-                Section::make('Unit Specifications')
-                    ->description('Enter floor area, room count, pricing, and location details.')
-                    ->columns(3)
-                    ->schema([
                         TextInput::make('size')
-                            ->label('Size (m²)')
+                            ->label('Size (SQM) *')
+                            ->placeholder('e.g., 157')
                             ->numeric()
-                            ->suffix('m²')
+                            ->required()
                             ->minValue(0),
-                        TextInput::make('bedrooms')
-                            ->label('Bedrooms')
-                            ->numeric()
-                            ->minValue(0),
-                        TextInput::make('bathrooms')
-                            ->label('Bathrooms')
-                            ->numeric()
-                            ->minValue(0),
-                        TextInput::make('price')
-                            ->label('Price')
-                            ->numeric()
-                            ->prefix('Rp'),
-                        TextInput::make('location')
-                            ->label('View / Location')
-                            ->maxLength(255),
-                        Textarea::make('description')
-                            ->label('Description')
-                            ->rows(4)
-                            ->columnSpanFull(),
-                    ]),
 
-                // ── Section 3: Settings ─────────────────────────────────
-                Section::make('Settings')
-                    ->description('Assign a contact person and control public visibility.')
-                    ->columns(2)
-                    ->schema([
-                        Select::make('contact_person_id')
-                            ->label('Contact Person')
-                            ->relationship('contactPerson', 'name')
-                            ->searchable()
-                            ->preload(),
-                        Toggle::make('show_on_page')
-                            ->label('Show on Public Page')
+                        // ── Row 2: Bedrooms | Bathrooms ─────────────────
+                        TextInput::make('bedrooms')
+                            ->label('Bedrooms *')
+                            ->placeholder('e.g., 2')
+                            ->numeric()
+                            ->required()
+                            ->minValue(0),
+
+                        TextInput::make('bathrooms')
+                            ->label('Bathrooms *')
+                            ->placeholder('e.g., 2')
+                            ->numeric()
+                            ->required()
+                            ->minValue(0),
+
+                        // ── Row 3: View Type | Image URL ────────────────
+                        TextInput::make('location')
+                            ->label('View Type *')
+                            ->placeholder('e.g., Golf View')
+                            ->required()
+                            ->maxLength(100),
+
+                        TextInput::make('image_url')
+                            ->label('Image URL')
+                            ->placeholder('https://...')
+                            ->url()
+                            ->maxLength(2048),
+
+                        // ── Show on website (checkbox) ───────────────────
+                        Checkbox::make('show_on_page')
+                            ->label('Show on website')
                             ->default(true)
-                            ->onColor('success')
-                            ->offColor('danger'),
+                            ->columnSpanFull(),
                     ]),
             ]);
     }

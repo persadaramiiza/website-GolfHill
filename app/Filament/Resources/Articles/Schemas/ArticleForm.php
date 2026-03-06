@@ -2,13 +2,12 @@
 
 namespace App\Filament\Resources\Articles\Schemas;
 
-use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Illuminate\Support\Str;
 
 class ArticleForm
 {
@@ -16,43 +15,45 @@ class ArticleForm
     {
         return $schema
             ->components([
-                TextInput::make('title')
-                    ->required()
-                    ->maxLength(255)
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(fn (string $operation, $state, callable $set) => 
-                        $operation === 'create' ? $set('slug', Str::slug($state)) : null
-                    ),
-                TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255)
-                    ->unique(ignoreRecord: true),
-                Select::make('category_id')
-                    ->relationship('category', 'name')
-                    ->required()
-                    ->searchable()
-                    ->preload(),
-                Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required()
-                    ->default(fn () => auth()->id()),
-                Select::make('status')
-                    ->options([
-                        'draft' => 'Draft',
-                        'published' => 'Published',
-                    ])
-                    ->required()
-                    ->default('draft'),
-                DateTimePicker::make('published_at')
-                    ->label('Publish Date'),
-                Textarea::make('excerpt')
-                    ->rows(3),
-                RichEditor::make('content')
-                    ->required(),
-                Select::make('tags')
-                    ->relationship('tags', 'name')
-                    ->multiple()
-                    ->preload(),
+                Section::make()
+                    ->extraAttributes(['class' => 'gf-unit-form-card'])
+                    ->columns(2)
+                    ->schema([
+                        // ── Article Title (full-width) ───────────────────
+                        TextInput::make('title')
+                            ->label('Article Title *')
+                            ->placeholder('Enter article title')
+                            ->required()
+                            ->maxLength(255)
+                            ->columnSpanFull(),
+
+                        // ── Excerpt (full-width) ─────────────────────────
+                        Textarea::make('excerpt')
+                            ->label('Excerpt *')
+                            ->placeholder('Brief description of the article')
+                            ->required()
+                            ->rows(4)
+                            ->columnSpanFull(),
+
+                        // ── Row: Publication Date | Featured Image URL ───
+                        DatePicker::make('published_at')
+                            ->label('Publication Date *')
+                            ->placeholder('e.g., February 2026')
+                            ->required(),
+
+                        TextInput::make('featured_image_url')
+                            ->label('Featured Image URL *')
+                            ->placeholder('https://...')
+                            ->url()
+                            ->required()
+                            ->maxLength(2048),
+
+                        // ── Publish checkbox (full-width) ────────────────
+                        Checkbox::make('is_published')
+                            ->label('Publish article (show on website)')
+                            ->default(false)
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 }

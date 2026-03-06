@@ -12,7 +12,7 @@ class Article extends Model implements HasMedia
 
     protected $fillable = [
         'title', 'slug', 'excerpt', 'content',
-        'category_id', 'user_id', 'status', 'published_at'
+        'category_id', 'user_id', 'status', 'published_at', 'featured_image_url'
     ];
 
     protected $casts = [

@@ -11,9 +11,9 @@ class Unit extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $fillable = [
-        'name', 'slug', 'description', 'unit_type_id', 
-        'price', 'size', 'bedrooms', 'bathrooms', 
-        'location', 'status', 'show_on_page', 'contact_person_id'
+        'name', 'slug', 'description', 'unit_type_id',
+        'price', 'size', 'bedrooms', 'bathrooms',
+        'location', 'image_url', 'status', 'show_on_page', 'contact_person_id'
     ];
 
     protected $casts = [

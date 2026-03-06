@@ -4,7 +4,6 @@ namespace App\Filament\Resources\Units;
 
 use App\Filament\Resources\Units\Pages\CreateUnit;
 use App\Filament\Resources\Units\Pages\EditUnit;
-use App\Filament\Resources\Units\Pages\ListUnits;
 use App\Filament\Resources\Units\Schemas\UnitForm;
 use App\Filament\Resources\Units\Tables\UnitsTable;
 use App\Models\Unit;
@@ -19,8 +18,9 @@ class UnitResource extends Resource
     protected static ?string $model = Unit::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
-    
-    protected static ?int $navigationSort = 1;
+
+    // Navigation handled by UnitsPage (standalone custom page)
+    protected static bool $shouldRegisterNavigation = false;
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -44,7 +44,6 @@ class UnitResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListUnits::route('/'),
             'create' => CreateUnit::route('/create'),
             'edit' => EditUnit::route('/{record}/edit'),
         ];

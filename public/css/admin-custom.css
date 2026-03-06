@@ -1,0 +1,419 @@
+/* =============================================================
+   GolfHill Admin Panel – Global CSS Overrides
+   Loaded on every Filament admin page via AdminPanelProvider
+   ============================================================= */
+
+/* ── Font ─────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+.fi-body,
+.fi-sidebar,
+.fi-topbar,
+.fi-main,
+.fi-page {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+/* ── Main Sidebar → Dark Navy #00377D ──────────────────────── */
+.fi-sidebar.fi-main-sidebar {
+    background-color: #00377D !important;
+}
+.fi-sidebar-header,
+.fi-sidebar-header-ctn {
+    background-color: #00377D !important;
+}
+
+/* Sidebar nav links → white text */
+.fi-main-sidebar .fi-sidebar-item-btn,
+.fi-main-sidebar .fi-sidebar-item-btn span,
+.fi-main-sidebar .fi-sidebar-item-btn svg {
+    color: rgba(255,255,255,0.85) !important;
+}
+.fi-main-sidebar .fi-sidebar-item-btn svg path,
+.fi-main-sidebar .fi-sidebar-item-btn svg rect,
+.fi-main-sidebar .fi-sidebar-item-btn svg circle {
+    stroke: rgba(255,255,255,0.85) !important;
+}
+
+/* Active sidebar item → white card */
+.fi-main-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-btn {
+    background-color: #ffffff !important;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10) !important;
+    border-radius: 14px !important;
+}
+.fi-main-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-btn,
+.fi-main-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-btn span {
+    color: #00377D !important;
+}
+.fi-main-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-btn svg path,
+.fi-main-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-btn svg rect {
+    stroke: #00377D !important;
+}
+
+/* Sidebar hover state */
+.fi-main-sidebar .fi-sidebar-item-btn:hover {
+    background-color: rgba(255,255,255,0.12) !important;
+    border-radius: 14px !important;
+}
+
+/* Brand/logo in sidebar header → white */
+.fi-sidebar-header .fi-logo,
+.fi-sidebar-header .fi-logo span,
+.fi-sidebar-header [class*="brand"] {
+    color: #ffffff !important;
+}
+
+/* ── Topbar → White ─────────────────────────────────────────── */
+.fi-topbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #E5E7EB !important;
+}
+.fi-topbar-ctn {
+    background-color: #ffffff !important;
+}
+
+/* ── Main Content Area → Light Gray ─────────────────────────── */
+.fi-main {
+    background-color: #F9FAFB !important;
+}
+.fi-main .fi-page-header-heading {
+    color: #00377D !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+/* ── Resource Table Tweaks ───────────────────────────────────── */
+.fi-ta-header-cell-label {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 600 !important;
+    color: #364153 !important;
+}
+.fi-ta-cell {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: #4A5565 !important;
+}
+.fi-ta-content {
+    border-radius: 16px !important;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.fi-btn-primary {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 600 !important;
+}
+
+/* ── Form Cards/Section ──────────────────────────────────────── */
+.fi-fo-component-ctn,
+.fi-section,
+.fi-section-content-ctn {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+.fi-fo-field-wrp-label {
+    color: #364153 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 600 !important;
+}
+.fi-input {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    border-radius: 10px !important;
+}
+.fi-select-input,
+.fi-textarea {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    border-radius: 10px !important;
+}
+
+/* Create/Edit page header */
+.fi-page-header {
+    background: #ffffff !important;
+    border-bottom: 1px solid #E5E7EB !important;
+    padding: 16px 24px !important;
+}
+.fi-page-header .fi-header-heading {
+    color: #00377D !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+/* =============================================================
+   CREATE / EDIT RECORD FORM — FIGMA-ACCURATE STYLING
+   ============================================================= */
+
+/* ── Page heading ──────────────────────────────────────────── */
+.fi-simple-page .fi-header-heading,
+.fi-resource-create-record-page .fi-header-heading,
+.fi-resource-edit-record-page .fi-header-heading,
+.fi-page .fi-header-heading {
+    color: #00377D !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    line-height: 40px !important;
+}
+
+.fi-resource-create-record-page .fi-header-subheading,
+.fi-resource-edit-record-page .fi-header-subheading,
+.fi-page .fi-header-subheading {
+    color: #4A5565 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 24px !important;
+}
+
+/* ── Breadcrumbs ───────────────────────────────────────────── */
+.fi-breadcrumbs,
+.fi-breadcrumbs li,
+.fi-breadcrumbs a {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 14px !important;
+    color: #6A7282 !important;
+}
+.fi-breadcrumbs a:hover {
+    color: #00377D !important;
+}
+
+/* ── Form Section Cards ────────────────────────────────────── */
+.fi-section {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.10), 0 2px 4px -2px rgba(0,0,0,0.10) !important;
+    border: none !important;
+    overflow: hidden !important;
+}
+.fi-section-content-ctn {
+    padding: 24px !important;
+}
+.fi-section-header {
+    padding: 20px 24px 0 24px !important;
+    border-bottom: none !important;
+}
+.fi-section-header-ctn {
+    border-bottom: 1px solid #E5E7EB !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 4px !important;
+}
+
+/* Section heading */
+.fi-section-heading {
+    color: #00377D !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 28px !important;
+}
+.fi-section-description {
+    color: #6A7282 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 20px !important;
+    margin-top: 4px !important;
+}
+
+/* ── Field Labels ──────────────────────────────────────────── */
+.fi-fo-field-wrp-label label,
+.fi-label,
+label.fi-fo-field-wrp-label {
+    color: #364153 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 20px !important;
+}
+
+/* ── Text Inputs ───────────────────────────────────────────── */
+.fi-fo-text-input input,
+.fi-input,
+input[type="text"].fi-input,
+input[type="number"].fi-input,
+input[type="email"].fi-input,
+input[type="url"].fi-input,
+input[type="password"].fi-input {
+    border: 2px solid #E5E7EB !important;
+    border-radius: 14px !important;
+    padding: 12px 16px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: #0A0A0A !important;
+    background: #ffffff !important;
+    transition: border-color 0.15s ease !important;
+}
+.fi-fo-text-input input:focus,
+.fi-input:focus {
+    border-color: #00377D !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(0, 55, 125, 0.10) !important;
+}
+.fi-fo-text-input input::placeholder {
+    color: rgba(10, 10, 10, 0.40) !important;
+}
+
+/* Input with prefix/suffix wrapper */
+.fi-input-wrp {
+    border: 2px solid #E5E7EB !important;
+    border-radius: 14px !important;
+    background: #ffffff !important;
+    overflow: hidden !important;
+}
+.fi-input-wrp:focus-within {
+    border-color: #00377D !important;
+    box-shadow: 0 0 0 3px rgba(0, 55, 125, 0.10) !important;
+}
+.fi-input-wrp input {
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 12px 16px !important;
+}
+.fi-input-wrp input:focus {
+    border: none !important;
+    box-shadow: none !important;
+}
+.fi-input-wrp-prefix,
+.fi-input-wrp-suffix {
+    background: #F9FAFB !important;
+    color: #6A7282 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    padding: 0 14px !important;
+    border-color: #E5E7EB !important;
+}
+
+/* ── Textarea ──────────────────────────────────────────────── */
+.fi-fo-textarea textarea,
+.fi-textarea {
+    border: 2px solid #E5E7EB !important;
+    border-radius: 14px !important;
+    padding: 12px 16px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: #0A0A0A !important;
+    background: #ffffff !important;
+    resize: vertical !important;
+}
+.fi-fo-textarea textarea:focus,
+.fi-textarea:focus {
+    border-color: #00377D !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(0, 55, 125, 0.10) !important;
+}
+
+/* ── Select ────────────────────────────────────────────────── */
+.fi-fo-select .choices,
+.fi-select-input,
+.fi-fo-select select {
+    border: 2px solid #E5E7EB !important;
+    border-radius: 14px !important;
+    padding: 10px 16px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 16px !important;
+    background: #ffffff !important;
+}
+.fi-fo-select .choices:focus-within,
+.fi-select-input:focus {
+    border-color: #00377D !important;
+    box-shadow: 0 0 0 3px rgba(0, 55, 125, 0.10) !important;
+}
+.fi-fo-select [role="combobox"],
+.fi-fo-select .choices__inner {
+    border: 2px solid #E5E7EB !important;
+    border-radius: 14px !important;
+    padding: 10px 16px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 16px !important;
+    min-height: 48px !important;
+    background: #ffffff !important;
+}
+
+/* ── File Upload ───────────────────────────────────────────── */
+.fi-fo-file-upload .fi-dropzone {
+    border: 2px dashed #E5E7EB !important;
+    border-radius: 14px !important;
+    background: #F9FAFB !important;
+    transition: border-color 0.15s ease !important;
+}
+.fi-fo-file-upload .fi-dropzone:hover {
+    border-color: #00377D !important;
+    background: #EFF6FF !important;
+}
+
+/* ── Toggle ────────────────────────────────────────────────── */
+.fi-fo-toggle .fi-toggle {
+    border-radius: 9999px !important;
+}
+
+/* ── Form Action Buttons ───────────────────────────────────── */
+
+/* Primary/Save button → Green */
+.fi-form-actions .fi-btn-primary,
+.fi-page-actions .fi-btn-primary,
+button[type="submit"].fi-btn-primary,
+.fi-btn.fi-color-primary,
+.fi-btn[data-color="primary"] {
+    background-color: #22AE6C !important;
+    border-color: #22AE6C !important;
+    color: #ffffff !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-radius: 14px !important;
+    padding: 12px 24px !important;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10) !important;
+    transition: background-color 0.15s ease !important;
+}
+.fi-form-actions .fi-btn-primary:hover,
+.fi-page-actions .fi-btn-primary:hover,
+.fi-btn.fi-color-primary:hover {
+    background-color: #1a9c5e !important;
+    border-color: #1a9c5e !important;
+}
+
+/* Cancel/back button → outlined navy */
+.fi-form-actions .fi-btn-secondary,
+.fi-page-actions .fi-btn-secondary,
+.fi-btn.fi-color-secondary,
+.fi-btn[data-color="gray"] {
+    background-color: transparent !important;
+    border: 2px solid #E5E7EB !important;
+    color: #364153 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-radius: 14px !important;
+    padding: 12px 24px !important;
+}
+.fi-form-actions .fi-btn-secondary:hover,
+.fi-page-actions .fi-btn-secondary:hover {
+    background-color: #F9FAFB !important;
+    border-color: #00377D !important;
+    color: #00377D !important;
+}
+
+/* ── Form Actions Bar ──────────────────────────────────────── */
+.fi-form-actions {
+    background: #ffffff !important;
+    border-top: 1px solid #E5E7EB !important;
+    padding: 16px 24px !important;
+    border-radius: 0 0 16px 16px !important;
+}
+
+/* ── Page Content Spacing ──────────────────────────────────── */
+.fi-resource-create-record-page .fi-page-content,
+.fi-resource-edit-record-page .fi-page-content {
+    padding: 24px !important;
+    gap: 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* ── Hint / Helper text ────────────────────────────────────── */
+.fi-fo-field-wrp-hint,
+.fi-hint {
+    color: #6A7282 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 13px !important;
+}

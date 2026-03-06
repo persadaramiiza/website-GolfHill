@@ -1,16 +1,24 @@
 <?php
 
-namespace App\Filament\Resources\Units\Pages;
+namespace App\Filament\Pages;
 
 use App\Filament\Resources\Units\UnitResource;
 use App\Models\Unit;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Pages\Page;
+use Filament\Support\Icons\Heroicon;
+use BackedEnum;
 
-class ListUnits extends ListRecords
+class UnitsPage extends Page
 {
-    protected static string $resource = UnitResource::class;
+    protected static string $routePath = '/units';
 
-    protected string $view = 'filament.resources.units.list-units';
+    protected string $view = 'filament.pages.units';
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
+
+    protected static ?string $navigationLabel = 'Units';
+
+    protected static ?int $navigationSort = 1;
 
     public string $search = '';
 
@@ -44,6 +52,6 @@ class ListUnits extends ListRecords
 
     public function getEditUrl(Unit $unit): string
     {
-        return UnitResource::getUrl('edit', $unit);
+        return UnitResource::getUrl('edit', ['record' => $unit]);
     }
 }

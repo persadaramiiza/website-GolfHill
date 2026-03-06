@@ -13,12 +13,13 @@ class Unit extends Model implements HasMedia
     protected $fillable = [
         'name', 'slug', 'description', 'unit_type_id', 
         'price', 'size', 'bedrooms', 'bathrooms', 
-        'location', 'status', 'contact_person_id'
+        'location', 'status', 'show_on_page', 'contact_person_id'
     ];
 
     protected $casts = [
         'price' => 'decimal:2',
         'size' => 'decimal:2',
+        'show_on_page' => 'boolean',
     ];
 
     public function unitType()

@@ -28,6 +28,8 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login(Login::class)
             ->brandName('GOLFHILL TERRACES')
+            ->brandLogo(asset('images/logo.png'))
+            ->brandLogoHeight('2.75rem')
             ->colors([
                 'primary' => Color::Sky,
             ])

@@ -169,12 +169,12 @@
 
             @php
                 $facilities = [
-                    ['name' => 'Tennis Court', 'image' => 'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=1200'],
-                    ['name' => 'Swimming Pool', 'image' => 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200'],
-                    ['name' => 'Fitness Center', 'image' => 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200'],
-                    ['name' => 'Golf Course View', 'image' => 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1200'],
-                    ['name' => 'Children Playground', 'image' => 'https://images.unsplash.com/photo-1587857180093-f8b4e112f7ae?w=1200'],
-                    ['name' => 'Garden Terrace', 'image' => 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1200'],
+                    ['name' => 'Tennis Court', 'image' => asset('images/tennis.jpg')],
+                    ['name' => 'Swimming Pool', 'image' => asset('images/pool.jpg')],
+                    ['name' => 'Fitness Center', 'image' => asset('images/fitness.JPG')],
+                    ['name' => 'Golf Course View', 'image' => asset('images/ev.JPG')],
+                    ['name' => 'Children Playground', 'image' => asset('images/playground.JPG')],
+                    ['name' => 'Garden Terrace', 'image' => asset('images/restraurant.JPG')],
                 ];
             @endphp
 

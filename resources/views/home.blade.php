@@ -172,9 +172,11 @@
                     ['name' => 'Tennis Court', 'image' => asset('images/tennis.jpg')],
                     ['name' => 'Swimming Pool', 'image' => asset('images/pool.jpg')],
                     ['name' => 'Fitness Center', 'image' => asset('images/fitness.JPG')],
-                    ['name' => 'Golf Course View', 'image' => asset('images/ev.JPG')],
+                    ['name' => 'EV Charger', 'image' => asset('images/ev.JPG')],
                     ['name' => 'Children Playground', 'image' => asset('images/playground.JPG')],
-                    ['name' => 'Garden Terrace', 'image' => asset('images/restraurant.JPG')],
+                    ['name' => 'Restaurant', 'image' => asset('images/restraurant.JPG')],
+                    ['name' => 'Jogging Track', 'image' => asset('images/track.JPG')],
+                    ['name' => 'Function Room', 'image' => asset('images/function.JPG')],
                 ];
             @endphp
 

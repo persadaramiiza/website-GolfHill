@@ -12,7 +12,7 @@
             @if($heroImage)
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="rounded-lg overflow-hidden" style="height: 384px;">
-                    <img src="{{ $heroImage->getUrl('thumb') }}"
+                    <img src="{{ $heroImage->hasGeneratedConversion('thumb') ? $heroImage->getUrl('thumb') : $heroImage->getUrl() }}"
                          alt="{{ $unit->name }}"
                          style="width: 100%; height: 100%; object-fit: cover;"
                          loading="eager">
@@ -20,7 +20,7 @@
                 <div class="grid grid-cols-2 gap-4">
                     @foreach($thumbImages as $img)
                     <div class="rounded-lg overflow-hidden" style="height: 184px;">
-                        <img src="{{ $img->getUrl('preview') }}"
+                        <img src="{{ $img->hasGeneratedConversion('preview') ? $img->getUrl('preview') : $img->getUrl() }}"
                              alt="{{ $unit->name }}"
                              style="width: 100%; height: 100%; object-fit: cover;"
                              loading="lazy">

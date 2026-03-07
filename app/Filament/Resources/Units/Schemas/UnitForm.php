@@ -73,7 +73,7 @@ class UnitForm
                             ->image()
                             ->imageEditor()
                             ->maxFiles(50)
-                            ->maxSize(5120)
+                            ->maxSize(10240)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->columnSpanFull(),
                     ]),

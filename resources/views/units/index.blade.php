@@ -29,7 +29,7 @@
                     <div style="height: 350px; position: relative; overflow: hidden; flex-shrink: 0;">
                         @php $heroImage = $unit->getFirstMedia('gallery'); @endphp
                         @if($heroImage)
-                            <img src="{{ $heroImage->getUrl('thumb') }}" alt="{{ $unit->name }}"
+                            <img src="{{ $heroImage->hasGeneratedConversion('thumb') ? $heroImage->getUrl('thumb') : $heroImage->getUrl() }}" alt="{{ $unit->name }}"
                                  style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
                         @elseif($unit->image_url)
                             <img src="{{ $unit->image_url }}" alt="{{ $unit->name }}"

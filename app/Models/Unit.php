@@ -36,10 +36,10 @@ class Unit extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('gallery')
-            ->useDisk('public');
+            ->useDisk('r2');
         $this->addMediaCollection('floor_plan')
             ->singleFile()
-            ->useDisk('public');
+            ->useDisk('r2');
     }
 
     public function registerMediaConversions(?Media $media = null): void
@@ -48,14 +48,12 @@ class Unit extends Model implements HasMedia
             ->width(800)
             ->height(600)
             ->format('webp')
-            ->performOnCollections('gallery')
-            ->nonQueued();
+            ->performOnCollections('gallery');
 
         $this->addMediaConversion('preview')
             ->width(400)
             ->height(300)
             ->format('webp')
-            ->performOnCollections('gallery')
-            ->nonQueued();
+            ->performOnCollections('gallery');
     }
 }

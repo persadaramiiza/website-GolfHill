@@ -131,7 +131,7 @@
     </section>
 
     {{-- CTA Section --}}
-    <section class="py-20 text-center text-white" style="background: linear-gradient(131deg, #00377D 16.85%, #00377D 48.61%, #009ED1 80.36%);">
+    <!-- <section class="py-20 text-center text-white" style="background: linear-gradient(131deg, #00377D 16.85%, #00377D 48.61%, #009ED1 80.36%);">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-5xl font-bold mb-4">Find Your Perfect Home</h2>
             <p class="text-xl text-white/90 mb-10">Experience the luxury lifestyle at Golfhill Terraces Apartment</p>
@@ -141,6 +141,6 @@
                 Contact Us
             </a>
         </div>
-    </section>
+    </section> -->
 
 </x-layouts.app>

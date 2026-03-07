@@ -198,7 +198,7 @@
         </div>
     </div>
 </section>
-
+<!-- 
 {{-- CTA Section --}}
 <section style="background: linear-gradient(131deg, #00377D 0%, #009ED1 100%); padding: 80px 0;">
     <div class="max-w-5xl mx-auto px-8 text-center">
@@ -221,6 +221,6 @@
             </a>
         </div>
     </div>
-</section>
+</section> -->
 
 </x-layouts.app>

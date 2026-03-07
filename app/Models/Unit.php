@@ -36,10 +36,10 @@ class Unit extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('gallery')
-            ->useDisk('r2');
+            ->useDisk('public');
         $this->addMediaCollection('floor_plan')
             ->singleFile()
-            ->useDisk('r2');
+            ->useDisk('public');
     }
 
     public function registerMediaConversions(?Media $media = null): void

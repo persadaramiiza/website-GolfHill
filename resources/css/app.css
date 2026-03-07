@@ -59,3 +59,205 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+[x-cloak] {
+    display: none !important;
+}
+
+.photo-slider {
+    position: relative;
+}
+
+.photo-slider-stage {
+    position: relative;
+    min-height: 34rem;
+    padding: 1rem 0 2rem;
+}
+
+.photo-slider-card {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(100%, 45.5rem);
+    height: 23rem;
+    overflow: hidden;
+    border-radius: 2rem;
+    box-shadow: 0 24px 55px rgba(15, 23, 42, 0.18);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+}
+
+.photo-slider-card.is-active {
+    z-index: 3;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) scale(1);
+}
+
+.photo-slider-card.is-prev {
+    z-index: 1;
+    opacity: 0.35;
+    transform: translateX(calc(-50% - 17rem)) translateY(2rem) scale(0.92);
+    filter: saturate(0.75);
+}
+
+.photo-slider-card.is-next {
+    z-index: 1;
+    opacity: 0.35;
+    transform: translateX(calc(-50% + 17rem)) translateY(2rem) scale(0.92);
+    filter: saturate(0.75);
+}
+
+.photo-slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(9, 30, 66, 0.04) 0%, rgba(9, 30, 66, 0.14) 42%, rgba(9, 30, 66, 0.75) 100%);
+}
+
+.photo-slider-caption {
+    position: absolute;
+    right: 1.75rem;
+    bottom: 1.5rem;
+    left: 1.75rem;
+    text-align: center;
+    color: #fff;
+}
+
+.photo-slider-caption h3 {
+    font-size: clamp(1.625rem, 2vw, 2.375rem);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.photo-gallery-kicker {
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.photo-slider-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.92);
+    color: #00377D;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
+    transform: translateY(-50%);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.photo-slider-arrow:hover {
+    transform: translateY(-50%) scale(1.04);
+    background: #ffffff;
+}
+
+.photo-slider-arrow.is-left {
+    left: 1rem;
+}
+
+.photo-slider-arrow.is-right {
+    right: 1rem;
+}
+
+.photo-slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.photo-slider-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 9999px;
+    background: rgba(0, 55, 125, 0.22);
+    transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+.photo-slider-dot.is-active {
+    width: 2rem;
+    background: #ffffff;
+    box-shadow: 0 0 0 1px rgba(0, 55, 125, 0.14), 0 8px 20px rgba(15, 23, 42, 0.12);
+}
+
+@media (max-width: 1024px) {
+    .photo-slider-stage {
+        min-height: 30rem;
+    }
+
+    .photo-slider-card {
+        width: min(100%, 38rem);
+        height: 21rem;
+    }
+
+    .photo-slider-card.is-prev {
+        transform: translateX(calc(-50% - 12rem)) translateY(2rem) scale(0.88);
+    }
+
+    .photo-slider-card.is-next {
+        transform: translateX(calc(-50% + 12rem)) translateY(2rem) scale(0.88);
+    }
+}
+
+@media (max-width: 767px) {
+    .photo-slider-stage {
+        min-height: 18rem;
+        padding-bottom: 1rem;
+    }
+
+    .photo-slider-card,
+    .photo-slider-card.is-active,
+    .photo-slider-card.is-prev,
+    .photo-slider-card.is-next {
+        width: 100%;
+        height: 16rem;
+        left: 0;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+        filter: none;
+    }
+
+    .photo-slider-card.is-prev,
+    .photo-slider-card.is-next {
+        display: none;
+    }
+
+    .photo-slider-caption {
+        text-align: left;
+    }
+
+    .photo-slider-caption h3 {
+        font-size: 1.5rem;
+    }
+
+    .photo-slider-arrow {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .photo-slider-arrow.is-left {
+        left: 0.75rem;
+    }
+
+    .photo-slider-arrow.is-right {
+        right: 0.75rem;
+    }
+}

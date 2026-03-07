@@ -26,7 +26,7 @@
     </section>
 
     {{-- Featured Units Section --}}
-    <section class="py-20 bg-white">
+    <!-- <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-end mb-12">
                 <div>
@@ -104,7 +104,7 @@
                 @endforelse
             </div>
         </div>
-    </section>
+    </section> -->
 
     {{-- An Oasis Section - Figma Design --}}
     <section class="py-24 bg-white">
@@ -164,37 +164,65 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <div class="gradient-bar mx-auto mb-8"></div>
-                <h2 class="text-5xl font-bold" style="color: #00377D;">Facilities</h2>
+                <h2 class="text-5xl font-bold" style="color: #00377D;">Photo Galleries</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {{-- Facility items - placeholders for now --}}
-                @php
-                    $facilities = [
-                        ['name' => 'Tennis Court', 'image' => 'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800'],
-                        ['name' => 'Swimming Pool', 'image' => 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800'],
-                        ['name' => 'Fitness Center', 'image' => 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800'],
-                        ['name' => 'Golf Course View', 'image' => 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800'],
-                        ['name' => 'Children Playground', 'image' => 'https://images.unsplash.com/photo-1587857180093-f8b4e112f7ae?w=800'],
-                        ['name' => 'Garden Terrace', 'image' => 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800']
-                    ];
-                @endphp
+            @php
+                $facilities = [
+                    ['name' => 'Tennis Court', 'image' => 'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=1200'],
+                    ['name' => 'Swimming Pool', 'image' => 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200'],
+                    ['name' => 'Fitness Center', 'image' => 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200'],
+                    ['name' => 'Golf Course View', 'image' => 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1200'],
+                    ['name' => 'Children Playground', 'image' => 'https://images.unsplash.com/photo-1587857180093-f8b4e112f7ae?w=1200'],
+                    ['name' => 'Garden Terrace', 'image' => 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1200'],
+                ];
+            @endphp
 
-                @foreach($facilities as $facility)
-                <div class="relative h-96 rounded-3xl overflow-hidden shadow-2xl group">
-                    <img src="{{ $facility['image'] }}" 
-                         alt="{{ $facility['name'] }}" 
-                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0" style="background: linear-gradient(232deg, rgba(102, 102, 102, 0) 2.69%, rgba(0, 0, 0, 0.45) 54.78%, rgba(0, 0, 0, 0.45) 73.41%);"></div>
-                    <div class="absolute bottom-8 left-8 right-8">
-                        <h3 class="text-2xl font-bold text-white">{{ $facility['name'] }}</h3>
-                    </div>
+            <div class="photo-slider" data-photo-slider>
+                <div class="photo-slider-stage">
+                    @foreach($facilities as $index => $facility)
+                        <article
+                            class="photo-slider-card{{ $index === 0 ? ' is-active' : '' }}"
+                            data-photo-slide
+                            aria-hidden="{{ $index === 0 ? 'false' : 'true' }}"
+                        >
+                            <img src="{{ $facility['image'] }}" alt="{{ $facility['name'] }}" class="photo-slider-image">
+                            <div class="photo-gallery-overlay"></div>
+                            <div class="photo-slider-caption">
+                                <p class="photo-gallery-kicker">GolfHill Lifestyle</p>
+                                <h3>{{ $facility['name'] }}</h3>
+                            </div>
+                        </article>
+                    @endforeach
+
+                    <button type="button" class="photo-slider-arrow is-left" data-photo-slider-prev aria-label="Previous photo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-5 w-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+
+                    <button type="button" class="photo-slider-arrow is-right" data-photo-slider-next aria-label="Next photo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-5 w-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
                 </div>
-                @endforeach
+
+                <div class="photo-slider-dots" role="tablist" aria-label="Photo Galleries Slider">
+                    @foreach($facilities as $index => $facility)
+                        <button
+                            type="button"
+                            class="photo-slider-dot{{ $index === 0 ? ' is-active' : '' }}"
+                            data-photo-slider-dot
+                            data-slide-index="{{ $index }}"
+                            aria-label="Show {{ $facility['name'] }}"
+                        ></button>
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>
-
+<!-- 
     {{-- Lifestyle Articles Section --}}
     <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -251,7 +279,7 @@
                 @endforelse
             </div>
         </div>
-    </section>
+    </section> -->
 
     {{-- CTA Section - Figma Design --}}
     <section class="py-20 text-center text-white" style="background: linear-gradient(131deg, #00377D 16.85%, #00377D 48.61%, #009ED1 80.36%);">
@@ -269,4 +297,70 @@
             </a>
         </div>
     </section>
+
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-photo-slider]').forEach((slider) => {
+                const slides = Array.from(slider.querySelectorAll('[data-photo-slide]'));
+                const dots = Array.from(slider.querySelectorAll('[data-photo-slider-dot]'));
+                const prevButton = slider.querySelector('[data-photo-slider-prev]');
+                const nextButton = slider.querySelector('[data-photo-slider-next]');
+
+                if (!slides.length) {
+                    return;
+                }
+
+                let activeIndex = 0;
+
+                const updateSlider = () => {
+                    const lastIndex = slides.length - 1;
+                    const prevIndex = activeIndex === 0 ? lastIndex : activeIndex - 1;
+                    const nextIndex = activeIndex === lastIndex ? 0 : activeIndex + 1;
+
+                    slides.forEach((slide, index) => {
+                        slide.classList.remove('is-active', 'is-prev', 'is-next');
+
+                        if (index === activeIndex) {
+                            slide.classList.add('is-active');
+                            slide.setAttribute('aria-hidden', 'false');
+                        } else if (index === prevIndex) {
+                            slide.classList.add('is-prev');
+                            slide.setAttribute('aria-hidden', 'true');
+                        } else if (index === nextIndex) {
+                            slide.classList.add('is-next');
+                            slide.setAttribute('aria-hidden', 'true');
+                        } else {
+                            slide.setAttribute('aria-hidden', 'true');
+                        }
+                    });
+
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('is-active', index === activeIndex);
+                        dot.setAttribute('aria-selected', index === activeIndex ? 'true' : 'false');
+                    });
+                };
+
+                prevButton?.addEventListener('click', () => {
+                    activeIndex = activeIndex === 0 ? slides.length - 1 : activeIndex - 1;
+                    updateSlider();
+                });
+
+                nextButton?.addEventListener('click', () => {
+                    activeIndex = activeIndex === slides.length - 1 ? 0 : activeIndex + 1;
+                    updateSlider();
+                });
+
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        activeIndex = index;
+                        updateSlider();
+                    });
+                });
+
+                updateSlider();
+            });
+        });
+    </script>
+    @endpush
 </x-layouts.app>

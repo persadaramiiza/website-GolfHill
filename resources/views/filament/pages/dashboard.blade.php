@@ -208,6 +208,9 @@
     }
 
     /* ─── Header ───────────────────────────────────────────── */
+    .gf-dash-header {
+        padding-top: 24px;
+    }
     .gf-dash-title {
         color: #00377D !important;
         font-size: 36px !important;

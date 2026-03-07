@@ -166,7 +166,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      padding: 0 0 32px;
+      padding: 40px 4px 32px 4px;
       font-family: 'Plus Jakarta Sans', sans-serif;
       min-height: 100%;
       background: #F9FAFB;
@@ -178,6 +178,8 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 8px;
+      padding-top: 0;
+      margin-top: 16px;
     }
     .gf-units-title {
       color: #00377D;

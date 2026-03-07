@@ -27,7 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login(Login::class)
-            ->brandName('GolfHill Terraces')
+            ->brandName('GOLFHILL TERRACES')
             ->colors([
                 'primary' => Color::Sky,
             ])

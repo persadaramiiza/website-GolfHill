@@ -57,10 +57,14 @@
 }
 
 /* Brand/logo in sidebar header → white */
+.fi-logo {
+    color: #00377D !important;
+}
+
+/* If brand name is in different element */
 .fi-sidebar-header .fi-logo,
-.fi-sidebar-header .fi-logo span,
-.fi-sidebar-header [class*="brand"] {
-    color: #ffffff !important;
+.fi-topbar .fi-logo {
+    color: #00377D !important;
 }
 
 /* ── Topbar → White ─────────────────────────────────────────── */
@@ -433,3 +437,25 @@ input.fi-input {
     color: #6A7282 !important;
 }
 .fi-breadcrumbs a:hover { color: #00377D !important; }
+
+/* =============================================================
+   ARTICLE PAGES CUSTOM STYLING - Navy Blue Text (#00377D)
+   ============================================================= */
+
+/* ── Force ALL table text to navy blue ────────────────────── */
+.fi-ta-cell,
+.fi-ta-header-cell-label {
+    color: #00377D !important;
+}
+
+/* ── Force ALL form labels to navy blue ───────────────────── */
+.fi-fo-field-wrp-label,
+.fi-fo-field-wrp-label label {
+    color: #00377D !important;
+}
+
+/* ── Force ALL page headings to navy blue ─────────────────── */
+.fi-header-heading,
+.fi-page-header-heading {
+    color: #00377D !important;
+}

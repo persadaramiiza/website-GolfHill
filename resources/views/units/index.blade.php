@@ -25,15 +25,28 @@
                 @forelse($units as $unit)
                 <div style="border-radius: 24px; border: 1px solid #F3F4F6; background: #FFF; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10); overflow: hidden; display: flex; flex-direction: column;">
 
-                    {{-- Image --}}
-                    <div style="height: 350px; position: relative; overflow: hidden; flex-shrink: 0;">
-                        @php $heroImage = $unit->getFirstMedia('gallery'); @endphp
-                        @if($heroImage)
-                            <img src="{{ $heroImage->hasGeneratedConversion('thumb') ? $heroImage->getUrl('thumb') : $heroImage->getUrl() }}" alt="{{ $unit->name }}"
-                                 style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
-                        @elseif($unit->image_url)
-                            <img src="{{ $unit->image_url }}" alt="{{ $unit->name }}"
-                                 style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
+                    {{-- Image Slider --}}
+                    @php
+                        $galleryImages = $unit->getMedia('gallery');
+                        $imageUrls = $galleryImages->map(fn($m) => $m->hasGeneratedConversion('thumb') ? $m->getUrl('thumb') : $m->getUrl())->values();
+                        if ($imageUrls->isEmpty() && $unit->image_url) {
+                            $imageUrls = collect([$unit->image_url]);
+                        }
+                    @endphp
+                    <div style="aspect-ratio: 16/9; position: relative; overflow: hidden; flex-shrink: 0;"
+                         x-data="{ active: 0, images: {{ $imageUrls->toJson() }} }"
+                         @mouseenter="$el.querySelector('.slider-arrows')?.classList.remove('opacity-0')"
+                         @mouseleave="$el.querySelector('.slider-arrows')?.classList.add('opacity-0')">
+
+                        {{-- Slides --}}
+                        @if($imageUrls->isNotEmpty())
+                            <template x-for="(url, i) in images" :key="i">
+                                <img :src="url" alt="{{ $unit->name }}"
+                                     loading="lazy" decoding="async"
+                                     x-show="active === i"
+                                     style="width: 100%; height: 100%; object-fit: cover; object-position: center; position: absolute; inset: 0; transition: opacity 0.3s ease;"
+                                     :style="active === i ? 'opacity:1' : 'opacity:0'">
+                            </template>
                         @else
                             <div style="position: absolute; inset: 0; background: linear-gradient(135deg, #bfdbfe 0%, #a5f3fc 100%); display: flex; align-items: center; justify-content: center;">
                                 <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
@@ -41,12 +54,42 @@
                                 </svg>
                             </div>
                         @endif
+
                         {{-- Dark gradient overlay --}}
-                        <div style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.00) 100%);"></div>
+                        <div style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.00) 100%); pointer-events: none;"></div>
+
                         {{-- Fully Furnished badge --}}
-                        <div style="position: absolute; top: 24px; right: 24px; padding: 8px 20px; background: #22AE6C; border-radius: 999px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10);">
+                        <div style="position: absolute; top: 24px; right: 24px; padding: 8px 20px; background: #22AE6C; border-radius: 999px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10); pointer-events: none;">
                             <span style="color: #FFF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; line-height: 20px;">Fully Furnished</span>
                         </div>
+
+                        {{-- Arrow buttons (only when >1 image) --}}
+                        <template x-if="images.length > 1">
+                            <div class="slider-arrows opacity-0" style="transition: opacity 0.2s;">
+                                {{-- Left --}}
+                                <button @click.prevent="active = (active - 1 + images.length) % images.length"
+                                        style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,0.45); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M15 18l-6-6 6-6"/>
+                                    </svg>
+                                </button>
+                                {{-- Right --}}
+                                <button @click.prevent="active = (active + 1) % images.length"
+                                        style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,0.45); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 18l6-6-6-6"/>
+                                    </svg>
+                                </button>
+                                {{-- Dot indicators --}}
+                                <div style="position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px;">
+                                    <template x-for="(_, i) in images" :key="i">
+                                        <button @click.prevent="active = i"
+                                                :style="active === i ? 'background: white; width: 20px;' : 'background: rgba(255,255,255,0.5); width: 8px;'"
+                                                style="height: 8px; border-radius: 4px; border: none; cursor: pointer; transition: all 0.2s;"></button>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
                     </div>
 
                     {{-- Card Content --}}

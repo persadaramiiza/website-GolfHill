@@ -1,6 +1,6 @@
 <x-layouts.app>
     {{-- Hero Section - Figma Design --}}
-    <section class="relative h-[665px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920');">
+    <section class="relative h-[665px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&q=75&auto=format&fm=webp');">
        <div class="absolute inset-0 hero-overlay"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
             <div class="max-w-3xl text-white">
@@ -112,9 +112,10 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 {{-- Image --}}
                 <div>
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800" 
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=75&auto=format&fm=webp" 
                          alt="Luxury Interior" 
-                         class="w-full h-[600px] object-cover rounded-3xl shadow-2xl">
+                         class="w-full h-[600px] object-cover rounded-3xl shadow-2xl"
+                         loading="lazy" decoding="async">
                 </div>
 
                 {{-- Content --}}
@@ -188,7 +189,7 @@
                             data-photo-slide
                             aria-hidden="{{ $index === 0 ? 'false' : 'true' }}"
                         >
-                            <img src="{{ $facility['image'] }}" alt="{{ $facility['name'] }}" class="photo-slider-image">
+                            <img src="{{ $facility['image'] }}" alt="{{ $facility['name'] }}" class="photo-slider-image" loading="lazy" decoding="async">
                             <div class="photo-gallery-overlay"></div>
                             <div class="photo-slider-caption">
                                 <p class="photo-gallery-kicker">GolfHill Lifestyle</p>

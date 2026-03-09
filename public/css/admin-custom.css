@@ -452,6 +452,12 @@ input.fi-input {
 }
 .fi-fo-select .choices { border: none !important; }
 
+/* Nudge dropdown arrow slightly left */
+select.fi-select-input,
+.fi-select-input .fi-select-input-btn {
+    background-position: right 1rem center !important;
+}
+
 /* ── Checkbox ───────────────────────────────────────────────── */
 .fi-fo-checkbox .fi-checkbox-input,
 .fi-checkbox {

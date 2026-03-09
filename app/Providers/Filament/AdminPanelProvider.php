@@ -43,6 +43,10 @@ class AdminPanelProvider extends PanelProvider
                 PanelsRenderHook::HEAD_END,
                 fn () => '<link rel="stylesheet" href="' . asset('css/admin-custom.css') . '">'
             )
+            ->renderHook(
+                PanelsRenderHook::TOPBAR_START,
+                fn () => '<div class="gf-topbar-brand"><img src="' . asset('images/logo.png') . '" alt="Golfhill Terraces" class="gf-topbar-brand-logo"><span class="gf-topbar-brand-text">GOLFHILL TERRACES</span></div>'
+            )
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

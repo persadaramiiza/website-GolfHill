@@ -3,7 +3,8 @@
         <div class="flex justify-between h-20 items-center">
             
             <!-- Logo -->
-            <a href="{{ route('home') }}" class="flex items-center">
+            <a href="{{ route('home') }}" class="flex items-center gap-3">
+                <img src="{{ asset('images/logo.png') }}" alt="GolfHill Logo" class="h-11 w-auto">
                 <span class="text-2xl font-bold" style="color: #00377D;">GOLFHILL TERRACES</span>
             </a>
 

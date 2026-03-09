@@ -31,7 +31,7 @@ class ContactPersonSeeder extends Seeder
         ];
 
         foreach ($contacts as $contact) {
-            ContactPerson::create($contact);
+            ContactPerson::firstOrCreate(['email' => $contact['email']], $contact);
         }
     }
 }

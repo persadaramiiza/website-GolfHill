@@ -34,7 +34,7 @@ class UnitTypeSeeder extends Seeder
         ];
 
         foreach ($types as $type) {
-            UnitType::create($type);
+            UnitType::firstOrCreate(['slug' => $type['slug']], $type);
         }
     }
 }

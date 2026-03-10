@@ -18,18 +18,25 @@ class UnitForm
                     ->extraAttributes(['class' => 'gf-unit-form-card'])
                     ->columns(2)
                     ->schema([
-                        // ── Row 1: Unit Type | Size ─────────────────────
+                        // ── Unit Type (full width) ───────────────────────
                         TextInput::make('unit_type_name')
                             ->label('Unit Type *')
                             ->placeholder('e.g., Type 01')
                             ->required()
-                            ->maxLength(100),
+                            ->maxLength(100)
+                            ->columnSpanFull(),
 
-                        TextInput::make('size')
-                            ->label('Size (SQM) *')
-                            ->placeholder('e.g., 157')
+                        // ── Row 1: Size Min | Size Max ───────────────────
+                        TextInput::make('size_min')
+                            ->label('Size Min (SQM)')
+                            ->placeholder('e.g., 120')
                             ->numeric()
-                            ->required()
+                            ->minValue(0),
+
+                        TextInput::make('size_max')
+                            ->label('Size Max (SQM)')
+                            ->placeholder('e.g., 180')
+                            ->numeric()
                             ->minValue(0),
 
                         // ── Row 2: Bedrooms | Bathrooms ─────────────────
@@ -53,6 +60,14 @@ class UnitForm
                             ->placeholder('e.g., Golf View')
                             ->required()
                             ->maxLength(100)
+                            ->columnSpanFull(),
+
+                        // ── Row 4: Key Features ──────────────────────────
+                        TextInput::make('key_features')
+                            ->label('Key Features')
+                            ->placeholder('e.g., Spacious Living Room, Private Balcony')
+                            ->maxLength(255)
+                            ->helperText('Shown as a highlight on the unit card.')
                             ->columnSpanFull(),
 
                         // ── Show on website (checkbox) ───────────────────

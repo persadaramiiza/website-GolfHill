@@ -6,10 +6,12 @@ use App\Filament\Resources\Articles\ArticleResource;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Str;
+use Filament\Support\Enums\Width;
 
 class CreateArticle extends CreateRecord
 {
     protected static string $resource = ArticleResource::class;
+    protected Width|string|null $maxContentWidth = Width::Full;
 
     public function getHeading(): string
     {
@@ -43,15 +45,15 @@ class CreateArticle extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data['slug']       = Str::slug($data['title']) . '-' . Str::random(6);
-        $data['content']    = $data['excerpt'] ?? '';
-        $data['user_id']    = auth()->id();
+        $data['slug'] = Str::slug($data['title']) . '-' . Str::random(6);
+        $data['excerpt'] = Str::limit(strip_tags($data['content']), 180);
+        $data['user_id'] = auth()->id();
         $data['category_id'] = \App\Models\Category::firstOrCreate(
             ['name' => 'General'],
             ['slug' => 'general']
         )->id;
-        $data['status']     = !empty($data['is_published']) ? 'published' : 'draft';
-        unset($data['is_published']);
+        $data['status'] = filled($data['published_at']) ? 'published' : 'draft';
+
         return $data;
     }
 
@@ -65,6 +67,13 @@ class CreateArticle extends CreateRecord
         return [
             ArticleResource::getUrl('index') => 'Articles',
             'Add New Article',
+        ];
+    }
+
+    public function getExtraBodyAttributes(): array
+    {
+        return [
+            'class' => 'gf-article-form-page',
         ];
     }
 }

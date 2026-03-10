@@ -7,10 +7,12 @@ use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Str;
+use Filament\Support\Enums\Width;
 
 class EditArticle extends EditRecord
 {
     protected static string $resource = ArticleResource::class;
+    protected Width|string|null $maxContentWidth = Width::Full;
 
     public function getHeading(): string
     {
@@ -46,7 +48,7 @@ class EditArticle extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        $data['is_published'] = ($data['status'] ?? 'draft') === 'published';
+        #$data['is_published'] = ($data['status'] ?? 'draft') === 'published';
         return $data;
     }
 
@@ -55,20 +57,22 @@ class EditArticle extends EditRecord
         if (empty($data['slug'])) {
             $data['slug'] = Str::slug($data['title']) . '-' . Str::random(6);
         }
-        if (empty($data['content'])) {
-            $data['content'] = $data['excerpt'] ?? '';
-        }
+
+        $data['excerpt'] = Str::limit(strip_tags($data['content']), 180);
+
         if (empty($data['user_id'])) {
             $data['user_id'] = auth()->id();
         }
+
         if (empty($data['category_id'])) {
             $data['category_id'] = \App\Models\Category::firstOrCreate(
                 ['name' => 'General'],
                 ['slug' => 'general']
             )->id;
         }
-        $data['status'] = !empty($data['is_published']) ? 'published' : 'draft';
-        unset($data['is_published']);
+
+        $data['status'] = filled($data['published_at']) ? 'published' : 'draft';
+
         return $data;
     }
 
@@ -82,6 +86,13 @@ class EditArticle extends EditRecord
         return [
             ArticleResource::getUrl('index') => 'Articles',
             'Edit',
+        ];
+    }
+
+    public function getExtraBodyAttributes(): array
+    {
+        return [
+            'class' => 'gf-article-form-page',
         ];
     }
 }

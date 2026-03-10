@@ -375,7 +375,7 @@ input.fi-input {
 }
 
 /* Input with prefix (Rp) wrapper */
-.fi-input-wrp {
+.fi-fo-text-input .fi-input-wrp {
     border: 1px solid #D1D5DB !important;
     border-radius: 10px !important;
     background: #ffffff !important;
@@ -384,6 +384,7 @@ input.fi-input {
     width: 100% !important;
     box-sizing: border-box !important;
 }
+
 .fi-input-wrp:focus-within {
     border-color: #93C5FD !important;
     box-shadow: 0 0 0 2px rgba(147,197,253,0.35) !important;
@@ -591,3 +592,29 @@ select.fi-select-input,
     color: #6A7282 !important;
 }
 .fi-breadcrumbs a:hover { color: #00377D !important; }
+
+/* Override form grid wrapper - paksa 1 kolom */
+.fi-resource-create-record-page.gf-article-form-page .fi-fo-grid,
+.fi-resource-edit-record-page.gf-article-form-page .fi-fo-grid {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+}
+
+/* Override section internal grid - paksa display block */
+.gf-article-form-page .gf-article-form-card {
+    display: block !important;
+}
+
+.gf-article-form-page .gf-article-form-card > div {
+    display: block !important;
+    columns: 1 !important;
+    grid-template-columns: 1fr !important;
+}
+
+/* Paksa semua field components full width */
+.gf-article-form-page .fi-fo-component-ctn,
+.gf-article-form-page .fi-fo-field-wrp {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: 1 / -1 !important;
+}

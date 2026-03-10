@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Units\Schemas;
 
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -28,15 +29,17 @@ class UnitForm
 
                         // ── Row 1: Size Min | Size Max ───────────────────
                         TextInput::make('size_min')
-                            ->label('Size Min (SQM)')
+                            ->label('Size Min (SQM) *')
                             ->placeholder('e.g., 120')
                             ->numeric()
+                            ->required()
                             ->minValue(0),
 
                         TextInput::make('size_max')
-                            ->label('Size Max (SQM)')
+                            ->label('Size Max (SQM) *')
                             ->placeholder('e.g., 180')
                             ->numeric()
+                            ->required()
                             ->minValue(0),
 
                         // ── Row 2: Bedrooms | Bathrooms ─────────────────
@@ -68,6 +71,13 @@ class UnitForm
                             ->placeholder('e.g., Spacious Living Room, Private Balcony')
                             ->maxLength(255)
                             ->helperText('Shown as a highlight on the unit card.')
+                            ->columnSpanFull(),
+
+                        // ── Furnished toggle ─────────────────────────────
+                        Toggle::make('furnished')
+                            ->label('Fully Furnished')
+                            ->default(true)
+                            ->onColor('success')
                             ->columnSpanFull(),
 
                         // ── Show on website (checkbox) ───────────────────

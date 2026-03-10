@@ -58,10 +58,12 @@
                         {{-- Dark gradient overlay --}}
                         <div style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.00) 100%); pointer-events: none;"></div>
 
-                        {{-- Fully Furnished badge --}}
+                        {{-- Fully Furnished badge (conditional) --}}
+                        @if($unit->furnished)
                         <div style="position: absolute; top: 24px; right: 24px; padding: 8px 20px; background: #22AE6C; border-radius: 999px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10); pointer-events: none;">
                             <span style="color: #FFF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; line-height: 20px;">Fully Furnished</span>
                         </div>
+                        @endif
 
                         {{-- Arrow buttons (only when >1 image) --}}
                         <template x-if="images.length > 1">

@@ -15,15 +15,16 @@ class Unit extends Model implements HasMedia
         'name', 'slug', 'description', 'unit_type_id',
         'price', 'size', 'size_min', 'size_max', 'key_features',
         'bedrooms', 'bathrooms',
-        'location', 'image_url', 'status', 'show_on_page', 'contact_person_id'
+        'location', 'image_url', 'status', 'show_on_page', 'furnished', 'contact_person_id'
     ];
 
     protected $casts = [
-        'price'    => 'decimal:2',
-        'size'     => 'decimal:2',
-        'size_min' => 'decimal:2',
-        'size_max' => 'decimal:2',
+        'price'        => 'decimal:2',
+        'size'         => 'decimal:2',
+        'size_min'     => 'decimal:2',
+        'size_max'     => 'decimal:2',
         'show_on_page' => 'boolean',
+        'furnished'    => 'boolean',
     ];
 
     public function unitType()

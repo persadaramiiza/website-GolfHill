@@ -100,10 +100,10 @@
                             {{ $unit->name }}
                         </h3>
 
-                        {{-- Specs 2Ã—2 Grid --}}
-                        <div class="grid grid-cols-2 gap-3">
+                        {{-- Specs --}}
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
 
-                            {{-- Luas --}}
+                            {{-- Luas (full width, only when set) --}}
                             @if($unit->size_min || $unit->size_max)
                             <div style="display: flex; align-items: center; gap: 12px; padding-left: 12px; height: 64px; border-radius: 14px; background: #F9FAFB;">
                                 <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,158,209,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
@@ -127,7 +127,8 @@
                             </div>
                             @endif
 
-                            {{-- Bedrooms --}}
+                            {{-- Bedrooms | Bathrooms always 2-col --}}
+                            <div class="grid grid-cols-2 gap-3">
                             @if($unit->bedrooms)
                             <div style="display: flex; align-items: center; gap: 12px; padding-left: 12px; height: 64px; border-radius: 14px; background: #F9FAFB;">
                                 <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,158,209,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
@@ -163,8 +164,9 @@
                                 </div>
                             </div>
                             @endif
+                            </div>{{-- end bedrooms/bathrooms grid --}}
 
-                            {{-- Views --}}
+                            {{-- Views (always full width) --}}
                             <div style="display: flex; align-items: center; gap: 12px; padding-left: 12px; height: 64px; border-radius: 14px; background: #F9FAFB;">
                                 <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,158,209,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -174,7 +176,7 @@
                                 </div>
                                 <div>
                                     <div style="color: #6A7282; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 400; line-height: 16px;">Views</div>
-                                    <div style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 24px;">{{ $unit->location ?: 'Golf View' }}</div>
+                                    <div style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $unit->location ?: 'Golf View' }}</div>
                                 </div>
                             </div>
 

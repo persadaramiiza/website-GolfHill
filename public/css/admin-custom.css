@@ -266,7 +266,7 @@ body::-webkit-scrollbar,
 .fi-resource-create-record-page .fi-fo-grid,
 .fi-resource-edit-record-page .fi-fo-grid {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
     gap: 24px !important;
     width: 100% !important;
 }
@@ -635,10 +635,27 @@ select.fi-select-input,
 .fi-breadcrumbs a:hover { color: #00377D !important; }
 
 /* Override form grid wrapper - paksa 1 kolom */
-.fi-resource-create-record-page.gf-article-form-page .fi-fo-grid,
-.fi-resource-edit-record-page.gf-article-form-page .fi-fo-grid {
+.gf-article-form-page .fi-resource-create-record-page .fi-fo-grid,
+.gf-article-form-page .fi-resource-edit-record-page .fi-fo-grid,
+.gf-article-form-page .fi-fo-grid {
     grid-template-columns: 1fr !important;
     display: grid !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+/* Make article form stretch to full frame width */
+.gf-article-form-page .fi-page-content,
+.gf-article-form-page .fi-form,
+.gf-article-form-page .fi-fo,
+.gf-article-form-page .fi-section,
+.gf-article-form-page .gf-article-form-card {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.gf-article-form-page .fi-fo-grid > * {
+    grid-column: 1 / -1 !important;
 }
 
 /* Override section internal grid - paksa display block */

@@ -14,8 +14,10 @@ class ArticleForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Section::make('Article')
+                    ->description('Create and manage lifestyle articles for GolfHill community')
                     ->extraAttributes(['class' => 'gf-unit-form-card gf-article-form-card'])
                     ->columns(12)
                     ->schema([

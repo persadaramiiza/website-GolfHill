@@ -28,7 +28,11 @@
                     {{-- Image Slider --}}
                     @php
                         $galleryImages = $unit->getMedia('gallery');
-                        $imageUrls = $galleryImages->map(fn($m) => $m->hasGeneratedConversion('thumb') ? $m->getUrl('thumb') : $m->getUrl())->values();
+                        $imageUrls = $galleryImages->map(function ($m) {
+                            if ($m->hasGeneratedConversion('listing')) return $m->getUrl('listing');
+                            if ($m->hasGeneratedConversion('thumb'))   return $m->getUrl('thumb');
+                            return $m->getUrl();
+                        })->values();
                         if ($imageUrls->isEmpty() && $unit->image_url) {
                             $imageUrls = collect([$unit->image_url]);
                         }

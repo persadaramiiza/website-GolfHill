@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Facility extends Model implements HasMedia
 {
@@ -27,5 +28,16 @@ class Facility extends Model implements HasMedia
     {
         $this->addMediaCollection('photo')
             ->singleFile();
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        // card — displayed as facility card background (≈500px wide)
+        $this->addMediaConversion('card')
+            ->width(600)
+            ->format('webp')
+            ->quality(75)
+            ->performOnCollections('photo')
+            ->nonQueued();
     }
 }

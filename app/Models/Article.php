@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Article extends Model implements HasMedia
 {
@@ -43,5 +44,24 @@ class Article extends Model implements HasMedia
     {
         $this->addMediaCollection('featured_image')
             ->singleFile();
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        // hero — displayed full-width at top of article (≈900px)
+        $this->addMediaConversion('hero')
+            ->width(900)
+            ->format('webp')
+            ->quality(80)
+            ->performOnCollections('featured_image')
+            ->nonQueued();
+
+        // card — used in article listing cards (≈480px)
+        $this->addMediaConversion('card')
+            ->width(480)
+            ->format('webp')
+            ->quality(75)
+            ->performOnCollections('featured_image')
+            ->nonQueued();
     }
 }

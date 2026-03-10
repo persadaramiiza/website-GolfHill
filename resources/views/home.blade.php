@@ -1,6 +1,6 @@
 <x-layouts.app>
     {{-- Hero Section - Figma Design --}}
-    <section class="relative h-[665px] bg-cover bg-center" style="background-image: url('{{ asset('images/HomePageBackground.jpg') }}');">
+    <section class="relative h-[665px] bg-cover bg-center" style="background-image: url('{{ asset('images/HomePageBackground.webp') }}');">
        <div class="absolute inset-0 hero-overlay"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
             <div class="max-w-3xl text-white">
@@ -112,10 +112,13 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 {{-- Image --}}
                 <div>
-                    <img src="{{ asset('images/HomePage_LR.jpg') }}"
-                         alt="Luxury Interior" 
-                         class="w-full h-[600px] object-cover rounded-3xl shadow-2xl"
-                         loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="{{ asset('images/HomePage_LR.webp') }}" type="image/webp">
+                        <img src="{{ asset('images/HomePage_LR.jpg') }}"
+                             alt="Luxury Interior"
+                             class="w-full h-[600px] object-cover rounded-3xl shadow-2xl"
+                             loading="lazy" decoding="async">
+                    </picture>
                 </div>
 
                 {{-- Content --}}
@@ -170,14 +173,14 @@
 
             @php
                 $facilities = [
-                    ['name' => 'Tennis Court', 'image' => asset('images/tennis.jpg')],
-                    ['name' => 'Swimming Pool', 'image' => asset('images/pool.jpg')],
-                    ['name' => 'Fitness Center', 'image' => asset('images/fitness.jpg')],
-                    ['name' => 'EV Charger', 'image' => asset('images/ev.jpg')],
-                    ['name' => 'Children Playground', 'image' => asset('images/playground.jpg')],
-                    ['name' => 'Restaurant', 'image' => asset('images/restraurant.jpg')],
-                    ['name' => 'Jogging Track', 'image' => asset('images/track.jpg')],
-                    ['name' => 'Function Room', 'image' => asset('images/function.jpg')],
+                    ['name' => 'Tennis Court',        'image' => asset('images/tennis.webp'),        'fallback' => asset('images/tennis.jpg')],
+                    ['name' => 'Swimming Pool',        'image' => asset('images/pool.webp'),          'fallback' => asset('images/pool.jpg')],
+                    ['name' => 'Fitness Center',       'image' => asset('images/fitness.webp'),       'fallback' => asset('images/fitness.jpg')],
+                    ['name' => 'EV Charger',           'image' => asset('images/ev.webp'),            'fallback' => asset('images/ev.jpg')],
+                    ['name' => 'Children Playground',  'image' => asset('images/playground.webp'),    'fallback' => asset('images/playground.jpg')],
+                    ['name' => 'Restaurant',           'image' => asset('images/restraurant.webp'),   'fallback' => asset('images/restraurant.jpg')],
+                    ['name' => 'Jogging Track',        'image' => asset('images/track.webp'),         'fallback' => asset('images/track.jpg')],
+                    ['name' => 'Function Room',        'image' => asset('images/function.webp'),      'fallback' => asset('images/function.jpg')],
                 ];
             @endphp
 
@@ -189,7 +192,10 @@
                             data-photo-slide
                             aria-hidden="{{ $index === 0 ? 'false' : 'true' }}"
                         >
-                            <img src="{{ $facility['image'] }}" alt="{{ $facility['name'] }}" class="photo-slider-image" loading="lazy" decoding="async">
+                            <picture>
+                                <source srcset="{{ $facility['image'] }}" type="image/webp">
+                                <img src="{{ $facility['fallback'] }}" alt="{{ $facility['name'] }}" class="photo-slider-image" loading="lazy" decoding="async">
+                            </picture>
                             <div class="photo-gallery-overlay"></div>
                             <div class="photo-slider-caption">
                                 <p class="photo-gallery-kicker">GolfHill Lifestyle</p>

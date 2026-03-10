@@ -20,7 +20,7 @@
                 <div class="grid grid-cols-2 gap-4">
                     @foreach($thumbImages as $img)
                     <div class="rounded-lg overflow-hidden" style="height: 184px;">
-                        <img src="{{ $img->hasGeneratedConversion('preview') ? $img->getUrl('preview') : $img->getUrl() }}"
+                        <img src="{{ $img->hasGeneratedConversion('thumb') ? $img->getUrl('thumb') : $img->getUrl() }}"
                              alt="{{ $unit->name }}"
                              style="width: 100%; height: 100%; object-fit: cover;"
                              loading="lazy">

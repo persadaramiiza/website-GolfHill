@@ -44,5 +44,10 @@ Route::get('/debug/upload-limits', function () {
         'tmp_writable'        => is_writable(sys_get_temp_dir()),
         'storage_writable'    => is_writable(storage_path('app')),
         'php_sapi'            => php_sapi_name(),
+        'gd_info'             => function_exists('gd_info') ? array_keys(array_filter(gd_info())) : 'GD not installed',
+        'imagick'             => extension_loaded('imagick'),
+        'r2_configured'       => !empty(env('CLOUDFLARE_R2_ACCESS_KEY_ID')),
+        'livewire_tmp_disk'   => config('livewire.temporary_file_upload.disk'),
+        'livewire_max_rule'   => config('livewire.temporary_file_upload.rules'),
     ]);
 });

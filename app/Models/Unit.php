@@ -44,30 +44,13 @@ class Unit extends Model implements HasMedia
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        // thumb — used in unit detail hero (≈800px wide)
+        // thumb — main conversion, used everywhere (cards, detail hero, etc.)
+        // nonQueued so it's available immediately after upload
         $this->addMediaConversion('thumb')
             ->width(800)
             ->height(600)
             ->format('webp')
             ->quality(80)
-            ->performOnCollections('gallery')
-            ->nonQueued();
-
-        // listing — used in unit index card slider (≈500px wide)
-        $this->addMediaConversion('listing')
-            ->width(600)
-            ->height(450)
-            ->format('webp')
-            ->quality(75)
-            ->performOnCollections('gallery')
-            ->nonQueued();
-
-        // preview — used in unit detail thumbnail grid (≈200px wide)
-        $this->addMediaConversion('preview')
-            ->width(400)
-            ->height(300)
-            ->format('webp')
-            ->quality(75)
             ->performOnCollections('gallery')
             ->nonQueued();
     }

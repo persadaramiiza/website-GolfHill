@@ -29,8 +29,7 @@
                     @php
                         $galleryImages = $unit->getMedia('gallery');
                         $imageUrls = $galleryImages->map(function ($m) {
-                            if ($m->hasGeneratedConversion('listing')) return $m->getUrl('listing');
-                            if ($m->hasGeneratedConversion('thumb'))   return $m->getUrl('thumb');
+                            if ($m->hasGeneratedConversion('thumb')) return $m->getUrl('thumb');
                             return $m->getUrl();
                         })->values();
                         if ($imageUrls->isEmpty() && $unit->image_url) {

@@ -15,6 +15,7 @@ Route::get('/units/{slug}', [UnitController::class, 'show'])->name('units.show')
 // Articles
 Route::get('/lifestyle', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/lifestyle/{slug}', [ArticleController::class, 'show'])->name('articles.show');
+Route::post('/lifestyle/{slug}/comments', [ArticleController::class, 'storeComment'])->name('articles.comments.store');
 
 // Facilities
 Route::get('/facilities', function () {

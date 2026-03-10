@@ -187,13 +187,18 @@
 
                     {{-- Bottom feature row --}}
                     @if($unit->key_features)
-                    <div style="margin: 24px 32px 32px 32px; padding-top: 25px; border-top: 1px solid #F3F4F6; display: flex; align-items: center; gap: 8px;">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="flex-shrink: 0;" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 4.5L6.75 12.75L3 9" stroke="#22AE6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span style="color: #4A5565; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 20px;">
-                            {{ $unit->key_features }}
-                        </span>
+                    @php
+                        $features = array_filter(array_map('trim', explode(',', $unit->key_features)));
+                    @endphp
+                    <div style="margin: 24px 32px 32px 32px; padding-top: 25px; border-top: 1px solid #F3F4F6; display: flex; flex-direction: column; gap: 6px;">
+                        @foreach($features as $feature)
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <svg width="16" height="16" viewBox="0 0 18 18" fill="none" style="flex-shrink: 0;" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 4.5L6.75 12.75L3 9" stroke="#22AE6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span style="color: #4A5565; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 20px;">{{ $feature }}</span>
+                        </div>
+                        @endforeach
                     </div>
                     @endif
 

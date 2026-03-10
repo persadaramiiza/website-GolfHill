@@ -6,6 +6,22 @@
         <p class="gf-dash-subtitle">Welcome back! Here's an overview of your content.</p>
     </div>
 
+    {{-- Pending Comments Alert --}}
+    @if($pendingComments > 0)
+    <a href="/admin/comments?tableFilters[status][value]=pending" style="text-decoration:none;">
+        <div style="display:flex; align-items:center; gap:12px; padding:14px 20px; border-radius:12px; background:#FFF7ED; border:1px solid #FED7AA;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+                <path d="M10 1.66663C5.40002 1.66663 1.66669 5.39996 1.66669 9.99996C1.66669 14.6 5.40002 18.3333 10 18.3333C14.6 18.3333 18.3334 14.6 18.3334 9.99996C18.3334 5.39996 14.6 1.66663 10 1.66663Z" stroke="#EA580C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 6.66663V9.99996" stroke="#EA580C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 13.3334H10.0083" stroke="#EA580C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p style="color:#C2410C; font-size:14px; font-weight:600; margin:0;">
+                {{ $pendingComments }} comment{{ $pendingComments > 1 ? 's' : '' }} awaiting approval — Click to review
+            </p>
+        </div>
+    </a>
+    @endif
+
     {{-- Stat Cards - 2x2 grid --}}
     <div class="gf-stat-grid">
 
@@ -108,7 +124,7 @@
                 <span class="gf-qa-label">Add New Unit</span>
             </a>
 
-            <a href="#" class="gf-qa-btn">
+            <a href="/admin/facilities/create" class="gf-qa-btn">
                 <div class="gf-qa-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4Z" stroke="#009ED1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -134,8 +150,11 @@
         <h2 class="gf-card-heading">Recent Activity</h2>
         <div class="gf-activity-list">
 
-            {{-- Row 1: Article --}}
-            <div class="gf-activity-row">
+            @forelse ($recentActivity as $item)
+            <a href="{{ $item['url'] }}" class="gf-activity-row gf-activity-link">
+
+                {{-- Icon: Article --}}
+                @if($item['type'] === 'article')
                 <div class="gf-activity-icon" style="background:#DCFCE7;">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.5002 1.66663H5.00016C4.55814 1.66663 4.13421 1.84222 3.82165 2.15478C3.50909 2.46734 3.3335 2.89127 3.3335 3.33329V16.6666C3.3335 17.1087 3.50909 17.5326 3.82165 17.8451C4.13421 18.1577 4.55814 18.3333 5.00016 18.3333H15.0002C15.4422 18.3333 15.8661 18.1577 16.1787 17.8451C16.4912 17.5326 16.6668 17.1087 16.6668 16.6666V5.83329L12.5002 1.66663Z" stroke="#00A63E" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -145,14 +164,9 @@
                         <path d="M13.3332 14.1666H6.6665" stroke="#00A63E" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <div class="gf-activity-content">
-                    <p class="gf-activity-title">Article "Mediterranean Living" updated</p>
-                    <p class="gf-activity-time">2 hours ago</p>
-                </div>
-            </div>
 
-            {{-- Row 2: Unit --}}
-            <div class="gf-activity-row">
+                {{-- Icon: Unit --}}
+                @elseif($item['type'] === 'unit')
                 <div class="gf-activity-icon" style="background:#DBEAFE;">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 18.3333V3.33329C5 2.89127 5.17559 2.46734 5.48816 2.15478C5.80072 1.84222 6.22464 1.66663 6.66667 1.66663H13.3333C13.7754 1.66663 14.1993 1.84222 14.5118 2.15478C14.8244 2.46734 15 2.89127 15 3.33329V18.3333H5Z" stroke="#155DFC" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -164,14 +178,9 @@
                         <path d="M8.3335 15H11.6668" stroke="#155DFC" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <div class="gf-activity-content">
-                    <p class="gf-activity-title">Unit "Type 06" details modified</p>
-                    <p class="gf-activity-time">5 hours ago</p>
-                </div>
-            </div>
 
-            {{-- Row 3: Facility --}}
-            <div class="gf-activity-row">
+                {{-- Icon: Facility --}}
+                @else
                 <div class="gf-activity-icon" style="background:#F3E8FF;">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15.0002 3.33337H5.00016C4.07969 3.33337 3.3335 4.07957 3.3335 5.00004V15C3.3335 15.9205 4.07969 16.6667 5.00016 16.6667H15.0002C15.9206 16.6667 16.6668 15.9205 16.6668 15V5.00004C16.6668 4.07957 15.9206 3.33337 15.0002 3.33337Z" stroke="#9810FA" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -186,11 +195,17 @@
                         <path d="M7.5 16.6666V18.3333" stroke="#9810FA" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
+                @endif
+
                 <div class="gf-activity-content">
-                    <p class="gf-activity-title">Facility "Swimming Pool" information updated</p>
-                    <p class="gf-activity-time">1 day ago</p>
+                    <p class="gf-activity-title">{{ $item['label'] }}</p>
+                    <p class="gf-activity-time">{{ \Carbon\Carbon::parse($item['time'])->diffForHumans() }}</p>
                 </div>
-            </div>
+
+            </a>
+            @empty
+            <p style="color:#94a3b8; text-align:center; padding:1rem 0;">No recent activity yet.</p>
+            @endforelse
 
         </div>
     </div>
@@ -348,6 +363,11 @@
         height: 76px;
         border-radius: 14px;
         background: #F9FAFB;
+        text-decoration: none !important;
+        transition: background 0.15s;
+    }
+    .gf-activity-link:hover {
+        background: #F1F5F9 !important;
     }
     .gf-activity-icon {
         display: flex;

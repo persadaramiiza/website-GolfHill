@@ -72,7 +72,7 @@ class UnitForm
                             ->reorderable()
                             ->image()
                             ->maxFiles(50)
-                            ->maxSize(15360)
+                            ->maxSize(25600)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->columnSpanFull(),
                     ]),
@@ -84,7 +84,7 @@ class UnitForm
                             ->label('Floor Plan')
                             ->collection('floor_plan')
                             ->image()
-                            ->maxSize(15360)
+                            ->maxSize(25600)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->columnSpanFull(),
                     ]),

@@ -44,14 +44,8 @@ class Unit extends Model implements HasMedia
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        // thumb — main conversion, used everywhere (cards, detail hero, etc.)
-        // nonQueued so it's available immediately after upload
-        $this->addMediaConversion('thumb')
-            ->width(800)
-            ->height(600)
-            ->format('webp')
-            ->quality(80)
-            ->performOnCollections('gallery')
-            ->nonQueued();
+        // Conversions disabled — images are already resized client-side
+        // to 1920×1080 via Filament's imageResizeTarget before upload.
+        // Re-enable with queued() once a queue worker is configured.
     }
 }

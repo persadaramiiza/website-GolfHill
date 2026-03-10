@@ -10,6 +10,18 @@ class CreateFacility extends CreateRecord
 {
     protected static string $resource = FacilitiesResource::class;
 
+    protected function getFormActions(): array
+    {
+        return [
+            $this->getCreateFormAction()
+                ->label('Create')
+                ->extraAttributes(['class' => 'gf-save-btn']),
+            $this->getCancelFormAction()
+                ->label('Cancel')
+                ->extraAttributes(['class' => 'gf-cancel-btn']),
+        ];
+    }
+
     protected function getRedirectUrl(): string
     {
         return FacilitiesPage::getUrl();

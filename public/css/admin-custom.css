@@ -211,6 +211,11 @@ body::-webkit-scrollbar,
     padding: 16px 0 !important;
 }
 
+.fi-resource-create-record-page .fi-page-header,
+.fi-resource-edit-record-page .fi-page-header {
+    margin-bottom: 8px !important;
+}
+
 /* ── Page heading & "Back to Units" row ────────────────────── */
 .fi-resource-create-record-page .fi-header-heading,
 .fi-resource-edit-record-page .fi-header-heading {
@@ -248,7 +253,7 @@ body::-webkit-scrollbar,
 /* ── Page content area ──────────────────────────────────────── */
 .fi-resource-create-record-page .fi-page-content,
 .fi-resource-edit-record-page .fi-page-content {
-    padding: 28px 0 32px 0 !important;
+    padding: 10px 0 32px 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
 }

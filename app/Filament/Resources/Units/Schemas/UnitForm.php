@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Units\Schemas;
 
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -18,16 +19,25 @@ class UnitForm
                     ->extraAttributes(['class' => 'gf-unit-form-card'])
                     ->columns(2)
                     ->schema([
-                        // ── Row 1: Unit Type | Size ─────────────────────
+                        // ── Unit Type (full width) ───────────────────────
                         TextInput::make('unit_type_name')
                             ->label('Unit Type *')
                             ->placeholder('e.g., Type 01')
                             ->required()
-                            ->maxLength(100),
+                            ->maxLength(100)
+                            ->columnSpanFull(),
 
-                        TextInput::make('size')
-                            ->label('Size (SQM) *')
-                            ->placeholder('e.g., 157')
+                        // ── Row 1: Size Min | Size Max ───────────────────
+                        TextInput::make('size_min')
+                            ->label('Size Min (SQM) *')
+                            ->placeholder('e.g., 120')
+                            ->numeric()
+                            ->required()
+                            ->minValue(0),
+
+                        TextInput::make('size_max')
+                            ->label('Size Max (SQM) *')
+                            ->placeholder('e.g., 180')
                             ->numeric()
                             ->required()
                             ->minValue(0),
@@ -55,6 +65,21 @@ class UnitForm
                             ->maxLength(100)
                             ->columnSpanFull(),
 
+                        // ── Row 4: Key Features ──────────────────────────
+                        TextInput::make('key_features')
+                            ->label('Key Features')
+                            ->placeholder('e.g., Spacious Living Room, Private Balcony')
+                            ->maxLength(255)
+                            ->helperText('Shown as a highlight on the unit card.')
+                            ->columnSpanFull(),
+
+                        // ── Furnished toggle ─────────────────────────────
+                        Toggle::make('furnished')
+                            ->label('Fully Furnished')
+                            ->default(true)
+                            ->onColor('success')
+                            ->columnSpanFull(),
+
                         // ── Show on website (checkbox) ───────────────────
                         Checkbox::make('show_on_page')
                             ->label('Show on website')
@@ -71,6 +96,9 @@ class UnitForm
                             ->multiple()
                             ->reorderable()
                             ->image()
+                            ->imageResizeMode('cover')
+                            ->imageResizeTargetWidth(1920)
+                            ->imageResizeTargetHeight(1080)
                             ->maxFiles(50)
                             ->maxSize(25600)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
@@ -84,6 +112,9 @@ class UnitForm
                             ->label('Floor Plan')
                             ->collection('floor_plan')
                             ->image()
+                            ->imageResizeMode('contain')
+                            ->imageResizeTargetWidth(1920)
+                            ->imageResizeTargetHeight(1920)
                             ->maxSize(25600)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->columnSpanFull(),

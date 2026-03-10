@@ -125,11 +125,29 @@
   </div>
 
   <style>
+    /* Hide visible scrollbar in Facilities page (still scrollable) */
+    body.fi-body,
+    .fi-main,
+    .fi-main-ctn {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    body.fi-body::-webkit-scrollbar,
+    .fi-main::-webkit-scrollbar,
+    .fi-main-ctn::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+    }
+
     .gf-fac-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      padding: 32px;
-      background: #F9FAFB;
-      min-height: 100%;
+      padding-top: 28px;
+      box-sizing: border-box;
+      overflow-x: clip;
     }
 
     /* ── Header ── */
@@ -137,7 +155,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 24px;
+      margin-bottom: 0;
     }
     .gf-fac-title {
       font-size: 36px;
@@ -175,7 +193,7 @@
       border-radius: 14px;
       padding: 16px;
       box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
-      margin-bottom: 24px;
+      margin-bottom: 0;
     }
     .gf-fac-search-row {
       display: flex;

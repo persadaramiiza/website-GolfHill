@@ -12,7 +12,7 @@
             @if($heroImage)
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="rounded-lg overflow-hidden" style="height: 384px;">
-                    <img src="{{ $heroImage->hasGeneratedConversion('thumb') ? $heroImage->getUrl('thumb') : $heroImage->getUrl() }}"
+                    <img src="{{ $heroImage->getUrl() }}"
                          alt="{{ $unit->name }}"
                          style="width: 100%; height: 100%; object-fit: cover;"
                          loading="eager">
@@ -20,7 +20,7 @@
                 <div class="grid grid-cols-2 gap-4">
                     @foreach($thumbImages as $img)
                     <div class="rounded-lg overflow-hidden" style="height: 184px;">
-                        <img src="{{ $img->hasGeneratedConversion('preview') ? $img->getUrl('preview') : $img->getUrl() }}"
+                        <img src="{{ $img->getUrl() }}"
                              alt="{{ $unit->name }}"
                              style="width: 100%; height: 100%; object-fit: cover;"
                              loading="lazy">
@@ -90,10 +90,16 @@
                             <div class="text-xl font-semibold">{{ $unit->bathrooms }}</div>
                         </div>
                         @endif
-                        @if($unit->size)
+                        @if($unit->size_min || $unit->size_max)
                         <div>
                             <div class="text-gray-500 text-sm mb-1">Size</div>
-                            <div class="text-xl font-semibold">{{ $unit->size }}m²</div>
+                            <div class="text-xl font-semibold">
+                                @if($unit->size_min && $unit->size_max && $unit->size_min != $unit->size_max)
+                                    {{ number_format((float)$unit->size_min) }}&ndash;{{ number_format((float)$unit->size_max) }}m&sup2;
+                                @else
+                                    {{ number_format((float)($unit->size_min ?? $unit->size_max)) }}m&sup2;
+                                @endif
+                            </div>
                         </div>
                         @endif
                         <div>
@@ -112,17 +118,21 @@
                     @endif
 
                     <div>
-                        <h2 class="text-2xl font-bold mb-4">Features & Amenities</h2>
-                        <div class="grid grid-cols-2 gap-3">
-                            @foreach(['Swimming Pool', 'Fitness Center', 'Security 24/7', 'Parking', 'Garden', 'Playground', 'Meeting Room', 'WiFi'] as $feature)
-                            <div class="flex items-center text-gray-700">
-                                <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                                {{ $feature }}
+                        <h2 class="text-2xl font-bold mb-4">Key Features</h2>
+                        @if($unit->key_features)
+                            <div class="grid grid-cols-2 gap-3">
+                                @foreach(array_filter(array_map('trim', explode(',', $unit->key_features))) as $feature)
+                                <div class="flex items-center text-gray-700">
+                                    <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    {{ $feature }}
+                                </div>
+                                @endforeach
                             </div>
-                            @endforeach
-                        </div>
+                        @else
+                            <p class="text-gray-500">Feature details coming soon.</p>
+                        @endif
                     </div>
                 </div>
 

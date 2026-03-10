@@ -28,11 +28,7 @@
                     {{-- Image Slider --}}
                     @php
                         $galleryImages = $unit->getMedia('gallery');
-                        $imageUrls = $galleryImages->map(function ($m) {
-                            if ($m->hasGeneratedConversion('listing')) return $m->getUrl('listing');
-                            if ($m->hasGeneratedConversion('thumb'))   return $m->getUrl('thumb');
-                            return $m->getUrl();
-                        })->values();
+                        $imageUrls = $galleryImages->map(fn($m) => $m->getUrl())->values();
                         if ($imageUrls->isEmpty() && $unit->image_url) {
                             $imageUrls = collect([$unit->image_url]);
                         }
@@ -62,10 +58,12 @@
                         {{-- Dark gradient overlay --}}
                         <div style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.00) 100%); pointer-events: none;"></div>
 
-                        {{-- Fully Furnished badge --}}
+                        {{-- Fully Furnished badge (conditional) --}}
+                        @if($unit->furnished)
                         <div style="position: absolute; top: 24px; right: 24px; padding: 8px 20px; background: #22AE6C; border-radius: 999px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10); pointer-events: none;">
                             <span style="color: #FFF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; line-height: 20px;">Fully Furnished</span>
                         </div>
+                        @endif
 
                         {{-- Arrow buttons (only when >1 image) --}}
                         <template x-if="images.length > 1">
@@ -104,11 +102,11 @@
                             {{ $unit->name }}
                         </h3>
 
-                        {{-- Specs 2Ã—2 Grid --}}
-                        <div class="grid grid-cols-2 gap-3">
+                        {{-- Specs --}}
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
 
-                            {{-- Luas --}}
-                            @if($unit->size)
+                            {{-- Luas (full width, only when set) --}}
+                            @if($unit->size_min || $unit->size_max)
                             <div style="display: flex; align-items: center; gap: 12px; padding-left: 12px; height: 64px; border-radius: 14px; background: #F9FAFB;">
                                 <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,158,209,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,12 +118,19 @@
                                 </div>
                                 <div>
                                     <div style="color: #6A7282; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 400; line-height: 16px;">Luas</div>
-                                    <div style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 24px;">{{ number_format($unit->size) }} SQM</div>
+                                    <div style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 24px;">
+                                        @if($unit->size_min && $unit->size_max && $unit->size_min != $unit->size_max)
+                                            {{ number_format($unit->size_min) }}&ndash;{{ number_format($unit->size_max) }} SQM
+                                        @else
+                                            {{ number_format($unit->size_min ?? $unit->size_max) }} SQM
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                             @endif
 
-                            {{-- Bedrooms --}}
+                            {{-- Bedrooms | Bathrooms always 2-col --}}
+                            <div class="grid grid-cols-2 gap-3">
                             @if($unit->bedrooms)
                             <div style="display: flex; align-items: center; gap: 12px; padding-left: 12px; height: 64px; border-radius: 14px; background: #F9FAFB;">
                                 <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,158,209,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
@@ -161,8 +166,9 @@
                                 </div>
                             </div>
                             @endif
+                            </div>{{-- end bedrooms/bathrooms grid --}}
 
-                            {{-- Views --}}
+                            {{-- Views (always full width) --}}
                             <div style="display: flex; align-items: center; gap: 12px; padding-left: 12px; height: 64px; border-radius: 14px; background: #F9FAFB;">
                                 <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,158,209,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -172,7 +178,7 @@
                                 </div>
                                 <div>
                                     <div style="color: #6A7282; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 400; line-height: 16px;">Views</div>
-                                    <div style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 24px;">{{ $unit->location ?: 'Golf View' }}</div>
+                                    <div style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $unit->location ?: 'Golf View' }}</div>
                                 </div>
                             </div>
 
@@ -180,14 +186,16 @@
                     </div>
 
                     {{-- Bottom feature row --}}
+                    @if($unit->key_features)
                     <div style="margin: 24px 32px 32px 32px; padding-top: 25px; border-top: 1px solid #F3F4F6; display: flex; align-items: center; gap: 8px;">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="flex-shrink: 0;" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 4.5L6.75 12.75L3 9" stroke="#22AE6C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                         <span style="color: #4A5565; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 20px;">
-                            {{ $unit->description ? Str::limit($unit->description, 35) : 'Spacious Living Room' }}
+                            {{ $unit->key_features }}
                         </span>
                     </div>
+                    @endif
 
                 </div>
                 @empty

@@ -13,14 +13,18 @@ class Unit extends Model implements HasMedia
 
     protected $fillable = [
         'name', 'slug', 'description', 'unit_type_id',
-        'price', 'size', 'bedrooms', 'bathrooms',
-        'location', 'image_url', 'status', 'show_on_page', 'contact_person_id'
+        'price', 'size', 'size_min', 'size_max', 'key_features',
+        'bedrooms', 'bathrooms',
+        'location', 'image_url', 'status', 'show_on_page', 'furnished', 'contact_person_id'
     ];
 
     protected $casts = [
-        'price' => 'decimal:2',
-        'size' => 'decimal:2',
+        'price'        => 'decimal:2',
+        'size'         => 'decimal:2',
+        'size_min'     => 'decimal:2',
+        'size_max'     => 'decimal:2',
         'show_on_page' => 'boolean',
+        'furnished'    => 'boolean',
     ];
 
     public function unitType()
@@ -44,31 +48,7 @@ class Unit extends Model implements HasMedia
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        // thumb — used in unit detail hero (≈800px wide)
-        $this->addMediaConversion('thumb')
-            ->width(800)
-            ->height(600)
-            ->format('webp')
-            ->quality(80)
-            ->performOnCollections('gallery')
-            ->nonQueued();
-
-        // listing — used in unit index card slider (≈500px wide)
-        $this->addMediaConversion('listing')
-            ->width(600)
-            ->height(450)
-            ->format('webp')
-            ->quality(75)
-            ->performOnCollections('gallery')
-            ->nonQueued();
-
-        // preview — used in unit detail thumbnail grid (≈200px wide)
-        $this->addMediaConversion('preview')
-            ->width(400)
-            ->height(300)
-            ->format('webp')
-            ->quality(75)
-            ->performOnCollections('gallery')
-            ->nonQueued();
+        // No server-side conversions — images are already resized client-side
+        // to 1920×1080 via Filament's imageResizeTarget before upload.
     }
 }

@@ -3,9 +3,9 @@
     {{-- Page Header --}}
     <section class="pt-20 pb-12" style="background: linear-gradient(135deg, rgba(151, 231, 245, 0.30) 0%, #FFF 50%, #FFF 100%);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="gradient-bar mx-auto mb-10"></div>
-            <h1 class="text-6xl font-bold mb-6" style="color: #00377D;">Articles</h1>
-            <p class="text-xl" style="color: #4A5565;">Insights, stories, and updates about luxury living at Golfhill Terraces</p>
+            <div class="gradient-bar rounded-full mx-auto mb-8 sm:mb-10"></div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6" style="color: #00377D;">Articles</h1>
+            <p class="text-base sm:text-xl" style="color: #4A5565;">Insights, stories, and updates about luxury living at Golfhill Terraces</p>
         </div>
     </section>
 

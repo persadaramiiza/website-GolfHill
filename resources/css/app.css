@@ -43,6 +43,7 @@
     width: 80px;
     height: 6px;
     background: linear-gradient(180deg, #009ED1 0%, #4BD997 100%);
+    border-radius: 9999px;
 }
 
 /* Line Clamp Utilities */

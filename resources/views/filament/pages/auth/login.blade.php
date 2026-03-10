@@ -28,7 +28,7 @@
 </div>
 
 {{-- White Card --}}
-<div style="position: relative; z-index: 10; width: 448px; max-width: calc(100vw - 2rem); background: #FFF; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); padding: 48px; max-height: calc(100vh - 2rem); overflow-y: auto;">
+<div class="admin-login-card" style="position: relative; z-index: 10; width: 448px; max-width: calc(100vw - 2rem); background: #FFF; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); padding: 48px; max-height: calc(100vh - 2rem); overflow-y: auto;">
 
     {{-- Title Block --}}
     <div style="text-align: center; margin-bottom: 32px;">
@@ -51,6 +51,22 @@
 
 {{-- CSS Overrides: strip Filament's shell, style form elements --}}
 <style>
+    html,
+    body {
+        overflow: hidden !important;
+    }
+
+    .admin-login-card {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .admin-login-card::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+
     /* ─── Hide Filament's layout shells (our fixed wrapper takes over) ── */
     .fi-simple-layout,
     .fi-simple-main-ctn,

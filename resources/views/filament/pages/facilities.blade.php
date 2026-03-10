@@ -125,11 +125,28 @@
   </div>
 
   <style>
+    /* Hide visible scrollbar in Facilities page (still scrollable) */
+    body.fi-body,
+    .fi-main,
+    .fi-main-ctn {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    body.fi-body::-webkit-scrollbar,
+    .fi-main::-webkit-scrollbar,
+    .fi-main-ctn::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+    }
+
     .gf-fac-wrap {
       font-family: 'Plus Jakarta Sans', sans-serif;
       padding: 32px;
       background: #F9FAFB;
       min-height: 100%;
+      box-sizing: border-box;
+      overflow-x: clip;
     }
 
     /* ── Header ── */

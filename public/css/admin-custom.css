@@ -6,6 +6,36 @@
 /* ── Font ─────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
+/* ── Remove visible scrollbars (Admin only) ────────────────── */
+html,
+body,
+.fi-body,
+.fi-main,
+.fi-main-ctn,
+.fi-layout,
+.overflow-auto,
+.overflow-y-auto,
+[class*="overflow-y-auto"],
+[class*="overflow-auto"] {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.fi-body::-webkit-scrollbar,
+.fi-main::-webkit-scrollbar,
+.fi-main-ctn::-webkit-scrollbar,
+.fi-layout::-webkit-scrollbar,
+.overflow-auto::-webkit-scrollbar,
+.overflow-y-auto::-webkit-scrollbar,
+[class*="overflow-y-auto"]::-webkit-scrollbar,
+[class*="overflow-auto"]::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+}
+
 .fi-body,
 .fi-sidebar,
 .fi-topbar,

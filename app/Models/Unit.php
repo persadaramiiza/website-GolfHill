@@ -47,13 +47,7 @@ class Unit extends Model implements HasMedia
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        // Queued WebP thumbnail — runs via the database queue worker,
-        // so it never blocks the HTTP save response.
-        $this->addMediaConversion('thumb')
-            ->width(900)
-            ->format('webp')
-            ->quality(75)
-            ->performOnCollections('gallery')
-            ->queued();
+        // No server-side conversions — images are already resized client-side
+        // to 1920×1080 via Filament's imageResizeTarget before upload.
     }
 }

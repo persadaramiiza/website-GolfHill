@@ -76,28 +76,3 @@ jobs:
     run_command: php artisan migrate --force
     environment_slug: php
     instance_size_slug: basic-xxs
-
-workers:
-  - name: queue-worker
-    github:
-      repo: YOUR_GITHUB_USERNAME/website-GolfHill   # <-- same repo as service
-      branch: main
-      deploy_on_push: true
-    build_command: |
-      composer install --no-dev --optimize-autoloader
-    run_command: php artisan queue:work --sleep=3 --tries=3 --timeout=300 --queue=default
-    environment_slug: php
-    instance_count: 1
-    instance_size_slug: basic-xxs   # $5/month — processes queued WebP conversions
-    envs:
-      - key: APP_ENV
-        value: "production"
-      - key: APP_DEBUG
-        value: "false"
-      - key: LOG_CHANNEL
-        value: "stderr"
-      - key: QUEUE_CONNECTION
-        value: "database"
-      # ── Copy remaining env vars from the web service above ──
-      # DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD,
-      # CLOUDFLARE_R2_*, APP_KEY, FILESYSTEM_DISK, etc.

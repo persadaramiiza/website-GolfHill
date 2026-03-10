@@ -13,13 +13,16 @@ class Unit extends Model implements HasMedia
 
     protected $fillable = [
         'name', 'slug', 'description', 'unit_type_id',
-        'price', 'size', 'bedrooms', 'bathrooms',
+        'price', 'size', 'size_min', 'size_max', 'key_features',
+        'bedrooms', 'bathrooms',
         'location', 'image_url', 'status', 'show_on_page', 'contact_person_id'
     ];
 
     protected $casts = [
-        'price' => 'decimal:2',
-        'size' => 'decimal:2',
+        'price'    => 'decimal:2',
+        'size'     => 'decimal:2',
+        'size_min' => 'decimal:2',
+        'size_max' => 'decimal:2',
         'show_on_page' => 'boolean',
     ];
 
@@ -44,8 +47,13 @@ class Unit extends Model implements HasMedia
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        // Conversions disabled — images are already resized client-side
-        // to 1920×1080 via Filament's imageResizeTarget before upload.
-        // Re-enable with queued() once a queue worker is configured.
+        // Queued WebP thumbnail — runs via the database queue worker,
+        // so it never blocks the HTTP save response.
+        $this->addMediaConversion('thumb')
+            ->width(900)
+            ->format('webp')
+            ->quality(75)
+            ->performOnCollections('gallery')
+            ->queued();
     }
 }

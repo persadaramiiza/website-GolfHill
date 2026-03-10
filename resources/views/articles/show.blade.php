@@ -114,19 +114,44 @@
             {{-- Comment Form --}}
             <div class="p-8 rounded-3xl mb-12" style="background: linear-gradient(135deg, rgba(151, 231, 245, 0.15) 0%, #FFF 100%); border: 1px solid rgba(0, 158, 209, 0.2);">
                 <h3 class="text-lg font-bold mb-6" style="color: #00377D;">Leave a Comment</h3>
-                <form>
+
+                {{-- Success message --}}
+                @if(session('comment_success'))
+                <div class="mb-6 px-5 py-4 rounded-xl text-sm font-medium" style="background: #DCFCE7; color: #166534; border: 1px solid #86EFAC;">
+                    {{ session('comment_success') }}
+                </div>
+                @endif
+
+                <form action="{{ route('articles.comments.store', $article->slug) }}" method="POST">
                     @csrf
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <input type="text" placeholder="Your Name"
-                               class="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2"
-                               style="border-color: #D1D5DC; focus:ring-color: #009ED1;">
-                        <input type="email" placeholder="Your Email"
-                               class="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2"
-                               style="border-color: #D1D5DC;">
+                        <div>
+                            <input type="text" name="author_name" value="{{ old('author_name') }}"
+                                   placeholder="Your Name"
+                                   class="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 {{ $errors->has('author_name') ? 'border-red-400' : '' }}"
+                                   style="border-color: {{ $errors->has('author_name') ? '#f87171' : '#D1D5DC' }};">
+                            @error('author_name')
+                            <p class="text-xs mt-1" style="color: #dc2626;">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <input type="email" name="author_email" value="{{ old('author_email') }}"
+                                   placeholder="Your Email"
+                                   class="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 {{ $errors->has('author_email') ? 'border-red-400' : '' }}"
+                                   style="border-color: {{ $errors->has('author_email') ? '#f87171' : '#D1D5DC' }};">
+                            @error('author_email')
+                            <p class="text-xs mt-1" style="color: #dc2626;">{{ $message }}</p>
+                            @enderror
+                        </div>
                     </div>
-                    <textarea rows="4" placeholder="Share your thoughts..."
-                              class="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 mb-4"
-                              style="border-color: #D1D5DC;"></textarea>
+                    <div class="mb-4">
+                        <textarea rows="4" name="content" placeholder="Share your thoughts..."
+                                  class="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 {{ $errors->has('content') ? 'border-red-400' : '' }}"
+                                  style="border-color: {{ $errors->has('content') ? '#f87171' : '#D1D5DC' }}">{{ old('content') }}</textarea>
+                        @error('content')
+                        <p class="text-xs mt-1" style="color: #dc2626;">{{ $message }}</p>
+                        @enderror
+                    </div>
                     <button type="submit"
                             class="px-10 py-3 rounded-xl font-semibold text-white transition hover:opacity-90"
                             style="background-color: #00377D;">

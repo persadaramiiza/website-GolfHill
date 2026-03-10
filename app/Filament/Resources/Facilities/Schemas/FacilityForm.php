@@ -51,7 +51,10 @@ class FacilityForm
                         ->collection('photo')
                         ->image()
                         ->imageEditor()
-                        ->maxSize(10240)
+                        ->imageResizeMode('cover')
+                        ->imageResizeTargetWidth(1920)
+                        ->imageResizeTargetHeight(1080)
+                        ->maxSize(25600)
                         ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                         ->columnSpanFull(),
                 ]),

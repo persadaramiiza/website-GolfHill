@@ -128,6 +128,7 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+      padding-top: 10px;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 

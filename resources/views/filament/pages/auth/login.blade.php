@@ -71,18 +71,61 @@
     .fi-fo-text-input input,
     input[type="email"].fi-input,
     input[type="password"].fi-input {
-        border-radius: 14px !important;
-        border: 2px solid #E5E7EB !important;
+        border: none !important;
+        border-radius: 0 !important;
         height: 52px !important;
+        line-height: 52px !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
         font-size: 16px !important;
         font-family: 'Plus Jakarta Sans', sans-serif !important;
         color: #0A0A0A !important;
-        background: #FFF !important;
+        background-color: #FFF !important;
+        box-shadow: none !important;
     }
     .fi-input:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+    .fi-input-wrp {
+        border: 2px solid #E5E7EB !important;
+        border-radius: 14px !important;
+        overflow: hidden !important;
+        background: #FFF !important;
+        min-height: 52px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    .fi-input-wrp input {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        height: 52px !important;
+        line-height: 52px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+    .fi-input-wrp-prefix {
+        flex: 0 0 56px !important;
+        width: 56px !important;
+        height: 52px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: #F9FAFB !important;
+        border-right: 1px solid #E5E7EB !important;
+    }
+    .fi-input-wrp:focus-within {
         border-color: #009ED1 !important;
         box-shadow: 0 0 0 3px rgba(0,158,209,0.15) !important;
-        outline: none !important;
+    }
+    .fi-input-wrp input:-webkit-autofill,
+    .fi-input-wrp input:-webkit-autofill:hover,
+    .fi-input-wrp input:-webkit-autofill:focus,
+    .fi-input-wrp input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+        box-shadow: 0 0 0 1000px #fff inset !important;
+        -webkit-text-fill-color: #0A0A0A !important;
+        transition: background-color 9999s ease-in-out 0s !important;
     }
     .fi-input::placeholder {
         color: rgba(10,10,10,0.45) !important;
@@ -102,7 +145,10 @@
     }
 
     /* ─── Prefix icon ──────────────────────────────────────────── */
+    .fi-input-wrp-prefix svg,
     .fi-input-wrp-prefix-icon {
+        width: 22px !important;
+        height: 22px !important;
         color: #99A1AF !important;
     }
 

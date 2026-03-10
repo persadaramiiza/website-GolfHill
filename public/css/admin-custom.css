@@ -147,6 +147,12 @@ body::-webkit-scrollbar,
 .fi-main {
     background-color: #F9FAFB !important;
 }
+.fi-main-ctn {
+    padding-top: 14px !important;
+}
+.fi-page {
+    padding-top: 8px !important;
+}
 .fi-main .fi-page-header-heading {
     color: #00377D !important;
     font-family: 'Plus Jakarta Sans', sans-serif !important;
@@ -202,7 +208,7 @@ body::-webkit-scrollbar,
 .fi-page-header {
     background: #ffffff !important;
     border-bottom: 1px solid #E5E7EB !important;
-    padding: 16px 24px !important;
+    padding: 16px 0 !important;
 }
 
 /* ── Page heading & "Back to Units" row ────────────────────── */
@@ -242,7 +248,7 @@ body::-webkit-scrollbar,
 /* ── Page content area ──────────────────────────────────────── */
 .fi-resource-create-record-page .fi-page-content,
 .fi-resource-edit-record-page .fi-page-content {
-    padding: 24px 32px 48px 32px !important;
+    padding: 28px 0 32px 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
 }

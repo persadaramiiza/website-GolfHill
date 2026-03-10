@@ -217,8 +217,8 @@
     .gf-dashboard-wrap {
         display: flex;
         flex-direction: column;
-        gap: 24px;
-        padding: 0 4px 32px;
+        gap: 20px;
+        padding-top: 28px;
         font-family: 'Plus Jakarta Sans', sans-serif;
         box-sizing: border-box;
         overflow-x: clip;
@@ -226,7 +226,7 @@
 
     /* ─── Header ───────────────────────────────────────────── */
     .gf-dash-header {
-        padding-top: 24px;
+        padding-top: 0;
     }
     .gf-dash-title {
         color: #00377D !important;

@@ -20,7 +20,8 @@ class CommentsTable
                     ->searchable()
                     ->sortable()
                     ->limit(30),
-                TextColumn::make('name')
+                TextColumn::make('author_name')
+                    ->label('Name')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('content')

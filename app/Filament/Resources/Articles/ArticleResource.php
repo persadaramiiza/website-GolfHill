@@ -18,6 +18,8 @@ class ArticleResource extends Resource
 {
     protected static ?string $model = Article::class;
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedNewspaper;
     
     protected static ?int $navigationSort = 1;

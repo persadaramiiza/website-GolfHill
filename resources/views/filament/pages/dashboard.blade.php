@@ -198,6 +198,21 @@
 </div>
 
 <style>
+    /* Hide visible scrollbar in Dashboard (still scrollable) */
+    body.fi-body,
+    .fi-main,
+    .fi-main-ctn {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    body.fi-body::-webkit-scrollbar,
+    .fi-main::-webkit-scrollbar,
+    .fi-main-ctn::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+
     /* ─── Dashboard wrapper ────────────────────────────────── */
     .gf-dashboard-wrap {
         display: flex;
@@ -205,6 +220,8 @@
         gap: 24px;
         padding: 0 4px 32px;
         font-family: 'Plus Jakarta Sans', sans-serif;
+        box-sizing: border-box;
+        overflow-x: clip;
     }
 
     /* ─── Header ───────────────────────────────────────────── */

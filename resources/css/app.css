@@ -65,6 +65,20 @@
     display: none !important;
 }
 
+/* Admin (Filament): hide all visible scrollbars */
+body.fi-body,
+body.fi-body * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body.fi-body::-webkit-scrollbar,
+body.fi-body *::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
 .photo-slider {
     position: relative;
 }

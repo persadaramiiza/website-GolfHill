@@ -24,9 +24,18 @@ class UnitsTable
                 TextColumn::make('price')
                     ->money('IDR')
                     ->sortable(),
-                TextColumn::make('size')
-                    ->suffix(' m²')
-                    ->sortable(),
+                TextColumn::make('size_range')
+                    ->label('Size')
+                    ->getStateUsing(function ($record) {
+                        $min = $record->size_min;
+                        $max = $record->size_max;
+                        if ($min && $max && $min != $max) {
+                            return number_format($min) . '\u2013' . number_format($max) . ' SQM';
+                        }
+                        $val = $min ?? $max ?? $record->size;
+                        return $val ? number_format($val) . ' SQM' : '—';
+                    })
+                    ->sortable(false),
                 TextColumn::make('bedrooms')
                     ->suffix(' BR'),
                 TextColumn::make('location')

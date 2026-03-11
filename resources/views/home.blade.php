@@ -1,4 +1,4 @@
-<x-layouts.app>
+﻿<x-layouts.app>
     {{-- Hero Section - Figma Design --}}
     <section class="relative h-[665px] bg-cover bg-center" style="background-image: url('{{ asset('images/HomePageBackground.webp') }}');">
        <div class="absolute inset-0 hero-overlay"></div>
@@ -291,7 +291,7 @@
     </section> -->
 
     {{-- CTA Section - Figma Design --}}
-    <section class="py-20 text-center text-white" style="background: linear-gradient(131deg, #00377D 16.85%, #00377D 48.61%, #009ED1 80.36%);">
+    <section class="py-20 text-center text-white" style="background: linear-gradient(131deg, #0D2F4F 16.85%, #0a8f71 80.36%);">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-5xl font-bold mb-4 leading-tight">
                 Find Your Perfect Home

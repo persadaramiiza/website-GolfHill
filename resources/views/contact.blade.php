@@ -56,7 +56,7 @@
                                 </div>
                                 <div>
                                     <h3 class="text-xs sm:text-base font-semibold mb-1">Address</h3>
-                                    <p class="text-xs sm:text-base text-gray-600">Jl. Metro Pondok Indah, Pondok Pinang<br>Kebayoran Lama, Jakarta Selatan<br>DKI Jakarta 12310</p>
+                                    <p class="text-xs sm:text-base text-gray-600">Jl Metro Kencana IV Kav. 7 Pondok Indah<br>Pondok Pinang, Kebayoran Lama, Jakarta Selatan<br>DKI Jakarta 12310</p>
                                 </div>
                             </div>
 

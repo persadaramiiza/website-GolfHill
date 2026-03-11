@@ -51,7 +51,7 @@
         {{-- Visit Our Article Link --}}
         <div class="text-center mb-12">
             <div class="gradient-bar rounded-full mx-auto mb-6"></div>
-            <a href="{{ route('articles.index') }}" class="text-4xl sm:text-5xl font-bold hover:opacity-80 transition" style="color: #00377D;">
+            <a href="{{ route('articles.index') }}" class="text-3xl sm:text-4xl font-bold hover:opacity-80 transition" style="color: #00377D;">
                 Visit Our Article
             </a>
         </div>

@@ -10,6 +10,11 @@
 
             <!-- Desktop Navigation - Aligned to Right -->
             <div class="hidden md:flex items-center gap-8 lg:gap-12 md:ml-auto">
+                <a href="{{ route('home') }}" 
+                         class="text-sm lg:text-base transition hover:opacity-80 {{ request()->routeIs('home') ? 'font-bold underline underline-offset-4' : 'font-normal' }}"
+                   style="color: #00377D;">
+                    Home
+                </a>
                 <a href="{{ route('units.index') }}" 
                          class="text-sm lg:text-base transition hover:opacity-80 {{ request()->routeIs('units.*') ? 'font-bold underline underline-offset-4' : 'font-normal' }}"
                    style="color: #00377D;">
@@ -43,6 +48,12 @@
     <!-- Mobile Menu -->
     <div class="md:hidden" x-show="open" x-transition:enter="transition duration-200 ease-out" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition duration-100 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
         <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t shadow-lg">
+            <a href="{{ route('home') }}" 
+                    class="block px-3 py-3 text-sm font-medium transition rounded-md {{ request()->routeIs('home') ? 'bg-blue-50 font-bold' : 'hover:bg-gray-50' }}"
+               style="color: #00377D;"
+               @click="open = false">
+                Home
+            </a>
             <a href="{{ route('units.index') }}" 
                     class="block px-3 py-3 text-sm font-medium transition rounded-md {{ request()->routeIs('units.*') ? 'bg-blue-50 font-bold' : 'hover:bg-gray-50' }}"
                style="color: #00377D;"

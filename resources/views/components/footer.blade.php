@@ -33,17 +33,19 @@
 
             {{-- Alamat (Address) --}}
             <div class="mt-2 md:mt-0 md:justify-self-end md:ml-auto md:w-full md:max-w-2xl">
-                <h3 class="text-3xl sm:text-4xl font-bold text-black mb-6 text-left md:text-right">Alamat</h3>
+                <h3 class="text-3xl sm:text-4xl font-bold text-black mb-6 text-left md:text-right">Address</h3>
                 <div class="text-base sm:text-xl text-black leading-relaxed text-left md:text-right">
-                    <p>
-                        <svg class="w-5 h-5 inline-block align-middle mr-1" style="stroke: #00377D;" fill="none" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        </svg>
-                        Jl Metro Kencana IV Kav. 7 Pondok Indah
-                    </p>
-                    <p>Pondok Pinang, Kebayoran Lama, Jakarta Selatan</p>
-                    <p>DKI Jakarta 12310</p>
+                    <a href="https://maps.app.goo.gl/tKQobfJam5JCghNK8" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                        <p>
+                            <svg class="w-5 h-5 inline-block align-middle mr-1" style="stroke: #00377D;" fill="none" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            Jalan Metro Kencana IV Kav. 7 Pondok Indah
+                        </p>
+                        <p>Pondok Pinang, Kebayoran Lama, Jakarta Selatan</p>
+                        <p>DKI Jakarta 12310</p>
+                    </a>
                 </div>
             </div>
         </div>

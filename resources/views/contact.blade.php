@@ -56,7 +56,7 @@
                                 </div>
                                 <div>
                                     <h3 class="text-xs sm:text-base font-semibold mb-1">Address</h3>
-                                    <p class="text-xs sm:text-base text-gray-600">Jl Metro Kencana IV Kav. 7 Pondok Indah<br>Pondok Pinang, Kebayoran Lama, Jakarta Selatan<br>DKI Jakarta 12310</p>
+                                    <p class="text-xs sm:text-base text-gray-600">Jalan Metro Kencana IV Kav. 7 Pondok Indah<br>Pondok Pinang, Kebayoran Lama, Jakarta Selatan<br>DKI Jakarta 12310</p>
                                 </div>
                             </div>
 
@@ -117,6 +117,41 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        {{-- Google Maps Section --}}
+        <section class="py-12 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-6">
+                    <h2 class="text-xl sm:text-3xl font-bold">Find Us</h2>
+                </div>
+
+                <div class="rounded-2xl overflow-hidden shadow-md">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Jl+Metro+Kencana+IV+Kav.+7+Pondok+Indah+Jakarta+Selatan&output=embed"
+                        class="w-full"
+                        height="450"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="GolfHill Apartment Location">
+                    </iframe>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <a href="https://maps.app.goo.gl/tKQobfJam5JCghNK8"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 bg-gray-900 text-white text-sm sm:text-base px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Get Directions
+                    </a>
                 </div>
             </div>
         </section>

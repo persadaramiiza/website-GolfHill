@@ -8,7 +8,7 @@
                     Where Convenience<br>Meets Luxury
                 </h1>
                 <p class="text-2xl text-white/90 mb-12 leading-relaxed">
-                    198 Golf Course Facing Residences for Lease in Pondok Indah
+                    198 Golf Course Facing Residences in Pondok Indah
                 </p>
                 <div class="flex flex-col sm:flex-row gap-6">
                     <a href="{{ route('contact') }}" 
@@ -297,7 +297,7 @@
                 Find Your Perfect Home
             </h2>
             <p class="text-xl text-white/90 mb-10">
-                Experience the luxury lifestyle at Golfhill Terraces Apartment
+                Experience Effortless Living at Golfhill Terraces
             </p>
             <a href="{{ route('contact') }}" 
                class="inline-flex items-center justify-center px-16 py-5 rounded-2xl font-semibold text-lg text-white transition shadow-xl"

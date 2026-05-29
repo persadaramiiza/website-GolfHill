@@ -3,9 +3,8 @@
         <div class="flex justify-between h-20 items-center">
             
             <!-- Logo -->
-            <a href="{{ route('home') }}" class="flex items-center gap-3">
-                <img src="{{ asset('images/logo.png') }}" alt="GolfHill Logo" class="h-10 sm:h-11 w-auto">
-                <span class="text-lg sm:text-xl lg:text-2xl font-bold leading-tight" style="color: #00377D;">GOLFHILL TERRACES</span>
+            <a href="{{ route('home') }}" class="flex items-center">
+                <img src="{{ asset('images/brand.png') }}" alt="GolfHill Terraces" class="h-10 sm:h-12 w-auto">
             </a>
 
             <!-- Desktop Navigation - Aligned to Right -->

@@ -1,6 +1,6 @@
 ﻿<x-layouts.app>
     {{-- Hero Section - Figma Design --}}
-    <section class="relative h-[665px] bg-cover bg-center" style="background-image: url('{{ asset('images/HomePageBackground.webp') }}');">
+    <section class="relative h-[665px] bg-cover bg-center" style="background-image: url('{{ asset('images/HomePageBackground-new.jpeg') }}');">
        <div class="absolute inset-0 hero-overlay"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
             <div class="max-w-3xl text-white">

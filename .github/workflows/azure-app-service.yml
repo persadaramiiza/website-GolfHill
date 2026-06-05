@@ -41,6 +41,10 @@ jobs:
           mkdir -p storage/framework/sessions
           mkdir -p storage/framework/views
           mkdir -p storage/logs
+          touch storage/framework/cache/data/.gitkeep
+          touch storage/framework/sessions/.gitkeep
+          touch storage/framework/views/.gitkeep
+          touch storage/logs/.gitkeep
           chmod -R 775 storage bootstrap/cache
 
       - name: Package application
@@ -50,11 +54,7 @@ jobs:
             -x ".github/*" \
             -x "node_modules/*" \
             -x ".env" \
-            -x ".env.*" \
-            -x "storage/logs/*" \
-            -x "storage/framework/cache/data/*" \
-            -x "storage/framework/sessions/*" \
-            -x "storage/framework/views/*"
+            -x ".env.*"
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3

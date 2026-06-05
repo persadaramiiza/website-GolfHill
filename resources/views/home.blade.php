@@ -168,12 +168,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <div class="gradient-bar mx-auto mb-8"></div>
-                <h2 class="text-5xl font-bold" style="color: #00377D;">Photo Galleries</h2>
+                <h2 class="text-5xl font-bold" style="color: #00377D;">Gallery</h2>
             </div>
 
             @php
                 $facilities = [
-                    ['name' => 'Tennis Court',        'image' => asset('images/tennis.webp'),        'fallback' => asset('images/tennis.jpg')],
+                    ['name' => 'Tennis Court',        'image' => asset('images/tennis-court-renoved.webp'),        'fallback' => asset('images/tennis-court-renoved.jpeg')],
                     ['name' => 'Swimming Pool',        'image' => asset('images/pool.webp'),          'fallback' => asset('images/pool.jpg')],
                     ['name' => 'Fitness Center',       'image' => asset('images/fitness.webp'),       'fallback' => asset('images/fitness.jpg')],
                     ['name' => 'EV Charger',           'image' => asset('images/ev.webp'),            'fallback' => asset('images/ev.jpg')],
@@ -181,6 +181,7 @@
                     ['name' => 'Restaurant',           'image' => asset('images/restraurant.webp'),   'fallback' => asset('images/restraurant.jpg')],
                     ['name' => 'Jogging Track',        'image' => asset('images/track.webp'),         'fallback' => asset('images/track.jpg')],
                     ['name' => 'Function Room',        'image' => asset('images/function.webp'),      'fallback' => asset('images/function.jpg')],
+                    ['name' => 'Pickleball Court',        'image' => asset('images/pickle-ball-court.webp'),      'fallback' => asset('images/pickle-ball-court.png')]
                 ];
             @endphp
 

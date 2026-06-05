@@ -105,12 +105,12 @@
             Outdoor
         </h2>
 
-        {{-- 2×2 + 1 Card Grid --}}
+        {{-- 2×3 Card Grid --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
             {{-- Card: Tennis Court --}}
             <div style="border-radius: 16px; border: 1px solid #F3F4F6; background: #FFF; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10); overflow: hidden;">
-                <div style="height: 160px; background: url('{{ asset('images/tennis.webp') }}') lightgray 50% / cover no-repeat; display: flex; justify-content: center; align-items: center;">
+                <div style="height: 160px; background: url('{{ asset('images/tennis-court-renoved.webp') }}') lightgray 50% / cover no-repeat; display: flex; justify-content: center; align-items: center;">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M31.7852 31.785C38.2936 25.2767 38.2936 14.7233 31.7852 8.21499C25.2769 1.70666 14.7236 1.70666 8.21523 8.21499C1.7069 14.7233 1.7069 25.2767 8.21523 31.785C14.7236 38.2933 25.2769 38.2933 31.7852 31.785ZM33.2386 18.4017C32.8844 15.4377 31.5423 12.6794 29.4286 10.5717C27.313 8.45036 24.5425 7.10651 21.5669 6.75832L21.5502 6.85166C20.8739 10.5006 19.1071 13.8586 16.483 16.4827C13.8589 19.1068 10.5008 20.8736 6.8519 21.55L6.75857 21.5667C7.10675 24.5423 8.45061 27.3128 10.5719 29.4283C12.6797 31.542 15.4379 32.8842 18.4019 33.2383L18.4219 33.1217C19.0979 29.4725 20.8646 26.114 23.4887 23.4896C26.1129 20.8652 29.4711 19.0981 33.1202 18.4217L33.2386 18.4017ZM33.1202 22.3817V21.825C30.3656 22.4543 27.8444 23.8481 25.8463 25.8461C23.8483 27.8441 22.4546 30.3653 21.8252 33.12H22.3819C25.0531 32.6392 27.5126 31.3507 29.4286 29.4283C31.351 27.5124 32.6395 25.0529 33.1202 22.3817ZM6.85357 18.1483V17.7767C7.31078 15.0458 8.61096 12.5265 10.5719 10.5717C12.5265 8.6101 15.0459 7.30933 17.7769 6.85166H18.1469C17.5176 9.60632 16.1238 12.1275 14.1258 14.1256C12.1278 16.1236 9.60656 17.5173 6.8519 18.1467" fill="white"/>
                     </svg>
@@ -164,8 +164,21 @@
                 </div>
             </div>
 
-            {{-- Card: EV Charger (centered in last row) --}}
-            <div class="md:col-start-1 md:col-span-1 md:mx-auto md:w-full" style="border-radius: 16px; border: 1px solid #F3F4F6; background: #FFF; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10); overflow: hidden;">
+            {{-- Card: Pickle Ball Court --}}
+            <div style="border-radius: 16px; border: 1px solid #F3F4F6; background: #FFF; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10); overflow: hidden;">
+                <div style="height: 160px; background: url('{{ asset('images/pickle-ball-court.webp') }}') lightgray 50% / cover no-repeat; display: flex; justify-content: center; align-items: center;">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M31.7852 31.785C38.2936 25.2767 38.2936 14.7233 31.7852 8.21499C25.2769 1.70666 14.7236 1.70666 8.21523 8.21499C1.7069 14.7233 1.7069 25.2767 8.21523 31.785C14.7236 38.2933 25.2769 38.2933 31.7852 31.785ZM33.2386 18.4017C32.8844 15.4377 31.5423 12.6794 29.4286 10.5717C27.313 8.45036 24.5425 7.10651 21.5669 6.75832L21.5502 6.85166C20.8739 10.5006 19.1071 13.8586 16.483 16.4827C13.8589 19.1068 10.5008 20.8736 6.8519 21.55L6.75857 21.5667C7.10675 24.5423 8.45061 27.3128 10.5719 29.4283C12.6797 31.542 15.4379 32.8842 18.4019 33.2383L18.4219 33.1217C19.0979 29.4725 20.8646 26.114 23.4887 23.4896C26.1129 20.8652 29.4711 19.0981 33.1202 18.4217L33.2386 18.4017ZM33.1202 22.3817V21.825C30.3656 22.4543 27.8444 23.8481 25.8463 25.8461C23.8483 27.8441 22.4546 30.3653 21.8252 33.12H22.3819C25.0531 32.6392 27.5126 31.3507 29.4286 29.4283C31.351 27.5124 32.6395 25.0529 33.1202 22.3817ZM6.85357 18.1483V17.7767C7.31078 15.0458 8.61096 12.5265 10.5719 10.5717C12.5265 8.6101 15.0459 7.30933 17.7769 6.85166H18.1469C17.5176 9.60632 16.1238 12.1275 14.1258 14.1256C12.1278 16.1236 9.60656 17.5173 6.8519 18.1467" fill="white"/>
+                    </svg>
+                </div>
+                <div style="padding: 24px 24px 24px 24px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <h3 style="color: #00377D; font-size: 20px; font-weight: 700; line-height: 28px; text-align: center; font-family: 'Plus Jakarta Sans', sans-serif;">Pickle Ball Court</h3>
+                    <p style="color: #4A5565; font-size: 14px; font-weight: 400; line-height: 20px; text-align: center; font-family: 'Plus Jakarta Sans', sans-serif;">Dynamic pickleball sport court</p>
+                </div>
+            </div>
+
+            {{-- Card: EV Charger --}}
+            <div style="border-radius: 16px; border: 1px solid #F3F4F6; background: #FFF; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10); overflow: hidden;">
                 <div style="height: 160px; background: url('{{ asset('images/ev.webp') }}') lightgray 50% / cover no-repeat; display: flex; justify-content: center; align-items: center;">
                     <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.00023 21C5.71638 21.001 5.43808 20.9214 5.19766 20.7705C4.95725 20.6196 4.76458 20.4035 4.64206 20.1475C4.51953 19.8914 4.47217 19.6059 4.50548 19.324C4.53879 19.0421 4.6514 18.7754 4.83023 18.555L19.6802 3.255C19.7916 3.12642 19.9434 3.03953 20.1107 3.0086C20.278 2.97766 20.4508 3.00452 20.6008 3.08476C20.7508 3.16499 20.8691 3.29385 20.9362 3.45016C21.0034 3.60648 21.0153 3.78097 20.9702 3.945L18.0902 12.975C18.0053 13.2023 17.9768 13.4468 18.0071 13.6875C18.0374 13.9282 18.1257 14.158 18.2644 14.3571C18.403 14.5563 18.5879 14.7188 18.8031 14.8307C19.0184 14.9427 19.2576 15.0008 19.5002 15H30.0002C30.2841 14.999 30.5624 15.0786 30.8028 15.2295C31.0432 15.3804 31.2359 15.5965 31.3584 15.8525C31.4809 16.1086 31.5283 16.3941 31.495 16.676C31.4617 16.9579 31.3491 17.2246 31.1702 17.445L16.3202 32.745C16.2088 32.8736 16.057 32.9605 15.8898 32.9914C15.7225 33.0223 15.5496 32.9955 15.3996 32.9152C15.2496 32.835 15.1314 32.7062 15.0642 32.5498C14.9971 32.3935 14.9851 32.219 15.0302 32.055L17.9102 23.025C17.9952 22.7977 18.0237 22.5532 17.9933 22.3125C17.963 22.0718 17.8747 21.842 17.7361 21.6429C17.5975 21.4437 17.4126 21.2812 17.1973 21.1693C16.9821 21.0573 16.7429 20.9992 16.5002 21H6.00023Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>

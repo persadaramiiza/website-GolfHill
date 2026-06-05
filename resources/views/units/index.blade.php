@@ -23,6 +23,11 @@
         <div class="max-w-5xl mx-auto px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 @forelse($units as $unit)
+                @php
+                    $unitSize = $unit->size ?? $unit->size_max ?? $unit->size_min;
+                    $whatsappNumber = preg_replace('/[^0-9]/', '', $unit->contactPerson?->whatsapp ?? '6281803730325');
+                    $whatsappMessage = rawurlencode("I'm interested in this unit type: {$unit->name}");
+                @endphp
                 <div style="border-radius: 24px; border: 1px solid #F3F4F6; background: #FFF; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10); overflow: hidden; display: flex; flex-direction: column;">
 
                     {{-- Image Slider --}}
@@ -106,7 +111,7 @@
                         <div style="display: flex; flex-direction: column; gap: 12px;">
 
                             {{-- Luas (full width, only when set) --}}
-                            @if($unit->size_min || $unit->size_max)
+                            @if($unitSize)
                             <div style="display: flex; align-items: center; gap: 12px; padding-left: 12px; height: 64px; border-radius: 14px; background: #F9FAFB;">
                                 <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,158,209,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,11 +124,7 @@
                                 <div>
                                     <div style="color: #6A7282; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 400; line-height: 16px;">Luas</div>
                                     <div style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 24px;">
-                                        @if($unit->size_min && $unit->size_max && $unit->size_min != $unit->size_max)
-                                            {{ number_format($unit->size_min) }}&ndash;{{ number_format($unit->size_max) }} SQM
-                                        @else
-                                            {{ number_format($unit->size_min ?? $unit->size_max) }} SQM
-                                        @endif
+                                        {{ number_format((float) $unitSize) }} SQM
                                     </div>
                                 </div>
                             </div>
@@ -168,20 +169,6 @@
                             @endif
                             </div>{{-- end bedrooms/bathrooms grid --}}
 
-                            {{-- Views (always full width) --}}
-                            <div style="display: flex; align-items: center; gap: 12px; padding-left: 12px; height: 64px; border-radius: 14px; background: #F9FAFB;">
-                                <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(0,158,209,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1.71835 10.2901C1.6489 10.103 1.6489 9.89715 1.71835 9.71006C2.39476 8.06993 3.54294 6.66759 5.01732 5.6808C6.4917 4.69402 8.22588 4.16724 10 4.16724C11.7741 4.16724 13.5083 4.69402 14.9827 5.6808C16.4571 6.66759 17.6053 8.06993 18.2817 9.71006C18.3511 9.89715 18.3511 10.103 18.2817 10.2901C17.6053 11.9302 16.4571 13.3325 14.9827 14.3193C13.5083 15.3061 11.7741 15.8329 10 15.8329C8.22588 15.8329 6.4917 15.3061 5.01732 14.3193C3.54294 13.3325 2.39476 11.9302 1.71835 10.2901Z" stroke="#009ED1" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z" stroke="#009ED1" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div style="color: #6A7282; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 400; line-height: 16px;">Views</div>
-                                    <div style="color: #00377D; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $unit->location ?: 'Golf View' }}</div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
 
@@ -199,6 +186,29 @@
                             <span style="color: #4A5565; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 400; line-height: 20px;">{{ $feature }}</span>
                         </div>
                         @endforeach
+                        <div style="display: flex; justify-content: flex-end; margin-top: 18px;">
+                            <a href="https://wa.me/{{ $whatsappNumber }}?text={{ $whatsappMessage }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               style="display: inline-flex; align-items: center; justify-content: center; min-width: 120px; min-height: 44px; padding: 12px 24px; border-radius: 999px; background: #22AE6C; color: #FFF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 20px; text-decoration: none; box-shadow: 0 12px 18px -8px rgba(0,0,0,0.22); transition: opacity 0.2s;"
+                               onmouseover="this.style.opacity='0.9'"
+                               onmouseout="this.style.opacity='1'"
+                               aria-label="Inquire about {{ $unit->name }} on WhatsApp">
+                                Inquire
+                            </a>
+                        </div>
+                    </div>
+                    @else
+                    <div style="margin: 24px 32px 32px 32px; padding-top: 25px; border-top: 1px solid #F3F4F6; display: flex; justify-content: flex-end;">
+                        <a href="https://wa.me/{{ $whatsappNumber }}?text={{ $whatsappMessage }}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           style="display: inline-flex; align-items: center; justify-content: center; min-width: 120px; min-height: 44px; padding: 12px 24px; border-radius: 999px; background: #22AE6C; color: #FFF; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 20px; text-decoration: none; box-shadow: 0 12px 18px -8px rgba(0,0,0,0.22); transition: opacity 0.2s;"
+                           onmouseover="this.style.opacity='0.9'"
+                           onmouseout="this.style.opacity='1'"
+                           aria-label="Inquire about {{ $unit->name }} on WhatsApp">
+                            Inquire
+                        </a>
                     </div>
                     @endif
 

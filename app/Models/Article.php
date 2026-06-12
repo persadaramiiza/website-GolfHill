@@ -42,7 +42,8 @@ class Article extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('featured_image');
+        $this->addMediaCollection('featured_image')
+            ->useDisk('r2');
     }
 
     public function registerMediaConversions(?Media $media = null): void

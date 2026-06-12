@@ -27,6 +27,7 @@ class Facility extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('photo')
+            ->useDisk('r2')
             ->singleFile();
     }
 

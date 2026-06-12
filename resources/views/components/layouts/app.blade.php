@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="google-site-verification" content="x2wW0MnRrMqnYfZ_ldq63Bd4fgw7itAdZdGnB_R-c5I">
 
     <title>{{ $title ?? 'GolfHill - Premium Property Development' }}</title>
 

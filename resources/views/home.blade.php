@@ -113,8 +113,8 @@
                 {{-- Image --}}
                 <div>
                     <picture>
-                        <source srcset="{{ asset('images/HomePage_LR.webp') }}" type="image/webp">
-                        <img src="{{ asset('images/HomePage_LR.jpg') }}"
+                        <source srcset="{{ asset('images/homepage-oasis-living-room.webp') }}" type="image/webp">
+                        <img src="{{ asset('images/homepage-oasis-living-room.jpg') }}"
                              alt="Luxury Interior"
                              class="w-full h-[600px] object-cover rounded-3xl shadow-2xl"
                              loading="lazy" decoding="async">

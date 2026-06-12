@@ -2,11 +2,15 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
 // Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// SEO
+Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
 
 // Units
 Route::get('/units', [UnitController::class, 'index'])->name('units.index');

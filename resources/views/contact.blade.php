@@ -1,4 +1,7 @@
-<x-layouts.app title="Contact Us - GolfHill">
+<x-layouts.app
+    title="Contact GolfHill Terraces - Pondok Indah Apartment Inquiry"
+    description="Contact GolfHill Terraces for unit availability, viewing schedules, and apartment inquiries at Jalan Metro Kencana IV Kav. 7 Pondok Indah, Jakarta Selatan."
+>
     <div class="bg-white">
         
         {{-- Hero Section --}}

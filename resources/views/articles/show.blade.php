@@ -1,4 +1,7 @@
-<x-layouts.app title="{{ $article->title }} - GolfHill Terraces">
+<x-layouts.app
+    :title="$article->title.' - GolfHill Terraces'"
+    :description="\Illuminate\Support\Str::limit(strip_tags($article->excerpt ?: $article->content), 155)"
+>
 
     {{-- Main Content --}}
     <section class="bg-white pt-8 pb-16">

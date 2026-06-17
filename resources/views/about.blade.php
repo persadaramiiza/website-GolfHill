@@ -1,4 +1,7 @@
-<x-layouts.app title="About Us - GolfHill">
+<x-layouts.app
+    title="About GolfHill Terraces - Premium Living in Pondok Indah"
+    description="Learn about GolfHill Terraces, a premium Pondok Indah residence by PT Brasali Realty with golf course views, thoughtful design, and convenient South Jakarta access."
+>
     <div class="bg-white">
         
         {{-- Hero Section --}}

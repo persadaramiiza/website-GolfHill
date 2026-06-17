@@ -1,4 +1,7 @@
-﻿<x-layouts.app>
+﻿<x-layouts.app
+    title="GolfHill Terraces - Premium Pondok Indah Residences"
+    description="GolfHill Terraces offers 198 golf course facing residences in Pondok Indah, Jakarta Selatan with premium facilities, lush surroundings, and convenient access to malls and business districts."
+>
     {{-- Hero Section - Figma Design --}}
     <section class="relative h-[665px] bg-cover bg-center" style="background-image: url('{{ asset('images/HomePageBackground-new.jpeg') }}');">
        <div class="absolute inset-0 hero-overlay"></div>

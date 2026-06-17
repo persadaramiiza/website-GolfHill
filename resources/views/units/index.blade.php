@@ -1,4 +1,7 @@
-﻿<x-layouts.app title="Our Units - GolfHill Terraces">
+﻿<x-layouts.app
+    title="Luxury Apartments for Rent in Pondok Indah - GolfHill Terraces"
+    description="Explore GolfHill Terraces residences in Pondok Indah, Jakarta Selatan: golf course facing apartments, spacious layouts, premium facilities, and direct inquiry options."
+>
 
     {{-- Page Header --}}
     <section style="background: linear-gradient(135deg, rgba(151, 231, 245, 0.30) 0%, #FFF 50%, #FFF 100%); padding-top: 85px;">
@@ -18,8 +21,25 @@
         </div>
     </section>
 
+    {{-- SEO Intro --}}
+    <section style="background: #FFF; padding: 48px 0 24px 0;">
+        <div class="max-w-5xl mx-auto px-8">
+            <div style="max-width: 840px; margin: 0 auto; text-align: center;">
+                <h2 style="color: #00377D; font-size: 36px; font-weight: 700; line-height: 42px; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 18px;">
+                    Luxury Apartments for Rent in Pondok Indah
+                </h2>
+                <p style="color: #4A5565; font-size: 18px; font-weight: 400; line-height: 30px; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 18px;">
+                    GolfHill Terraces offers 198 residences in a prime Pondok Indah address, with golf course facing residences designed for calm daily living near malls, schools, offices, and South Jakarta business districts.
+                </p>
+                <p style="color: #4A5565; font-size: 16px; font-weight: 400; line-height: 28px; font-family: 'Plus Jakarta Sans', sans-serif;">
+                    Browse available unit types, compare bedroom and bathroom layouts, review furnished options, and contact the GolfHill Terraces team directly for current availability.
+                </p>
+            </div>
+        </div>
+    </section>
+
     {{-- Units Grid --}}
-    <section style="background: #FFF; padding: 64px 0 80px 0;">
+    <section style="background: #FFF; padding: 40px 0 80px 0;">
         <div class="max-w-5xl mx-auto px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 @forelse($units as $unit)
@@ -215,7 +235,8 @@
                 </div>
                 @empty
                 <div class="col-span-2 text-center py-20">
-                    <p style="color: #4A5565; font-size: 18px; font-family: 'Plus Jakarta Sans', sans-serif;">No units available at the moment.</p>
+                    <h2 style="color: #00377D; font-size: 30px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 12px;">Unit availability is being updated</h2>
+                    <p style="color: #4A5565; font-size: 18px; line-height: 30px; font-family: 'Plus Jakarta Sans', sans-serif;">Contact GolfHill Terraces for the latest Pondok Indah apartment availability, furnished options, and viewing schedules.</p>
                 </div>
                 @endforelse
             </div>

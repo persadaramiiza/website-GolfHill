@@ -1,3 +1,10 @@
+@props([
+    'title' => 'GolfHill Terraces - Premium Property Development',
+    'description' => 'GolfHill Terraces offers golf course facing residences in Pondok Indah, Jakarta Selatan with premium facilities, convenient city access, and an effortless residential lifestyle.',
+    'canonical' => null,
+    'robots' => 'index, follow',
+])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -5,8 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google-site-verification" content="x2wW0MnRrMqnYfZ_ldq63Bd4fgw7itAdZdGnB_R-c5I">
+    <meta name="description" content="{{ $description }}">
+    <meta name="robots" content="{{ $robots }}">
+    <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
 
-    <title>{{ $title ?? 'GolfHill - Premium Property Development' }}</title>
+    <title>{{ $title }}</title>
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">

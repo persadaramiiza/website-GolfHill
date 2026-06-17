@@ -1,4 +1,7 @@
-<x-layouts.app title="Our Facilities - GolfHill Terraces">
+<x-layouts.app
+    title="Facilities and Amenities - GolfHill Terraces"
+    description="Discover GolfHill Terraces facilities in Pondok Indah, including swimming pool, tennis court, fitness center, restaurant, EV charger, playground, jogging track, and function room."
+>
 
 {{-- Page Header --}}
 <section style="background: linear-gradient(135deg, rgba(151, 231, 245, 0.30) 0%, #FFF 50%, #FFF 100%); padding-top: 85px;">

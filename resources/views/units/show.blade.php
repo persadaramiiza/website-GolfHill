@@ -1,4 +1,7 @@
-<x-layouts.app title="{{ $unit->name }} - GolfHill">
+<x-layouts.app
+    :title="$unit->name.' - GolfHill Terraces'"
+    :description="\Illuminate\Support\Str::limit(strip_tags($unit->description ?: 'View '.$unit->name.' at GolfHill Terraces in Pondok Indah, Jakarta Selatan, with premium facilities and direct inquiry options.'), 155)"
+>
     <div class="bg-white">
         
         {{-- Image Gallery --}}

@@ -1,4 +1,7 @@
-<x-layouts.app title="Articles - GolfHill Terraces">
+<x-layouts.app
+    title="Lifestyle Articles - GolfHill Terraces"
+    description="Read GolfHill Terraces lifestyle articles, residence updates, and insights about premium apartment living in Pondok Indah, Jakarta Selatan."
+>
 
     {{-- Page Header --}}
     <section class="pt-20 pb-12" style="background: linear-gradient(135deg, rgba(151, 231, 245, 0.30) 0%, #FFF 50%, #FFF 100%);">

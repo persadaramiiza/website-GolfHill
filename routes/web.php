@@ -26,6 +26,11 @@ Route::get('/facilities', function () {
     return view('facilities.index');
 })->name('facilities.index');
 
+// Location landing pages
+Route::get('/pondok-indah-apartment', function () {
+    return view('pondok-indah-apartment');
+})->name('pondok-indah-apartment');
+
 // Static Pages
 Route::get('/about', function () {
     return view('about');

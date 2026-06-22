@@ -32,6 +32,12 @@ class SitemapController extends Controller
                 'priority' => '0.8',
             ],
             [
+                'loc' => route('pondok-indah-apartment'),
+                'lastmod' => now(),
+                'changefreq' => 'monthly',
+                'priority' => '0.9',
+            ],
+            [
                 'loc' => route('articles.index'),
                 'lastmod' => $this->latestUpdatedAt(Article::class),
                 'changefreq' => 'weekly',

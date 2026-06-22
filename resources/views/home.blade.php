@@ -1,7 +1,39 @@
 ﻿<x-layouts.app
-    title="GolfHill Terraces - Premium Pondok Indah Residences"
-    description="GolfHill Terraces offers 198 golf course facing residences in Pondok Indah, Jakarta Selatan with premium facilities, lush surroundings, and convenient access to malls and business districts."
+    title="GolfHill Terraces - Pondok Indah Apartment in South Jakarta"
+    description="GolfHill Terraces is a Pondok Indah apartment with 198 golf course facing residences, premium facilities, lush surroundings, and convenient South Jakarta access."
 >
+    @push('head')
+    @php
+        $apartmentSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'ApartmentComplex',
+            'name' => 'GolfHill Terraces',
+            'description' => 'GolfHill Terraces is a Pondok Indah apartment offering 198 golf course facing residences in South Jakarta.',
+            'url' => url('/'),
+            'telephone' => '+62 818-0373-0325',
+            'email' => 'golfhill@brasali.com',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => 'Jalan Metro Kencana IV Kav. 7',
+                'addressLocality' => 'Pondok Indah, Jakarta Selatan',
+                'addressRegion' => 'DKI Jakarta',
+                'postalCode' => '12310',
+                'addressCountry' => 'ID',
+            ],
+            'amenityFeature' => [
+                ['@type' => 'LocationFeatureSpecification', 'name' => 'Golf course facing residences', 'value' => true],
+                ['@type' => 'LocationFeatureSpecification', 'name' => 'Swimming pool', 'value' => true],
+                ['@type' => 'LocationFeatureSpecification', 'name' => 'Fitness center', 'value' => true],
+                ['@type' => 'LocationFeatureSpecification', 'name' => 'Tennis court', 'value' => true],
+            ],
+            'sameAs' => [
+                'https://maps.app.goo.gl/tKQobfJam5JCghNK8',
+            ],
+        ];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($apartmentSchema, JSON_UNESCAPED_SLASHES) !!}</script>
+    @endpush
+
     {{-- Hero Section - Figma Design --}}
     <section class="relative h-[665px] bg-cover bg-center" style="background-image: url('{{ asset('images/HomePageBackground-new.jpeg') }}');">
        <div class="absolute inset-0 hero-overlay"></div>
@@ -11,7 +43,7 @@
                     Where Convenience<br>Meets Luxury
                 </h1>
                 <p class="text-2xl text-white/90 mb-12 leading-relaxed">
-                    198 Golf Course Facing Residences in Pondok Indah
+                    198 Golf Course Facing Pondok Indah apartment residences
                 </p>
                 <div class="flex flex-col sm:flex-row gap-6">
                     <a href="{{ route('contact') }}" 
@@ -140,6 +172,9 @@
                         <p>
                             Experience luxury living where every detail has been carefully crafted to provide the perfect blend of elegance, comfort, and convenience. 
                             Surrounded by lush greenery and overlooking a pristine golf course, Golfhill Terraces offers an unparalleled lifestyle in Jakarta's most prestigious neighborhood.
+                        </p>
+                        <p>
+                            Looking for a Pondok Indah apartment? <a href="{{ route('pondok-indah-apartment') }}" class="font-semibold hover:underline" style="color: #00377D;">Explore GolfHill Terraces in South Jakarta</a>.
                         </p>
                     </div>
 

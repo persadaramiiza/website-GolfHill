@@ -1,7 +1,28 @@
 ﻿<x-layouts.app
     title="Luxury Apartments for Rent in Pondok Indah - GolfHill Terraces"
-    description="Explore GolfHill Terraces residences in Pondok Indah, Jakarta Selatan: golf course facing apartments, spacious layouts, premium facilities, and direct inquiry options."
+    description="Explore GolfHill Terraces residences in Pondok Indah, Jakarta Selatan: premium 2BR, 3BR, and 4BR duplex apartments with flexible lease inquiries."
 >
+    @push('head')
+    @php
+        $rentalFaqs = [
+            ['question' => 'Can I lease a GolfHill Terraces apartment for 6 months?', 'answer' => 'Yes. GolfHill Terraces accepts enquiries for 6-month to 1-year leases, subject to the terms and availability of the selected residence.'],
+            ['question' => 'Which apartment configurations are available?', 'answer' => 'GolfHill Terraces offers 2BR apartments, 3BR suites, and premium 4BR duplex residences. Contact the team to confirm current inventory.'],
+            ['question' => 'Are the apartments suitable for expatriates and families?', 'answer' => 'The spacious layouts, Pondok Indah location, and family-oriented facilities are designed for families and expatriates seeking premium rental apartments in South Jakarta.'],
+            ['question' => 'How do I confirm rental availability and arrange a viewing?', 'answer' => 'Select a unit type and contact GolfHill Terraces directly for current availability, lease terms, furnished options, and viewing schedules.'],
+        ];
+
+        $rentalFaqSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'FAQPage',
+            'mainEntity' => array_map(fn ($faq) => [
+                '@type' => 'Question',
+                'name' => $faq['question'],
+                'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq['answer']],
+            ], $rentalFaqs),
+        ];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($rentalFaqSchema, JSON_UNESCAPED_SLASHES) !!}</script>
+    @endpush
 
     {{-- Page Header --}}
     <section style="background: linear-gradient(135deg, rgba(151, 231, 245, 0.30) 0%, #FFF 50%, #FFF 100%); padding-top: 85px;">
@@ -26,14 +47,41 @@
         <div class="max-w-5xl mx-auto px-8">
             <div style="max-width: 840px; margin: 0 auto; text-align: center;">
                 <h2 style="color: #00377D; font-size: 36px; font-weight: 700; line-height: 42px; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 18px;">
-                    Luxury Apartments for Rent in Pondok Indah
+                    Sewa Apartemen Pondok Indah
                 </h2>
                 <p style="color: #4A5565; font-size: 18px; font-weight: 400; line-height: 30px; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 18px;">
-                    GolfHill Terraces offers 198 residences in a prime Pondok Indah address, with golf course facing residences designed for calm daily living near malls, schools, offices, and South Jakarta business districts.
+                    GolfHill Terraces offers 198 residences for people seeking luxury apartments for rent in Pondok Indah. Each Pondok Indah apartment for lease combines golf course facing residences, spacious layouts, and premium facilities in South Jakarta.
                 </p>
                 <p style="color: #4A5565; font-size: 16px; font-weight: 400; line-height: 28px; font-family: 'Plus Jakarta Sans', sans-serif;">
-                    Browse available unit types, compare bedroom and bathroom layouts, review furnished options, and contact the GolfHill Terraces team directly for current availability.
+                    Browse unit types for family or expat living, compare bedroom and bathroom layouts, and ask about furnished options or a 6-month to 1-year lease. Availability and terms are confirmed directly by the GolfHill Terraces team.
                 </p>
+                <div style="margin-top: 24px; display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
+                    <a href="{{ route('pondok-indah-apartment') }}" style="color: #00377D; font-weight: 700; text-decoration: underline;">Explore the Pondok Indah location</a>
+                    <a href="{{ route('contact') }}" style="color: #22AE6C; font-weight: 700; text-decoration: underline;">Contact the leasing team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: #F9FAFB; padding: 56px 0;">
+        <div class="max-w-5xl mx-auto px-8">
+            <div style="max-width: 760px; margin-bottom: 36px;">
+                <h2 style="color: #00377D; font-size: 34px; font-weight: 700; line-height: 42px; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 14px;">Apartment Options for Premium South Jakarta Living</h2>
+                <p style="color: #4A5565; font-size: 17px; line-height: 28px; font-family: 'Plus Jakarta Sans', sans-serif;">Choose a layout that fits individual, family, or corporate housing requirements. Current unit availability is subject to confirmation.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <article>
+                    <h3 style="color: #00377D; font-size: 22px; font-weight: 700; margin-bottom: 10px;">2BR Apartments</h3>
+                    <p style="color: #4A5565; line-height: 26px;">Premium 2BR apartments in Pondok Indah for residents who want a practical luxury layout with access to complete facilities.</p>
+                </article>
+                <article>
+                    <h3 style="color: #00377D; font-size: 22px; font-weight: 700; margin-bottom: 10px;">3BR Suites</h3>
+                    <p style="color: #4A5565; line-height: 26px;">Luxury 3BR suites provide additional room for families, expatriates, and residents who work from home.</p>
+                </article>
+                <article>
+                    <h3 style="color: #00377D; font-size: 22px; font-weight: 700; margin-bottom: 10px;">4BR Duplex Residences</h3>
+                    <p style="color: #4A5565; line-height: 26px;">Premium 4BR duplex residences offer expansive two-level living for larger households seeking an exclusive Pondok Indah home.</p>
+                </article>
             </div>
         </div>
     </section>
@@ -247,6 +295,20 @@
                 {{ $units->links() }}
             </div>
             @endif
+        </div>
+    </section>
+
+    <section style="background: #F9FAFB; padding: 64px 0;">
+        <div class="max-w-4xl mx-auto px-8">
+            <h2 style="color: #00377D; font-size: 36px; font-weight: 700; line-height: 44px; text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 40px;">Rental Questions</h2>
+            <div class="divide-y divide-gray-200 border-y border-gray-200">
+                @foreach($rentalFaqs as $faq)
+                    <article style="padding: 24px 0;">
+                        <h3 style="color: #00377D; font-size: 18px; font-weight: 700; line-height: 28px; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 8px;">{{ $faq['question'] }}</h3>
+                        <p style="color: #4A5565; font-size: 16px; line-height: 28px; font-family: 'Plus Jakarta Sans', sans-serif;">{{ $faq['answer'] }}</p>
+                    </article>
+                @endforeach
+            </div>
         </div>
     </section>
 <!-- 

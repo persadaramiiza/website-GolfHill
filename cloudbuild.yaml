@@ -5,6 +5,42 @@ substitutions:
   _IMAGE_NAME: golfhill-app
 
 steps:
+  - name: 'ghcr.io/gitleaks/gitleaks:latest'
+    id: 'secret-scan'
+    args:
+      - 'detect'
+      - '--source=.'
+      - '--no-git'
+      - '--redact'
+      - '--exit-code=0'
+
+  - name: 'composer:2'
+    id: 'composer-audit'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        composer audit || true
+
+  - name: 'node:22'
+    id: 'npm-audit'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        npm audit --audit-level=high || true
+
+  - name: 'aquasec/trivy:latest'
+    id: 'trivy-filesystem-scan'
+    args:
+      - 'fs'
+      - '--severity'
+      - 'HIGH,CRITICAL'
+      - '--exit-code'
+      - '0'
+      - '--ignore-unfixed'
+      - '.'
+      
   - name: 'gcr.io/cloud-builders/docker'
     id: 'build-docker-image'
     args:

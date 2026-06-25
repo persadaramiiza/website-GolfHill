@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Cloud Build Pipeline"
+  short_description: "Review cloud build pipeline quality"
+  default_prompt: "Use $review-cloud-build-pipeline to review a cloud build pipeline for correctness, security, and release risks."
